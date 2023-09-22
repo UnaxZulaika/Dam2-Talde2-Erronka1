@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">DAM2-Erronka1-Talde2</string>
     <string name="createdBy">Sortuta:</string>
+    <string name="user">Erabiltzailea:</string>
+    <string name="userTxt">adibidea@adibide.eus</string>
+    <string name="pasw">Pasahitza:</string>
+    <string name="paswTxt">Sartu zure pasahitza</string>
+    <string name="btnLogin">Sartu</string>
+    <string name="btnRegister">Erregistratu</string>
 </resources>

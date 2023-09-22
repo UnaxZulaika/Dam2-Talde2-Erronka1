@@ -6,15 +6,105 @@
     android:layout_height="match_parent"
     tools:context=".login">
 
+    <LinearLayout
+        android:id="@+id/LayIdUpBanner"
+        android:layout_width="411sp"
+        android:layout_height="125sp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/imgIdBannerLogo"
+            android:layout_width="421dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:srcCompat="@drawable/logo_sin_fondo" />
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtViewIdMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="49sp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LayIdUpBanner"
+        app:layout_constraintVertical_bias="0.125" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="148sp"
+        android:layout_height="64sp"
+        android:backgroundTint="#C6E5B1"
+        android:text="Button"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.783"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintVertical_bias="0.501" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="148sp"
+        android:layout_height="64sp"
+        android:backgroundTint="#C6E5B1"
+        android:text="Button"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintVertical_bias="0.501" />
+
+    <TextView
+        android:id="@+id/txtViewIdPasahitza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
+        app:layout_constraintEnd_toEndOf="@+id/txtEditIdMail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtEditIdMail"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditIdMail"
+        app:layout_constraintVertical_bias="0.039" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="319sp"
+        android:layout_height="59sp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:text="Pass"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtViewIdPasahitza"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtViewIdPasahitza"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewIdPasahitza"
+        app:layout_constraintVertical_bias="0.024" />
+
+    <EditText
+        android:id="@+id/txtEditIdMail"
+        android:layout_width="319sp"
+        android:layout_height="59dp"
+        android:ems="10"
+        android:hint="erabiltzailea"
+        android:inputType="text"
+        android:text="Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtViewIdMail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtViewIdMail"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewIdMail"
+        app:layout_constraintVertical_bias="0.019" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

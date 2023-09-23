@@ -23,7 +23,7 @@
             android:layout_width="421dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/logo_sin_fondo" />
+            app:srcCompat="@drawable/logo_oma" />
     </LinearLayout>
 
     <!-- TextView "Usuario" -->

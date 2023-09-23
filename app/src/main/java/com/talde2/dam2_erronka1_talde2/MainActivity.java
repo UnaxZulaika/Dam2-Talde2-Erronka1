@@ -22,6 +22,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish(); // Honek MainActivity ixten du, erabiltzaileak Atzera botoia erabiliz bertara itzultzea nahi ez baduzu.
             }
-        }, 1000); // zenbat denbora tardatzen duen aldatzen 1sg = 1000
+        }, 2000); // zenbat denbora tardatzen duen aldatzen 1sg = 1000
     }
 }

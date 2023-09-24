@@ -7,4 +7,21 @@
     <string name="paswTxt">Sartu zure pasahitza</string>
     <string name="btnLogin">Sartu</string>
     <string name="btnRegister">Erregistratu</string>
+    <string name="regIzena">Izena:</string>
+    <string name="regEditIzena">Sartu zure izena</string>
+    <string name="regNan">NAN:</string>
+    <string name="regEditNan">Sartu zure NAN-a</string>
+    <string name="regAbizena">Abizenak:</string>
+    <string name="regEditAbizena">Sartu zure abizenak</string>
+    <string name="regMugikorra">Mugikor zenbakia:</string>
+    <string name="regEditMugikorra">Sartu zure mugikor zenbakia</string>
+    <string name="regEposta">E-posta:</string>
+    <string name="regEditEposta">Sartu zure E-posta</string>
+    <string name="regPasw">Pasahitza:</string>
+    <string name="regEditPasw">Sartu pasahitza</string>
+    <string name="regPasw2">Errepikatu pasahitza:</string>
+    <string name="regEditPasw2">Errepikatu pasahitza</string>
+    <string name="regErabMota">Erabiltzaile mota:</string>
+    <string name="regErabiltzaile1">Pertsona</string>
+    <string name="regErabiltzaile2">Enpresa/Entitatea</string>
 </resources>

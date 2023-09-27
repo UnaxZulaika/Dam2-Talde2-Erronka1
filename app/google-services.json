@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:689903993652:android:5a651ec12eb4325af11b61",
+        "mobilesdk_app_id": "1:689903993652:android:8a04ca3746f0a178f11b61",
         "android_client_info": {
-          "package_name": "com.OMA.OmaApp"
+          "package_name": "com.talde2.dam2_erronka1_talde2"
         }
       },
       "oauth_client": [],

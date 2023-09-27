@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class login extends AppCompatActivity {
 
     @Override
@@ -14,6 +16,8 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // db.collection("prueba").document("texto").set("HOLA MUNDO");
         Button btnErregistratu = findViewById(R.id.loginBtnErregistratu);
         btnErregistratu.setOnClickListener(new View.OnClickListener() {
             @Override

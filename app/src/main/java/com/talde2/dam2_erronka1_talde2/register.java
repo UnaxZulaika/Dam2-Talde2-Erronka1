@@ -14,11 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class register extends AppCompatActivity {
 
@@ -49,8 +54,6 @@ public class register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
-
-
 
 
         regBtnErregistratu = findViewById(R.id.regBtnErregistraty);
@@ -85,36 +88,44 @@ public class register extends AppCompatActivity {
 
                 // izena beteta dagoen ikusten du,
                 if (trimIzena.isEmpty()) {
-                    Toast.makeText(register.this, "Izena bete behar da.", Toast.LENGTH_SHORT).show();
+                    String erIzena = getResources().getString(R.string.erIzena);
+                    Toast.makeText(register.this, erIzena, Toast.LENGTH_SHORT).show();
                 }
                 // NAN zuzena den konprobatzen du (8 zenbaki eta letra bat. Adibidez: 12345678A)
                 else if (!nan.matches("\\d{8}[A-Za-z]")) {
-                    Toast.makeText(register.this, "Nan formatua okerra", Toast.LENGTH_SHORT).show();
+                    String erNan = getResources().getString(R.string.erNan);
+                    Toast.makeText(register.this, erNan, Toast.LENGTH_SHORT).show();
                 }
                 // Zenbak array dauden konprobatzen du abizen kopuruak jakiteko.
                 else if (trimAbizenak.length < 2) {
-                    Toast.makeText(register.this, "Zure lehen bi abizenak sartu, mesedez.", Toast.LENGTH_SHORT).show();
+                    String erAbizenak = getResources().getString(R.string.erAbizenak);
+                    Toast.makeText(register.this, erAbizenak, Toast.LENGTH_SHORT).show();
                 }
                 // Emaila konprobatzen du android-en metodoekin.
                 else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    Toast.makeText(register.this, "Emaila okerra da.", Toast.LENGTH_SHORT).show();
+                    String erEmail = getResources().getString(R.string.erEmail);
+                    Toast.makeText(register.this, erEmail, Toast.LENGTH_SHORT).show();
                 }
                 // Mugikor zenbakia konprobatzen du android-en metodoekin.
                 else if (!Patterns.PHONE.matcher(mugikorra).matches()) {
-                    Toast.makeText(register.this, "Mugikorra zenbakiak izan behar ditu.", Toast.LENGTH_SHORT).show();
+                    String erMugikorra = getResources().getString(R.string.erMugikorra);
+                    Toast.makeText(register.this, erMugikorra, Toast.LENGTH_SHORT).show();
                 }
                 // Pasahitza konprobatzeko else if desberdinak erabiltzen ditugu bestela aplikazioa 'crash'-eatzen da.
                 // pasahitzak ez daudela hutsik konprobatzen du.
                 else if (password1.isEmpty() || password2.isEmpty()) {
-                    Toast.makeText(register.this, "Pasahitza bete mesedez.", Toast.LENGTH_SHORT).show();
+                    String erPasahitza1 = getResources().getString(R.string.erPasahitza1);
+                    Toast.makeText(register.this, erPasahitza1, Toast.LENGTH_SHORT).show();
                 }
                 // Bi pasahitzak berdinak diren konprobatzen du.
                 else if (!password1.equals(password2)) {
-                    Toast.makeText(register.this, "Pasahitzak ez dira berdinak.", Toast.LENGTH_SHORT).show();
+                    String erPasahitza2 = getResources().getString(R.string.erPasahitza2);
+                    Toast.makeText(register.this, erPasahitza2, Toast.LENGTH_SHORT).show();
                 }
                 // motaren bat aukeratu den konprobatzen du
                 else if (aukeratutakoMota == -1) {
-                    Toast.makeText(register.this, "Aukeratu erabiltzaile mota bat.", Toast.LENGTH_SHORT).show();
+                    String erMotak = getResources().getString(R.string.erMotak);
+                    Toast.makeText(register.this, erMotak, Toast.LENGTH_SHORT).show();
                 }
                 // Dena zuzen badago erregistroa egiteko metodoari deitzen zaio.
                 else {
@@ -124,7 +135,8 @@ public class register extends AppCompatActivity {
                     // erabiltzaileMota String-ean aukeratutako mota gordetzen du.
                     erabiltzaileMota = mota.getText().toString();
 
-                    erabiltzaileaErregistratu();
+                    // NAN-a datu basean existizen den konprobatzen du
+                    nanKonprobaketa(nan);
                 }
             }
         });
@@ -141,14 +153,80 @@ public class register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Erregistroa ondo, erabiltzailea sortu da
-                            Toast.makeText(register.this, "Zure erabiltzailea sortu da", Toast.LENGTH_SHORT).show();
+                            String erabiltzaileaSortu = getResources().getString(R.string.erabiltzaileaSortu);
+                            Toast.makeText(register.this, erabiltzaileaSortu, Toast.LENGTH_SHORT).show();
                             // erabiltzaileaDatuBaseanGorde metodoari deitzen zaio
                             erabiltzaileaDatuBaseanGorde();
                             Intent intent = new Intent(register.this, login.class);
                             startActivity(intent);
                         } else {
                             // Erregistro okerra, error mezua
-                            Toast.makeText(register.this, "Erregistro okerra: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            String erOkerra = getResources().getString(R.string.erOkerra);
+                            Toast.makeText(register.this, erOkerra + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    // NAN-a datu basean existizen den konprobatzen du
+    private void nanKonprobaketa(final String nan) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("Erabiltzaileak").whereEqualTo("nan", nan).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if (!task.getResult().isEmpty()) {
+                                // NAN-a datu basean existitzen da
+                                String erNanBikoiztua = getResources().getString(R.string.erNanBikoiztua);
+                                Toast.makeText(register.this, erNanBikoiztua, Toast.LENGTH_SHORT).show();
+                            } else {
+                                // NAN-a ez da existitzen. Erregistroa egiten da.
+                                mAuth.createUserWithEmailAndPassword(email, password1).addOnCompleteListener(register.this, new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                if (task.isSuccessful()) {
+                                                    // Erregistroa ondo (Authentication). Erabiltzailea sortuta.
+                                                    String erabiltzaileaSortu = getResources().getString(R.string.erabiltzaileaSortu);
+                                                    Toast.makeText(register.this, erabiltzaileaSortu, Toast.LENGTH_SHORT).show();
+                                                    // Datu basean erabiltzailearen informazioa gordetzen da.
+                                                    erabiltzaileaDatuBaseanGorde();
+                                                    Intent intent = new Intent(register.this, login.class);
+                                                    startActivity(intent);
+                                                } else {
+                                                    // Erregistro okerra. Errore konkretuentzako mezu desberdinekin.
+                                                    String erroreMezua = getResources().getString(R.string.erOkerra);
+
+                                                    // Zein izan den errorea.
+                                                    Exception exception = task.getException();
+
+                                                    if (exception instanceof FirebaseAuthInvalidCredentialsException) {
+                                                        // Pasaitzak ez du formatu ona.
+                                                        String erPasahitzFormatua = getResources().getString(R.string.erPasahitzFormatua);
+                                                        erroreMezua += erPasahitzFormatua;
+                                                    } else if (exception instanceof FirebaseAuthUserCollisionException) {
+                                                        // E-posta erregistratuta dago
+                                                        String erEpostaErregistratuta = getResources().getString(R.string.erEpostaErregistratuta);
+                                                        erroreMezua += erEpostaErregistratuta;
+                                                    } else if (exception instanceof FirebaseNetworkException) {
+                                                        // Internet konexio gabe
+                                                        String erInternet = getResources().getString(R.string.erInternet);
+                                                        erroreMezua += erInternet;
+                                                    } else {
+                                                        // Beste errore batzuk.
+                                                        String erEzezaguna = getResources().getString(R.string.erEzezaguna);
+                                                        erroreMezua += erEzezaguna + exception.getMessage();
+                                                    }
+
+                                                    Toast.makeText(register.this, erroreMezua, Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                });
+                            }
+                        } else {
+                            // FireStoren kontsulta egiteko errorea.
+                            String erDbNan = getResources().getString(R.string.erDbNan);
+                            Toast.makeText(register.this, erDbNan, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -160,15 +238,19 @@ public class register extends AppCompatActivity {
 
         erabiltzaileak erabiltzaile = new erabiltzaileak(izena, nan, abizenak, email, mugikorra, erabiltzaileMota);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        String uid = null;
-        if (currentUser != null) {
-            uid = currentUser.getUid();
-        }
-
-        db.collection("erabiltzaileak").document(uid).set(erabiltzaile);
-
+        db.collection("Erabiltzaileak").document(email).set(erabiltzaile).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        String dbGorde = getResources().getString(R.string.dbGorde);
+                        Toast.makeText(register.this, dbGorde, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        String erErrorea = getResources().getString(R.string.erErrorea);
+                        Toast.makeText(register.this, erErrorea, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

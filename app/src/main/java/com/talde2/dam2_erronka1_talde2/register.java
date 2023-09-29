@@ -89,33 +89,37 @@ public class register extends AppCompatActivity {
                 // izena beteta dagoen ikusten du,
                 if (trimIzena.isEmpty()) {
                     String erIzena = getResources().getString(R.string.erIzena);
-                    Toast.makeText(register.this, erIzena, Toast.LENGTH_SHORT).show();
+                    izenaEditText.setError(erIzena);
                 }
                 // NAN zuzena den konprobatzen du (8 zenbaki eta letra bat. Adibidez: 12345678A)
                 else if (!nan.matches("\\d{8}[A-Za-z]")) {
                     String erNan = getResources().getString(R.string.erNan);
-                    Toast.makeText(register.this, erNan, Toast.LENGTH_SHORT).show();
+                    nanEditText.setError(erNan);
                 }
                 // Zenbak array dauden konprobatzen du abizen kopuruak jakiteko.
                 else if (trimAbizenak.length < 2) {
                     String erAbizenak = getResources().getString(R.string.erAbizenak);
-                    Toast.makeText(register.this, erAbizenak, Toast.LENGTH_SHORT).show();
+                    abizenaEditText.setError(erAbizenak);
                 }
                 // Emaila konprobatzen du android-en metodoekin.
                 else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     String erEmail = getResources().getString(R.string.erEmail);
-                    Toast.makeText(register.this, erEmail, Toast.LENGTH_SHORT).show();
+                    emailEditText.setError(erEmail);
                 }
                 // Mugikor zenbakia konprobatzen du android-en metodoekin.
                 else if (!Patterns.PHONE.matcher(mugikorra).matches()) {
                     String erMugikorra = getResources().getString(R.string.erMugikorra);
-                    Toast.makeText(register.this, erMugikorra, Toast.LENGTH_SHORT).show();
+                    mugikorraEditText.setError(erMugikorra);
                 }
                 // Pasahitza konprobatzeko else if desberdinak erabiltzen ditugu bestela aplikazioa 'crash'-eatzen da.
                 // pasahitzak ez daudela hutsik konprobatzen du.
-                else if (password1.isEmpty() || password2.isEmpty()) {
+                else if (password1.isEmpty()) {
                     String erPasahitza1 = getResources().getString(R.string.erPasahitza1);
-                    Toast.makeText(register.this, erPasahitza1, Toast.LENGTH_SHORT).show();
+                    passwordEditText.setError(erPasahitza1);
+                }
+                else if (password2.isEmpty()){
+                    String erPasahitza1 = getResources().getString(R.string.erPasahitza1);
+                    password2EditText.setError(erPasahitza1);
                 }
                 // Bi pasahitzak berdinak diren konprobatzen du.
                 else if (!password1.equals(password2)) {

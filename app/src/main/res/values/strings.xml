@@ -12,6 +12,17 @@
     <string name="btnLogin">Sartu</string>
     <string name="btnRegister">Erregistratu</string>
 
+    <!-- login.java -->
+    <string name="sartuEposta">Sartu zure e-posta</string>
+    <string name="sartuPasahitza">Sartu zure pasahitza</string>
+    <string name="erKonexioaLogin">Ez dago Internet konexiorik. Saiatu berriro geroago</string>
+    <string name="erEpostaLogin">Eposta ez da aurkitu</string>
+    <string name="erPasahitzaLogin">Pasahitz okerra</string>
+    <string name="erLoginLogin">E-posta edo pasahitz okerra</string>
+    <string name="ongiEtorriLogin">Ongi etorri,</string>
+    <string name="erErabiltzaileaLogin">Errorea: Erabiltzailea ez da aurkitu</string>
+    <string name="erroreaLogin">Errorea:</string>
+
     <!-- register -->
     <string name="regIzena">Izena:</string>
     <string name="regEditIzena">Sartu zure izena</string>

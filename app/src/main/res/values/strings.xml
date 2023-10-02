@@ -61,4 +61,9 @@
     <string name="erDbNan">Ezin izan da NAN-a datu basean konprobatu. Saiatu berriro geroago</string>
     <string name="dbGorde">Datu basean gorde da</string>
     <string name="erErrorea">Errorea</string>
+
+    <!-- Menua -->
+    <string name="menKontua">Nire Kontua</string>
+    <string name="menErreserbak">Erreserbak</string>
+    <string name="menLogoDeskripzioa">Gure app logoa</string>
 </resources>

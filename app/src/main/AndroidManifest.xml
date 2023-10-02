@@ -13,9 +13,12 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".erreserbak"
+            android:exported="false" />
+        <activity
             android:name=".register"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login"
             android:exported="false"

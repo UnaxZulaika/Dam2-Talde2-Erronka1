@@ -1,4 +1,64 @@
 <resources>
     <string name="app_name">DAM2-Erronka1-Talde2</string>
+
+    <!-- MainActivity -->
     <string name="createdBy">Sortuta:</string>
+
+    <!-- login -->
+    <string name="user">Erabiltzailea:</string>
+    <string name="userTxt">adibidea@adibide.eus</string>
+    <string name="pasw">Pasahitza:</string>
+    <string name="paswTxt">Sartu zure pasahitza</string>
+    <string name="btnLogin">Sartu</string>
+    <string name="btnRegister">Erregistratu</string>
+
+    <!-- login.java -->
+    <string name="sartuEposta">Sartu zure e-posta</string>
+    <string name="sartuPasahitza">Sartu zure pasahitza</string>
+    <string name="erKonexioaLogin">Ez dago Internet konexiorik. Saiatu berriro geroago</string>
+    <string name="erEpostaLogin">Eposta ez da aurkitu</string>
+    <string name="erPasahitzaLogin">Pasahitz okerra</string>
+    <string name="erLoginLogin">E-posta edo pasahitz okerra</string>
+    <string name="ongiEtorriLogin">Ongi etorri,</string>
+    <string name="erErabiltzaileaLogin">Errorea: Erabiltzailea ez da aurkitu</string>
+    <string name="erroreaLogin">Errorea:</string>
+
+    <!-- register -->
+    <string name="regIzena">Izena:</string>
+    <string name="regEditIzena">Sartu zure izena</string>
+    <string name="regNan">NAN:</string>
+    <string name="regEditNan">Sartu zure NAN-a</string>
+    <string name="regAbizena">Abizenak:</string>
+    <string name="regEditAbizena">Sartu zure abizenak</string>
+    <string name="regMugikorra">Mugikor zenbakia:</string>
+    <string name="regEditMugikorra">Sartu zure mugikor zenbakia</string>
+    <string name="regEposta">E-posta:</string>
+    <string name="regEditEposta">Sartu zure E-posta</string>
+    <string name="regPasw">Pasahitza:</string>
+    <string name="regEditPasw">Sartu pasahitza</string>
+    <string name="regPasw2">Errepikatu pasahitza:</string>
+    <string name="regEditPasw2">Errepikatu pasahitza</string>
+    <string name="regErabMota">Erabiltzaile mota:</string>
+    <string name="regErabiltzaile1">Pertsona</string>
+    <string name="regErabiltzaile2">Enpresa/Entitatea</string>
+
+    <!-- register.java -->
+    <string name="erIzena">Izena bete behar da</string>
+    <string name="erNan">Nan formatua okerra</string>
+    <string name="erAbizenak">Zure lehen bi abizenak sartu, mesedez</string>
+    <string name="erEmail">Email okerra</string>
+    <string name="erMugikorra">Mugikor zenbaki okerra</string>
+    <string name="erPasahitza1">Pasahitza bete mesedez</string>
+    <string name="erPasahitza2">Pasahitzak ez dira berdinak</string>
+    <string name="erMotak">Aukeratu erabiltzale mota bat</string>
+    <string name="erabiltzaileaSortu">Zure erabiltzailea sortu da</string>
+    <string name="erOkerra">Erregistro okerra: </string>
+    <string name="erNanBikoiztua">Beste erabiltzaile bat dago NAN berarekin.</string>
+    <string name="erPasahitzFormatua">Pasahitzak ez dago behar bezalako formatua (gutxienez 6 karaktere)</string>
+    <string name="erEpostaErregistratuta">E-posta dagoeneko erregistratua dago</string>
+    <string name="erInternet">Ez dago Internet konexiorik. Saiatu berriro geroago</string>
+    <string name="erEzezaguna">Errore ezezaguna: </string>
+    <string name="erDbNan">Ezin izan da NAN-a datu basean konprobatu. Saiatu berriro geroago</string>
+    <string name="dbGorde">Datu basean gorde da</string>
+    <string name="erErrorea">Errorea</string>
 </resources>

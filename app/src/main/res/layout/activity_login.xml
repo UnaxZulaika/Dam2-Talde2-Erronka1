@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login">
+
+    <!-- Banner fondo berdea -->
+    <LinearLayout
+        android:id="@+id/loginBanner"
+        android:layout_width="411sp"
+        android:layout_height="125sp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/verdePastel"
+        app:layout_constraintVertical_bias="0.0">
+
+        <!-- Banner logo -->
+        <ImageView
+            android:id="@+id/loginBannerLogo"
+            android:layout_width="421sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/logo_oma" />
+    </LinearLayout>
+
+    <!-- TextView "Erabiltzailea:" -->
+    <TextView
+        android:id="@+id/loginTxtErabiltzaile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
+        android:text="@string/user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- EditText Erabiltzailea -->
+    <EditText
+        android:id="@+id/loginEditErbiltzaile"
+        android:layout_width="0sp"
+        android:layout_height="48sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
+        android:hint="@string/userTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginTxtErabiltzaile"
+        />
+
+    <!-- TextView "Pasahitza" -->
+    <TextView
+        android:id="@+id/loginTxtPasahitza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
+        android:text="@string/pasw"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginEditErbiltzaile"
+        />
+
+    <!-- EditText pashitza (textPassword) -->
+    <EditText
+        android:id="@+id/loginEditPasahitza"
+        android:layout_width="0sp"
+        android:layout_height="48sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
+        android:hint="@string/paswTxt"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginTxtPasahitza"
+        />
+
+    <!-- "Erregistratu" botoia -->
+    <Button
+        android:id="@+id/loginBtnErregistratu"
+        android:layout_width="148sp"
+        android:layout_height="64sp"
+        android:backgroundTint="#C6E5B1"
+        android:text="@string/btnRegister"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginEditPasahitza"
+        app:layout_constraintVertical_bias="0.502" />
+
+    <!-- "Sartu" botoia -->
+    <Button
+        android:id="@+id/loginBtnSartu"
+        android:layout_width="148sp"
+        android:layout_height="64sp"
+        android:backgroundTint="#C6E5B1"
+        android:text="@string/btnLogin"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginEditPasahitza"
+        app:layout_constraintVertical_bias="0.502" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

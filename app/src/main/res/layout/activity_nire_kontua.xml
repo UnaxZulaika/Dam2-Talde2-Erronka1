@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Nire_Kontua">
+
+    <!-- Banner fondo berdea -->
+    <LinearLayout
+        android:id="@+id/regBanner"
+        android:layout_width="411sp"
+        android:layout_height="125sp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/verdePastel"
+        app:layout_constraintVertical_bias="0.0">
+
+        <!-- Banner logo -->
+        <ImageView
+            android:id="@+id/regBannerLogo"
+            android:layout_width="421sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/logo_oma" />
+    </LinearLayout>
+
+    <!-- TextView "Izena:" -->
+    <TextView
+        android:id="@+id/nrkntTxtIzena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="165sp"
+        android:layout_marginStart="32sp"
+        android:layout_marginEnd="30sp"
+        android:text="@string/regIzena"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Izena EditText -->
+    <EditText
+        android:id="@+id/nrkntEditIzena"
+        android:layout_width="150sp"
+        android:layout_height="48sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
+        android:textSize="15sp"
+        android:hint="@string/nrkntEditIzena"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtIzena"
+        />
+
+    <!-- TextView "NAN" -->
+    <TextView
+        android:id="@+id/nrkntTxtNan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="165sp"
+        android:layout_marginEnd="144sp"
+        android:text="@string/regNan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- NAN EditText -->
+    <EditText
+        android:id="@+id/nrkntEditNan"
+        android:layout_width="150sp"
+        android:layout_height="48sp"
+        android:textSize="15sp"
+        android:hint="@string/nrkntEditNan"
+        android:layout_marginEnd="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtNan" />
+
+    <!-- TextView "Abizenak" -->
+    <TextView
+        android:id="@+id/nrkntTxtAbizenak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:layout_marginStart="32sp"
+        android:text="@string/regAbizena"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntEditIzena" />
+
+    <!-- Abizenak EditText -->
+    <EditText
+        android:id="@+id/nrkntEditAbizenak"
+        android:layout_width="0sp"
+        android:layout_height="48sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
+        android:textSize="15sp"
+        android:hint="@string/nrkntEditAbizenak"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtAbizenak"
+        />
+
+    <!-- TextView "e-posta" -->
+    <TextView
+        android:id="@+id/nrkntTxtPosta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:layout_marginStart="32sp"
+        android:text="@string/regEposta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntEditAbizenak" />
+
+    <!-- e-posta EditText -->
+    <EditText
+        android:id="@+id/nrkntEditPosta"
+        android:layout_width="0sp"
+        android:layout_height="48sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
+        android:textSize="15sp"
+        android:hint="@string/nrkntEditPosta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtPosta"
+        />
+
+    <!-- TextView "Mugikor Zenbakia:" -->
+    <TextView
+        android:id="@+id/nrkntTxtMugikorra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:layout_marginStart="32sp"
+        android:text="@string/regMugikorra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntEditPosta" />
+
+    <!-- Mugikorra EditText -->
+    <EditText
+        android:id="@+id/nrkntEditMugikorra"
+        android:layout_width="0sp"
+        android:layout_height="48sp"
+        android:layout_marginStart="32sp"
+        android:layout_marginEnd="30sp"
+        android:textSize="15sp"
+        android:hint="@string/nrkntEditMugikorra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtMugikorra" />
+
+    <!-- TextView "Pasahitza:" -->
+    <TextView
+        android:id="@+id/nrkntTxtPasahitza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32sp"
+        android:layout_marginTop="10sp"
+        android:text="@string/regPasw"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntEditMugikorra" />
+
+    <!-- Pasahitza EditText (textPassword) -->
+    <EditText
+        android:id="@+id/nrkntEditPasahitza"
+        android:layout_width="150sp"
+        android:layout_height="48sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
+        android:textSize="15sp"
+        android:hint="@string/nrkntEditPasahitza"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtPasahitza"
+        />
+
+    <!-- TextView "Errepikatu pasahitza:" -->
+    <TextView
+        android:id="@+id/nrkntTxtPasahitza2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8sp"
+        android:layout_marginEnd="48sp"
+        android:text="@string/regPasw2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntEditMugikorra" />
+
+    <!-- Errepikatu pasahitza EditText (textPassword) -->
+    <EditText
+        android:id="@+id/nrkntEditPasahitza2"
+        android:layout_width="150sp"
+        android:layout_height="48sp"
+        android:layout_marginEnd="30sp"
+        android:textSize="15sp"
+        android:hint="@string/nrkntEditPasahitza"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtPasahitza" />
+
+    <!-- TextView "Erabiltzaile mota:" -->
+    <TextView
+        android:id="@+id/nrkntTxtErabiltzaileMota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:layout_marginStart="32sp"
+        android:text="@string/regErabMota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntEditPasahitza" />
+
+    <!-- Erabiltzaile mota RadioGroup (2 aukeretatik 1 bakarrik ahal da aukeratu) -->
+
+    <EditText
+        android:id="@+id/nrkntEditErbltzMota"
+        android:layout_width="0sp"
+        android:layout_height="48sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
+        android:textSize="15sp"
+        android:hint="@string/nrkntEditErbltzMota"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtErabiltzaileMota"
+        app:layout_constraintVertical_bias="0.208" />
+
+    <!-- "Erregistratu" botoia -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

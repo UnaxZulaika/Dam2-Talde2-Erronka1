@@ -67,6 +67,15 @@
     <string name="menErreserbak">Erreserbak</string>
     <string name="menLogoDeskripzioa">Gure app logoa</string>
 
+    <!-- Nire Kontua -->
+    <string name="nrkntEditErbltzMota">USER mota</string>
+    <string name="nrkntEditPasahitza">USER pasahitza</string>
+    <string name="nrkntEditMugikorra">USER mugikor zenbakia</string>
+    <string name="nrkntEditPosta">USER e-posta</string>
+    <string name="nrkntEditAbizenak">USER abizena</string>
+    <string name="nrkntEditIzena">USER izena</string>
+    <string name="nrkntEditNan">USER nan</string>
+
     <!-- Erresrebak -->
     <string name="erreTxartelaEskerrak">Eskerrik asko</string>
 </resources>

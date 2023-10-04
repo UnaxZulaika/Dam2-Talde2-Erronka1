@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".erreserbaOrdainketa">
+
+    <Button
+        android:id="@+id/regBtnErregistraty2"
+        android:layout_width="148sp"
+        android:layout_height="64sp"
+        android:layout_marginTop="136dp"
+        android:backgroundTint="#C6E5B1"
+        android:text="@string/btnRegister"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kredituTxartelData"
+        app:layout_constraintVertical_bias="0.058" />
+
+    <LinearLayout
+        android:id="@+id/loginBanner"
+        android:layout_width="match_parent"
+        android:layout_height="125sp"
+        android:background="@color/verdePastel"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <!-- Banner logo -->
+        <ImageView
+            android:id="@+id/loginBannerLogo"
+            android:layout_width="421sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/logo_oma" />
+    </LinearLayout>
+
+    <!-- EditText para mostrar la fecha seleccionada -->
+
+    <!-- DatePicker -->
+
+    <TextView
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Aukeratu data:"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginBanner"
+        app:layout_constraintVertical_bias="0.024" />
+
+    <TextView
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Metodo de pago:"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.114" />
+
+    <TextView
+        android:id="@+id/txvKredituTxartela"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kreditu txartela:"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="0.048" />
+
+    <EditText
+        android:id="@+id/editTextFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="00/00/0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/loginBanner"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:focusable="false"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextFecha" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:layout_marginStart="32sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30sp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintVertical_bias="0.0">
+
+        <!-- RadioButton "Pertsona" -->
+        <RadioButton
+            android:id="@+id/RBkredituTxartela"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Kedritu txartela" />
+
+        <!-- RaddioButton "Enpresa/Entitatea" -->
+        <RadioButton
+            android:id="@+id/RBsukurtsala"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sukurtsalean" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/kredituTxartela"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="1234 5678 9012 3456"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvKredituTxartela"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <EditText
+        android:id="@+id/kredituTxartelData"
+        android:layout_width="71dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="03/09"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kredituTxartela"
+        app:layout_constraintVertical_bias="0.076" />
+
+    <EditText
+        android:id="@+id/kredituTxartelSegurtasun"
+        android:layout_width="161dp"
+        android:layout_height="37dp"
+        android:ems="10"
+        android:hint="Segurtasun kodea"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.233"
+        app:layout_constraintStart_toEndOf="@+id/kredituTxartelData"
+        app:layout_constraintTop_toBottomOf="@+id/kredituTxartela"
+        app:layout_constraintVertical_bias="0.095" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

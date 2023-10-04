@@ -66,4 +66,7 @@
     <string name="menKontua">Nire Kontua</string>
     <string name="menErreserbak">Erreserbak</string>
     <string name="menLogoDeskripzioa">Gure app logoa</string>
+
+    <!-- Erresrebak -->
+    <string name="erreTxartelaEskerrak">Eskerrik asko</string>
 </resources>

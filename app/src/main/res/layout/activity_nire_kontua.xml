@@ -6,39 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".Nire_Kontua">
 
-    <!-- Banner fondo berdea -->
+
+    <!-- HEADER -->
     <LinearLayout
-        android:id="@+id/regBanner"
+        android:id="@+id/loginBanner"
         android:layout_width="411sp"
         android:layout_height="125sp"
+        android:background="@color/verdePastel"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/verdePastel"
         app:layout_constraintVertical_bias="0.0">
 
         <!-- Banner logo -->
+
+        <Button
+            android:id="@+id/IdBtnMenuZabaldu"
+            android:layout_width="61sp"
+            android:layout_height="53sp"
+            android:layout_gravity="center"
+            android:foreground="@drawable/menu" />
+
         <ImageView
-            android:id="@+id/regBannerLogo"
-            android:layout_width="421sp"
+            android:id="@+id/loginBannerLogo"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/menLogoDeskripzioa"
             android:layout_weight="1"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/logo_oma" />
+
     </LinearLayout>
+
+   <!-- CONTENT -->
 
     <!-- TextView "Izena:" -->
     <TextView
         android:id="@+id/nrkntTxtIzena"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="165sp"
-        android:layout_marginStart="32sp"
-        android:layout_marginEnd="30sp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
         android:text="@string/regIzena"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/loginBanner" />
 
     <!-- Izena EditText -->
     <EditText
@@ -46,42 +59,42 @@
         android:layout_width="150sp"
         android:layout_height="48sp"
         android:layout_marginStart="30sp"
-        android:layout_marginEnd="30sp"
-        android:textSize="15sp"
         android:hint="@string/nrkntEditIzena"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtIzena"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtIzena" />
 
     <!-- TextView "NAN" -->
     <TextView
         android:id="@+id/nrkntTxtNan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="165sp"
-        android:layout_marginEnd="144sp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="144dp"
         android:text="@string/regNan"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/loginBanner" />
 
     <!-- NAN EditText -->
     <EditText
         android:id="@+id/nrkntEditNan"
         android:layout_width="150sp"
         android:layout_height="48sp"
-        android:textSize="15sp"
+        android:layout_marginEnd="28dp"
         android:hint="@string/nrkntEditNan"
-        android:layout_marginEnd="30sp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/nrkntTxtAbizenak"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtNan" />
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtNan"
+        app:layout_constraintVertical_bias="0.0" />
 
     <!-- TextView "Abizenak" -->
     <TextView
         android:id="@+id/nrkntTxtAbizenak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
         android:layout_marginStart="32sp"
+        android:layout_marginTop="10sp"
         android:text="@string/regAbizena"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nrkntEditIzena" />
@@ -93,20 +106,19 @@
         android:layout_height="48sp"
         android:layout_marginStart="30sp"
         android:layout_marginEnd="30sp"
-        android:textSize="15sp"
         android:hint="@string/nrkntEditAbizenak"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtAbizenak"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtAbizenak" />
 
     <!-- TextView "e-posta" -->
     <TextView
         android:id="@+id/nrkntTxtPosta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
         android:layout_marginStart="32sp"
+        android:layout_marginTop="10sp"
         android:text="@string/regEposta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nrkntEditAbizenak" />
@@ -118,20 +130,19 @@
         android:layout_height="48sp"
         android:layout_marginStart="30sp"
         android:layout_marginEnd="30sp"
-        android:textSize="15sp"
         android:hint="@string/nrkntEditPosta"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtPosta"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtPosta" />
 
     <!-- TextView "Mugikor Zenbakia:" -->
     <TextView
         android:id="@+id/nrkntTxtMugikorra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
         android:layout_marginStart="32sp"
+        android:layout_marginTop="10sp"
         android:text="@string/regMugikorra"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nrkntEditPosta" />
@@ -143,10 +154,10 @@
         android:layout_height="48sp"
         android:layout_marginStart="32sp"
         android:layout_marginEnd="30sp"
-        android:textSize="15sp"
         android:hint="@string/nrkntEditMugikorra"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nrkntTxtMugikorra" />
 
     <!-- TextView "Pasahitza:" -->
@@ -166,13 +177,11 @@
         android:layout_width="150sp"
         android:layout_height="48sp"
         android:layout_marginStart="30sp"
-        android:layout_marginEnd="30sp"
-        android:textSize="15sp"
         android:hint="@string/nrkntEditPasahitza"
         android:inputType="textPassword"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtPasahitza"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtPasahitza" />
 
     <!-- TextView "Errepikatu pasahitza:" -->
     <TextView
@@ -191,40 +200,60 @@
         android:layout_width="150sp"
         android:layout_height="48sp"
         android:layout_marginEnd="30sp"
-        android:textSize="15sp"
         android:hint="@string/nrkntEditPasahitza"
         android:inputType="textPassword"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nrkntTxtPasahitza" />
 
-    <!-- TextView "Erabiltzaile mota:" -->
-    <TextView
-        android:id="@+id/nrkntTxtErabiltzaileMota"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
-        android:layout_marginStart="32sp"
-        android:text="@string/regErabMota"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nrkntEditPasahitza" />
 
-    <!-- Erabiltzaile mota RadioGroup (2 aukeretatik 1 bakarrik ahal da aukeratu) -->
-
-    <EditText
-        android:id="@+id/nrkntEditErbltzMota"
-        android:layout_width="0sp"
-        android:layout_height="48sp"
-        android:layout_marginStart="30sp"
-        android:layout_marginEnd="30sp"
-        android:textSize="15sp"
-        android:hint="@string/nrkntEditErbltzMota"
+    <!-- INSIDE HEADER -->
+    <LinearLayout
+        android:id="@+id/idLayOpzioak"
+        android:layout_width="265sp"
+        android:layout_height="match_parent"
+        android:background="@color/verdePastel"
+        android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nrkntTxtErabiltzaileMota"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-    <!-- "Erregistratu" botoia -->
+        <!-- ITXI -->
+        <Button
+            android:id="@+id/idBtnMenuItxi"
+            android:layout_width="61sp"
+            android:layout_height="53sp"
+            android:layout_marginStart="3sp"
+            android:layout_marginTop="36sp"
+            android:backgroundTint="#00FFFFFF"
+            android:foreground="@android:drawable/ic_menu_close_clear_cancel" />
+
+        <!-- nire kontua(Nire_Kontua) -->
+        <Button
+            android:id="@+id/idBtnMenuKontua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40sp"
+            android:backgroundTint="#00FFFFFF"
+            android:text="@string/menKontua"
+            android:textAlignment="viewStart"
+            android:textAllCaps="true" />
+
+        <!-- erreserbak(Egindako_Erreserbak) -->
+        <Button
+            android:id="@+id/idBtnMenuErreserbak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:backgroundTint="#00FFFFFF"
+            android:text="@string/menErreserbak"
+            android:textAlignment="viewStart"
+            android:textAllCaps="true" />
+
+    </LinearLayout>
+  <!-- header fin -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

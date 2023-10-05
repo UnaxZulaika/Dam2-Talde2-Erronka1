@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF"
-    tools:context=".erreserbak">
+    tools:context=".Egindako_Erreserbak">
 
-  <!-- HEADER -->
+
+   <!-- HEADER -->
     <LinearLayout
         android:id="@+id/loginBanner"
         android:layout_width="411sp"
@@ -39,9 +39,21 @@
             app:srcCompat="@drawable/logo_oma" />
 
     </LinearLayout>
+    <!-- header fin 1 -->
 
-  <!-- INSIDE HEADER -->
+    <!-- CONTENT -->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EGINDAKO RESERVAK(RESERVAS)"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginBanner" />
 
+
+    <!-- INSIDE HEADER -->
     <LinearLayout
         android:id="@+id/idLayOpzioak"
         android:layout_width="265sp"
@@ -55,7 +67,6 @@
         app:layout_constraintVertical_bias="1.0">
 
         <!-- ITXI -->
-
         <Button
             android:id="@+id/idBtnMenuItxi"
             android:layout_width="61sp"
@@ -87,17 +98,7 @@
             android:textAlignment="viewStart"
             android:textAllCaps="true" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="445dp" />
-
-        <Button
-            android:id="@+id/btnEmpresaInsta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:foreground="@drawable/logo_oma" />
-
     </LinearLayout>
-
+    <!-- inside header fin -->
+   <!-- header fin -->
 </androidx.constraintlayout.widget.ConstraintLayout>

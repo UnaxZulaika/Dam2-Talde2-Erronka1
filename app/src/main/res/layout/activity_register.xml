@@ -226,7 +226,7 @@
         <RadioButton
             android:id="@+id/regRBmota"
             android:layout_width="0sp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/regErabiltzaile1" />
 
@@ -234,7 +234,7 @@
         <RadioButton
             android:id="@+id/regRBmota2"
             android:layout_width="0sp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/regErabiltzaile2" />
     </RadioGroup>

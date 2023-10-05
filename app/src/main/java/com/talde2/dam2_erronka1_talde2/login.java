@@ -67,6 +67,7 @@ public class login extends AppCompatActivity {
             }
         });
 
+
     }
 
     private void saioaHasi(String erabiltzaile, String pasahitza) {
@@ -122,7 +123,7 @@ public class login extends AppCompatActivity {
                                 Toast.makeText(login.this, ongiEtorri + " " + izena, Toast.LENGTH_SHORT).show();
 
                                 // Hurrengo lehiora pasatzen da
-                                Intent intent = new Intent(login.this, MainActivity.class);
+                                Intent intent = new Intent(login.this, erreserbak.class);
                                 startActivity(intent);
                                 finish();
                             } else {

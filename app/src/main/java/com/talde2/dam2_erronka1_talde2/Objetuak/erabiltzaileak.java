@@ -1,4 +1,4 @@
-package com.talde2.dam2_erronka1_talde2;
+package com.talde2.dam2_erronka1_talde2.Objetuak;
 
 public class erabiltzaileak {
 

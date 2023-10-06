@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DAM2-Erronka1-Talde2</string>
+    <string name="app_name">OMA</string>
 
     <!-- MainActivity -->
     <string name="createdBy">Sortuta:</string>
@@ -67,6 +67,7 @@
     <string name="menErreserbak">Erreserbak</string>
     <string name="menLogoDeskripzioa">Gure app logoa</string>
     <string name="menPribatutasunPolitikak">Pribatutasun Politikak</string>
+    <string name="ezagutu">Ezagutu gaitzazu:</string>
 
     <!-- Nire Kontua -->
     <string name="nrkntEditErbltzMota">USER mota</string>

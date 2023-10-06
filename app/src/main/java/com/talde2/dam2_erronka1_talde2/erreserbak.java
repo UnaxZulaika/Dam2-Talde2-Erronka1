@@ -3,6 +3,7 @@ package com.talde2.dam2_erronka1_talde2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,16 @@ public class erreserbak extends AppCompatActivity {
 
         //close
         btnMenuItx.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                LinearLayout Opzioak = findViewById(R.id.idLayOpzioak);
+                Opzioak.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        //close 2
+        Button btnAtzera = findViewById(R.id.btnAtzera);
+        btnAtzera.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 LinearLayout Opzioak = findViewById(R.id.idLayOpzioak);
@@ -73,6 +84,30 @@ public class erreserbak extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        //INSTAGRAM
+        Button btnEmpresaInsta = findViewById(R.id.btnEmpresaInsta);
+        btnEmpresaInsta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www.instagram.com/OMA_empresa/";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        // X
+        Button btnEmpresaX = findViewById(R.id.btnEmpresaX);
+        btnEmpresaX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://twitter.com/OMA_empresa";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+
     }
 
 }

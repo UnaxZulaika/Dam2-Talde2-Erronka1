@@ -30,9 +30,7 @@ public class erreserbak extends AppCompatActivity {
                   LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
                   opzioak.setVisibility(View.VISIBLE);
               }
-          }
-
-        );
+          });
 
         //close
         btnMenuItx.setOnClickListener(new View.OnClickListener(){
@@ -63,6 +61,16 @@ public class erreserbak extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent2 = new Intent(erreserbak.this, Egindako_Erreserbak.class);
                 startActivity(intent2);
+            }
+        });
+
+        //PRIBATASUN POLITIKAK
+        Button idBtnPribatutasunPolitikak = findViewById(R.id.idBtnPribatutasunPolitikak);
+        idBtnPribatutasunPolitikak.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(erreserbak.this, PribatasunPolitikak.class);
+                startActivity(intent1);
             }
         });
     }

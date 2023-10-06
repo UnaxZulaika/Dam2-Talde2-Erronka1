@@ -13,25 +13,28 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".PribatasunPolitikak"
+            android:exported="false" />
+        <activity
             android:name=".erreserbaOrdainketa"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Nire_Kontua"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ErreserbaTxartela"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ErreserbaInfo"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".erreserbak"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".register"
             android:exported="false"

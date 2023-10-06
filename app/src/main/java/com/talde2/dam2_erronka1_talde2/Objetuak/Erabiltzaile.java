@@ -1,6 +1,6 @@
 package com.talde2.dam2_erronka1_talde2.Objetuak;
 
-public class erabiltzaileak {
+public class Erabiltzaile {
 
     private String izena;
     private String nan;
@@ -9,7 +9,7 @@ public class erabiltzaileak {
     private String mugikorra;
     private String erabiltzaileMota;
 
-    public erabiltzaileak(String izena, String nan, String abizenak, String email, String mugikorra, String erabiltzaileMota) {
+    public Erabiltzaile(String izena, String nan, String abizenak, String email, String mugikorra, String erabiltzaileMota) {
         this.izena = izena;
         this.nan = nan;
         Abizenak = abizenak;
@@ -64,5 +64,17 @@ public class erabiltzaileak {
 
     public void setErabiltzaileMota(String erabiltzaileMota) {
         this.erabiltzaileMota = erabiltzaileMota;
+    }
+
+    @Override
+    public String toString() {
+        return "erabiltzaileak{" +
+                "izena='" + izena + '\'' +
+                ", nan='" + nan + '\'' +
+                ", Abizenak='" + Abizenak + '\'' +
+                ", email='" + email + '\'' +
+                ", mugikorra='" + mugikorra + '\'' +
+                ", erabiltzaileMota='" + erabiltzaileMota + '\'' +
+                '}';
     }
 }

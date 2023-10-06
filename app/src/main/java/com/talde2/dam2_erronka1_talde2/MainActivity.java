@@ -6,7 +6,11 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.talde2.dam2_erronka1_talde2.Objetuak.Erabiltzaile;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        // db.collection("prueba").document("texto").set(mensaje);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

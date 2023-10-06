@@ -5,6 +5,7 @@ public class Tokia {
     private String ubikazioa;
     private String irudia;
     private String deskripzioa;
+    private double balorazioa;
 
     public Tokia(String kodea, String ubikazioa, String irudia, String deskripzioa) {
         this.kodea = kodea;

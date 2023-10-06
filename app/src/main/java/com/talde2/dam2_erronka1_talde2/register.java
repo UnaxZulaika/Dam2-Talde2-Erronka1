@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.talde2.dam2_erronka1_talde2.Objetuak.erabiltzaileak;
+import com.talde2.dam2_erronka1_talde2.Objetuak.Erabiltzaile;
 
 public class register extends AppCompatActivity {
 
@@ -241,7 +241,7 @@ public class register extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        erabiltzaileak erabiltzaile = new erabiltzaileak(izena, nan, abizenak, email, mugikorra, erabiltzaileMota);
+        Erabiltzaile erabiltzaile = new Erabiltzaile(izena, nan, abizenak, email, mugikorra, erabiltzaileMota);
 
         db.collection("Erabiltzaileak").document(email).set(erabiltzaile).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

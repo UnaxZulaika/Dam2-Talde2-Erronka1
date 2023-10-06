@@ -1,5 +1,6 @@
 package com.talde2.dam2_erronka1_talde2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Nire_Kontua extends AppCompatActivity {
 
@@ -52,34 +59,35 @@ public class Nire_Kontua extends AppCompatActivity {
 
         //fin desabilitatu dit text idaztea
 
-        //menua izkutatzeko lehenik
-        LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
-        opzioak.setVisibility(View.INVISIBLE);
+        //MENU
+            //menua izkutatzeko lehenik
+            LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
+            opzioak.setVisibility(View.INVISIBLE);
 
-        //MENUA
-        Button btnMenuItx = findViewById(R.id.idBtnMenuItxi);
-        Button btnMenuZabaldu = findViewById(R.id.IdBtnMenuZabaldu);
-        LinearLayout Opzioak = findViewById(R.id.idLayOpzioak);
+            //MENUA
+            Button btnMenuItx = findViewById(R.id.idBtnMenuItxi);
+            Button btnMenuZabaldu = findViewById(R.id.IdBtnMenuZabaldu);
+            LinearLayout Opzioak = findViewById(R.id.idLayOpzioak);
 
-        //open
-        btnMenuZabaldu.setOnClickListener(new View.OnClickListener(){
-              @Override
-              public void onClick(View v) {
-                  LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
-                  opzioak.setVisibility(View.VISIBLE);
+            //open
+            btnMenuZabaldu.setOnClickListener(new View.OnClickListener(){
+                  @Override
+                  public void onClick(View v) {
+                      LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
+                      opzioak.setVisibility(View.VISIBLE);
+                  }
               }
-          }
 
-        );
+            );
 
-        //close
-        btnMenuItx.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                LinearLayout Opzioak = findViewById(R.id.idLayOpzioak);
-                Opzioak.setVisibility(View.INVISIBLE);
-            }
-        });
+            //close
+            btnMenuItx.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    LinearLayout Opzioak = findViewById(R.id.idLayOpzioak);
+                    Opzioak.setVisibility(View.INVISIBLE);
+                }
+            });
 
 
         //LEHIOAK PASATZERA
@@ -103,5 +111,7 @@ public class Nire_Kontua extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
+       //fin menu
     }
 }

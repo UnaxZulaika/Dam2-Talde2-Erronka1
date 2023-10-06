@@ -32,6 +32,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Egindako_Erreserbak"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".erreserbak"
             android:exported="false"
             android:screenOrientation="portrait" />

@@ -75,7 +75,10 @@
     <string name="nrkntEditAbizenak">USER abizena</string>
     <string name="nrkntEditIzena">USER izena</string>
     <string name="nrkntEditNan">USER nan</string>
+    <string name="nrkntEditErbltzMta">User Erabiltzaile Mota</string>
 
     <!-- Erresrebak -->
     <string name="erreTxartelaEskerrak">Eskerrik asko</string>
+    <string name="nrkntTxtErabiltzaileMota">Erabiltzaile Mota</string>
+
 </resources>

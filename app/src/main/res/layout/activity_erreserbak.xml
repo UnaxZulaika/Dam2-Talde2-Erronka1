@@ -9,7 +9,6 @@
 
   <!-- HEADER -->
 
-
     <HorizontalScrollView
         android:layout_width="match_parent"
 
@@ -99,6 +98,7 @@
 
     </LinearLayout>
 
+    <!-- INSIDE HEADER -->
     <LinearLayout
         android:id="@+id/idLayOpzioak"
         android:layout_width="match_parent"
@@ -150,6 +150,7 @@
                 android:textAlignment="viewStart"
                 android:textAllCaps="true" />
 
+            <!-- Pribatasun politikak(pribatasun_politikak) -->
             <Button
                 android:id="@+id/idBtnPribatutasunPolitikak"
                 android:layout_width="match_parent"
@@ -243,5 +244,6 @@
         </LinearLayout>
 
     </LinearLayout>
+    <!-- inside header fin -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

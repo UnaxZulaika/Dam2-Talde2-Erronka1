@@ -47,7 +47,10 @@ public class login extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         erabiltzaileEditText = findViewById(R.id.loginEditErbiltzaile);
+        erabiltzaileEditText.setText("admin@gmail.com");
+
         pasahitzaEditText = findViewById(R.id.loginEditPasahitza);
+        pasahitzaEditText.setText("admin123");
         loginBtnSartu = findViewById(R.id.loginBtnSartu);
 
         loginBtnSartu.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +138,22 @@ public class login extends AppCompatActivity {
 
                                 // Hurrengo lehiora pasatzen da
                                 Intent intent = new Intent(login.this, erreserbak.class);
+
+                                String izena = document.getString("izena");
+                                String abizena = document.getString("abizenak");
+                                String nan = document.getString("nan");
+                                String email = document.getString("email");
+                                String mugikorra = document.getString("mugikorra");
+                                String erabiltzaileMota = document.getString("erabiltzaileMota");
+
+                                intent.putExtra("USER_izena", izena);
+                                intent.putExtra("USER_abizena", abizena);
+                                intent.putExtra("USER_nan", nan);
+                                intent.putExtra("USER_email", email);
+                                intent.putExtra("USER_mugikorra", mugikorra);
+                                intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+
+
                                 startActivity(intent);
                                 finish();
                             } else {

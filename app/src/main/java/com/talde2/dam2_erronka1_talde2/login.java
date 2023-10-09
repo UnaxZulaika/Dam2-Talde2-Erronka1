@@ -21,6 +21,10 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.talde2.dam2_erronka1_talde2.Objetuak.Erabiltzaile;
+import com.talde2.dam2_erronka1_talde2.Objetuak.Tokia;
+
+import java.time.chrono.Era;
 
 
 public class login extends AppCompatActivity {
@@ -34,6 +38,7 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         mAuth = FirebaseAuth.getInstance();
         erabiltzaileEditText = findViewById(R.id.loginEditErbiltzaile);
@@ -66,6 +71,7 @@ public class login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
     }
 
@@ -113,16 +119,16 @@ public class login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
+
                             if (document.exists()) {
                                 // Erabiltzaile izena eskuratzen du
-                                String izena = document.getString("izena");
-
-                                String ongiEtorri = getResources().getString(R.string.ongiEtorriLogin);
+                                Erabiltzaile erabiltzaile = erabiltzaileaBete(document);
                                 // Login zuzenaren mezua erakusten du
-                                Toast.makeText(login.this, ongiEtorri + " " + izena, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(login.this, "Ongi etorri, "+ erabiltzaile.getIzena(), Toast.LENGTH_SHORT).show();
+
 
                                 // Hurrengo lehiora pasatzen da
-                                Intent intent = new Intent(login.this, MainActivity.class);
+                                Intent intent = new Intent(login.this, erreserbak.class);
                                 startActivity(intent);
                                 finish();
                             } else {
@@ -133,9 +139,26 @@ public class login extends AppCompatActivity {
                         } else {
                             String errorea = getResources().getString(R.string.erroreaLogin);
                             // Kontsultaren errorea
-                            Toast.makeText(login.this, errorea + " " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(login.this, "Errorea: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
+
+    /**
+     * Erabiltzailearen objetua sortzen du
+     * @param document firebase erabiltzailearen kontulta
+     * @return erabiltzile objetua beharrezko informazioarekin
+     */
+    private Erabiltzaile erabiltzaileaBete(DocumentSnapshot document) {
+        String izena = document.getString("izena");
+        String abizena = document.getString("abizena");
+        String nan = document.getString("nan");
+        String email = document.getString("email");
+        String mugikorra = document.getString("mugikorra");
+        String erabiltzaileMota = document.getString("erabiltzaileMota");
+        Erabiltzaile erabiltzaile = new Erabiltzaile(izena, nan, abizena, email, mugikorra, erabiltzaileMota);
+        return erabiltzaile;
+    }
+
 }

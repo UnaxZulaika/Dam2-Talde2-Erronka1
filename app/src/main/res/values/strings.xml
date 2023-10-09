@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DAM2-Erronka1-Talde2</string>
+    <string name="app_name">OMA</string>
 
     <!-- MainActivity -->
     <string name="createdBy">Sortuta:</string>
@@ -66,6 +66,8 @@
     <string name="menKontua">Nire Kontua</string>
     <string name="menErreserbak">Erreserbak</string>
     <string name="menLogoDeskripzioa">Gure app logoa</string>
+    <string name="menPribatutasunPolitikak">Pribatutasun Politikak</string>
+    <string name="ezagutu">Ezagutu gaitzazu:</string>
 
     <!-- Nire Kontua -->
     <string name="nrkntEditErbltzMota">USER mota</string>
@@ -75,7 +77,10 @@
     <string name="nrkntEditAbizenak">USER abizena</string>
     <string name="nrkntEditIzena">USER izena</string>
     <string name="nrkntEditNan">USER nan</string>
+    <string name="nrkntEditErbltzMta">User Erabiltzaile Mota</string>
 
     <!-- Erresrebak -->
     <string name="erreTxartelaEskerrak">Eskerrik asko</string>
+    <string name="nrkntTxtErabiltzaileMota">Erabiltzaile Mota</string>
+
 </resources>

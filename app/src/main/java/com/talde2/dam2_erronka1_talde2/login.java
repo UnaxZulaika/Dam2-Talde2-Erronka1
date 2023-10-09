@@ -3,6 +3,7 @@ package com.talde2.dam2_erronka1_talde2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,10 +22,14 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.talde2.dam2_erronka1_talde2.Objetuak.Erabiltzaile;
+import com.talde2.dam2_erronka1_talde2.Objetuak.JardueraPertsona;
 import com.talde2.dam2_erronka1_talde2.Objetuak.Tokia;
 
 import java.time.chrono.Era;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class login extends AppCompatActivity {
@@ -123,6 +128,7 @@ public class login extends AppCompatActivity {
                             if (document.exists()) {
                                 // Erabiltzaile izena eskuratzen du
                                 Erabiltzaile erabiltzaile = erabiltzaileaBete(document);
+                                ArrayList<Tokia> tokiak = tokiakBete(db, "Ibilbideak");
                                 // Login zuzenaren mezua erakusten du
                                 Toast.makeText(login.this, "Ongi etorri, "+ erabiltzaile.getIzena(), Toast.LENGTH_SHORT).show();
 
@@ -160,5 +166,41 @@ public class login extends AppCompatActivity {
         Erabiltzaile erabiltzaile = new Erabiltzaile(izena, nan, abizena, email, mugikorra, erabiltzaileMota);
         return erabiltzaile;
     }
+    private ArrayList<Tokia> tokiakBete(FirebaseFirestore db, String tokiMota){
+        ArrayList<Tokia> tokiak = new ArrayList<>();
 
+        db.collection("Ibilbideak").get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+
+                        QuerySnapshot ibilbideak = task.getResult();
+                        List<DocumentSnapshot> documentIbilibideak = ibilbideak.getDocuments();
+                        for(int i = 0;i<documentIbilibideak.size();i++) {
+                            Tokia t1 = new Tokia();
+                            String kodea = documentIbilibideak.get(i).getString("code");
+                            String ubikazioa = documentIbilibideak.get(i).getString("kokalekua");
+                            String deskripzioa = documentIbilibideak.get(i).getString("informazioa");
+                            String irudia = documentIbilibideak.get(i).getString("img");
+                            if (tokiMota.equals("Ibilbideak")||tokiMota.equals("Aisialdia")) {
+
+                            } else if (tokiMota.equals("Konferentziak")||tokiMota.equals("Kumbreak")||tokiMota.equals("Presentazioak")||tokiMota.equals("Feriak")||tokiMota.equals("Tailerrak")) {
+
+                            } else {
+                                Toast.makeText(login.this, "Errorea " + tokiMota +" kargatzen", Toast.LENGTH_SHORT).show();
+                            }
+
+                            t1.setUbikazioa(ubikazioa);
+                            t1.setDeskripzioa(deskripzioa);
+                            t1.setIrudia(irudia);
+                            t1.setKodea(kodea);
+                            tokiak.add(t1);
+                        }
+
+
+
+                    }
+                 });
+
+        return tokiak;
+    }
 }

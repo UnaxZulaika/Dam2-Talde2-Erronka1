@@ -13,6 +13,12 @@ public class Tokia {
         this.irudia = irudia;
         this.deskripzioa = deskripzioa;
     }
+    public Tokia() {
+        this.kodea = "";
+        this.ubikazioa = "";
+        this.irudia = "";
+        this.deskripzioa = "";
+    }
 
     public String getKodea() {
         return kodea;

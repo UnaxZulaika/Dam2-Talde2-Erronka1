@@ -64,7 +64,8 @@
 
     <!-- Menua -->
     <string name="menKontua">Nire Kontua</string>
-    <string name="menErreserbak">Erreserbak</string>
+    <string name="menErreserbak">Nire Erreserbak</string>
+    <string name="menkatalogoa">Katalogoa</string>
     <string name="menLogoDeskripzioa">Gure app logoa</string>
     <string name="menPribatutasunPolitikak">Pribatutasun Politikak</string>
     <string name="ezagutu">Ezagutu gaitzazu:</string>

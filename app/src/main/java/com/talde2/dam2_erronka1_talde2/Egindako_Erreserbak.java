@@ -17,9 +17,12 @@ public class Egindako_Erreserbak extends AppCompatActivity {
         setContentView(R.layout.activity_egindako_erreserbak);
 
         //MENUA
+        //menua izkutatzeko lehenik
+        LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
+        opzioak.setVisibility(View.INVISIBLE);
+
         Button btnMenuItx = findViewById(R.id.idBtnMenuItxi);
         Button btnMenuZabaldu = findViewById(R.id.IdBtnMenuZabaldu);
-        LinearLayout Opzioak = findViewById(R.id.idLayOpzioak);
 
         //open
         btnMenuZabaldu.setOnClickListener(new View.OnClickListener(){
@@ -44,11 +47,10 @@ public class Egindako_Erreserbak extends AppCompatActivity {
         btnAtzera.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                LinearLayout Opzioak = findViewById(R.id.idLayOpzioak);
-                Opzioak.setVisibility(View.INVISIBLE);
+                LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
+                opzioak.setVisibility(View.INVISIBLE);
             }
         });
-
 
         //LEHIOAK PASATZERA
         //datos a pasar a todas las pantallas del menu (para nire kontua)
@@ -59,12 +61,12 @@ public class Egindako_Erreserbak extends AppCompatActivity {
         String mugikorra = getIntent().getStringExtra("USER_mugikorra");
         String erabiltzaileMota = getIntent().getStringExtra("USER_erabiltzaileMota");
         //NIRE KONTUA
-        Button btnNireKontua = findViewById(R.id.idBtnMenuKontua);
-        btnNireKontua.setOnClickListener(new View.OnClickListener() {
+        Button BtnMenuKatalogoa = findViewById(R.id.idBtnMenuKatalogoa);
+        BtnMenuKatalogoa.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Egindako_Erreserbak.this, Nire_Kontua.class);
+                Intent intent = new Intent(Egindako_Erreserbak.this, erreserbak.class);
 
                 intent.putExtra("USER_izena", izena);
                 intent.putExtra("USER_abizena", abizena);
@@ -78,11 +80,11 @@ public class Egindako_Erreserbak extends AppCompatActivity {
         });
 
         //RESERBAK
-        Button btnErregistratu = findViewById(R.id.idBtnMenuErreserbak);
-        btnErregistratu.setOnClickListener(new View.OnClickListener() {
+        Button btnNireKontua = findViewById(R.id.idBtnMenuKontua);
+        btnNireKontua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Egindako_Erreserbak.this, Egindako_Erreserbak.class);
+                Intent intent = new Intent(Egindako_Erreserbak.this, Nire_Kontua.class);
 
                 intent.putExtra("USER_izena", izena);
                 intent.putExtra("USER_abizena", abizena);

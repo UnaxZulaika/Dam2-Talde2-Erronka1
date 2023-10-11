@@ -27,6 +27,7 @@
             android:layout_width="61sp"
             android:layout_height="53sp"
             android:layout_gravity="center"
+            android:background="@android:color/transparent"
             android:foreground="@drawable/menu" />
 
         <ImageView
@@ -260,22 +261,22 @@
                 android:backgroundTint="#00FFFFFF"
                 android:foreground="@android:drawable/ic_menu_close_clear_cancel" />
 
-            <!-- nire kontua(Nire_Kontua) -->
+            <!-- Katalogoa -->
             <Button
-                android:id="@+id/idBtnMenuKontua"
+                android:id="@+id/idBtnMenuKatalogoa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"
                 android:layout_marginTop="40sp"
                 android:background="@android:color/transparent"
                 android:backgroundTint="#00FFFFFF"
-                android:text="@string/menKontua"
+                android:text="@string/menkatalogoa"
                 android:textAlignment="viewStart"
                 android:textAllCaps="true" />
 
             <!-- erreserbak(Egindako_Erreserbak) -->
             <Button
-                android:id="@+id/idBtnMenuErreserbak"
+                android:id="@+id/idBtnMenuNireErreserbak"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"

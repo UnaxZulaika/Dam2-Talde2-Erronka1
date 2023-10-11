@@ -9,14 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.talde2.dam2_erronka1_talde2.Objetuak.Erabiltzaile;
-
 public class erreserbak extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_erreserbak);
+
     //MENUA
         //menua izkutatzeko lehenik
         LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
@@ -82,7 +81,7 @@ public class erreserbak extends AppCompatActivity {
         });
 
         //RESERBAK
-        Button btnErregistratu = findViewById(R.id.idBtnMenuErreserbak);
+        Button btnErregistratu = findViewById(R.id.idBtnMenuNireErreserbak);
         btnErregistratu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

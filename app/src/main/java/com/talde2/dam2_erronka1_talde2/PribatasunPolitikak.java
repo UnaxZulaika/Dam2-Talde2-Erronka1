@@ -2,6 +2,8 @@ package com.talde2.dam2_erronka1_talde2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -16,8 +18,99 @@ public class PribatasunPolitikak extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pribatasun_politikak);
         //menua izkutatzeko lehenik
+
+        //MENUA
+        //menua izkutatzeko lehenik
         LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
         opzioak.setVisibility(View.INVISIBLE);
+
+        Button btnMenuItx = findViewById(R.id.idBtnMenuItxi);
+        Button btnMenuZabaldu = findViewById(R.id.IdBtnMenuZabaldu);
+
+        //open
+        btnMenuZabaldu.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
+                opzioak.setVisibility(View.VISIBLE);
+            }
+        });
+
+        //close
+        btnMenuItx.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                LinearLayout Opzioak = findViewById(R.id.idLayOpzioak);
+                Opzioak.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        //close 2
+        Button btnAtzera = findViewById(R.id.btnAtzera);
+        btnAtzera.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
+                opzioak.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        //Katalogoa
+        Button BtnMenuKatalogoa = findViewById(R.id.idBtnMenuKatalogoa);
+        BtnMenuKatalogoa.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PribatasunPolitikak.this, erreserbak.class);
+                startActivity(intent);
+            }
+        });
+
+        //Nire Kontua
+        Button BtnMenuKontua = findViewById(R.id.idBtnMenuKontua);
+        BtnMenuKontua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PribatasunPolitikak.this, Nire_Kontua.class);
+
+                startActivity(intent);
+            }
+        });
+
+        //Erreserbak
+        Button BtnMenuNireErreserbak = findViewById(R.id.idBtnMenuNireErreserbak);
+        BtnMenuNireErreserbak.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PribatasunPolitikak.this, Egindako_Erreserbak.class);
+                startActivity(intent);
+            }
+        });
+
+        //INSTAGRAM
+        Button btnEmpresaInsta = findViewById(R.id.btnEmpresaInsta);
+        btnEmpresaInsta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www.instagram.com/OMA_empresa/";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        // X
+        Button btnEmpresaX = findViewById(R.id.btnEmpresaX);
+        btnEmpresaX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://twitter.com/OMA_empresa";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        LinearLayout aukerak = findViewById(R.id.idLayOpzioak);
+        aukerak.setVisibility(View.INVISIBLE);
         TextView TerminosYCondiciones = (TextView)findViewById(R.id.tvPribatasunPolitikak);
         TerminosYCondiciones.setText(Html.fromHtml("<h1>Oma Aplikazioaren Pribatutasun Politika</h1>\n" +
                 "\n" +

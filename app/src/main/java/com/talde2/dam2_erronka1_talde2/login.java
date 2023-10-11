@@ -196,7 +196,6 @@ public class login extends AppCompatActivity {
                         QuerySnapshot ibilbideak = task.getResult();
                         List<DocumentSnapshot> documentIbilibideak = ibilbideak.getDocuments();
                         for(int i = 0;i<documentIbilibideak.size();i++) {
-
                             String kodea = documentIbilibideak.get(i).getString("code");
                             String ubikazioa = documentIbilibideak.get(i).getString("kokalekua");
                             String deskripzioa = documentIbilibideak.get(i).getString("informazioa");

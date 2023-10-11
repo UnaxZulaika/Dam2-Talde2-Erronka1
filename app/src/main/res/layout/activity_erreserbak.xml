@@ -139,7 +139,7 @@
 
             <!-- erreserbak(Egindako_Erreserbak) -->
             <Button
-                android:id="@+id/idBtnMenuErreserbak"
+                android:id="@+id/idBtnMenuNireErreserbak"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"

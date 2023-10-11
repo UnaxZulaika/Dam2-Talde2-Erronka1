@@ -1,6 +1,5 @@
 package com.talde2.dam2_erronka1_talde2;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,12 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Nire_Kontua extends AppCompatActivity {
 
@@ -25,8 +18,8 @@ public class Nire_Kontua extends AppCompatActivity {
         setContentView(R.layout.activity_nire_kontua);
 
         //menua izkutatzeko lehenik
-        LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
-        opzioak.setVisibility(View.INVISIBLE);
+        LinearLayout aukerak = findViewById(R.id.idLayOpzioak);
+        aukerak.setVisibility(View.INVISIBLE);
 
         //pasatutako datuak
         String izena = getIntent().getStringExtra("USER_izena");
@@ -81,6 +74,10 @@ public class Nire_Kontua extends AppCompatActivity {
         //fin desabilitatu dit text idaztea
 
         //MENUA
+        //menua izkutatzeko lehenik
+        LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
+        opzioak.setVisibility(View.INVISIBLE);
+
         Button btnMenuItx = findViewById(R.id.idBtnMenuItxi);
         Button btnMenuZabaldu = findViewById(R.id.IdBtnMenuZabaldu);
 
@@ -108,18 +105,18 @@ public class Nire_Kontua extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
-                opzioak.setVisibility(View.VISIBLE);
+                opzioak.setVisibility(View.INVISIBLE);
             }
         });
 
 
         //NIRE KONTUA
-        Button btnNireKontua = findViewById(R.id.idBtnMenuKontua);
+        Button btnNireKontua = findViewById(R.id.idBtnMenuKatalogoa);
         btnNireKontua.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Nire_Kontua.this, Nire_Kontua.class);
+                Intent intent = new Intent(Nire_Kontua.this, erreserbak.class);
 
                 intent.putExtra("USER_izena", izena);
                 intent.putExtra("USER_abizena", abizena);
@@ -133,7 +130,7 @@ public class Nire_Kontua extends AppCompatActivity {
         });
 
         //RESERBAK
-        Button btnErregistratu = findViewById(R.id.idBtnMenuErreserbak);
+        Button btnErregistratu = findViewById(R.id.idBtnMenuNireErreserbak);
         btnErregistratu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

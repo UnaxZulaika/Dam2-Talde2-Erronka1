@@ -31,74 +31,6 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/idLayOpzioak"
-        android:layout_width="265sp"
-        android:layout_height="match_parent"
-        android:background="@color/verdePastel"
-        android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <!-- ITXI -->
-
-        <Button
-            android:id="@+id/idBtnMenuItxi"
-            android:layout_width="61sp"
-            android:layout_height="53sp"
-            android:layout_marginStart="3sp"
-            android:layout_marginTop="36sp"
-            android:backgroundTint="#00FFFFFF"
-            android:foreground="@android:drawable/ic_menu_close_clear_cancel" />
-
-        <!-- nire kontua(Nire_Kontua) -->
-        <Button
-            android:id="@+id/idBtnMenuKontua"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40sp"
-            android:backgroundTint="#00FFFFFF"
-            android:text="@string/menKontua"
-            android:textAlignment="viewStart"
-            android:textAllCaps="true" />
-
-        <!-- erreserbak(Egindako_Erreserbak) -->
-        <Button
-            android:id="@+id/idBtnMenuErreserbak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
-            android:backgroundTint="#00FFFFFF"
-            android:text="@string/menErreserbak"
-            android:textAlignment="viewStart"
-            android:textAllCaps="true" />
-
-        <Button
-            android:id="@+id/idBtnPribatutasunPolitikak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
-            android:backgroundTint="#00FFFFFF"
-            android:text="@string/menPribatutasunPolitikak"
-            android:textAlignment="viewStart"
-            android:textAllCaps="true" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="445dp" />
-
-        <Button
-            android:id="@+id/btnEmpresaInsta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:foreground="@drawable/logo_oma" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/loginBanner"
         android:layout_width="411sp"
         android:layout_height="125sp"
@@ -117,6 +49,7 @@
             android:layout_width="61sp"
             android:layout_height="53sp"
             android:layout_gravity="center"
+            android:background="@android:color/transparent"
             android:foreground="@drawable/menu" />
 
         <ImageView
@@ -127,6 +60,152 @@
             android:contentDescription="@string/menLogoDeskripzioa"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/logo_oma" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/idLayOpzioak"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="265sp"
+            android:layout_height="match_parent"
+            android:background="@color/verdePastel"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <!-- ITXI -->
+
+            <Button
+                android:id="@+id/idBtnMenuItxi"
+                android:layout_width="61sp"
+                android:layout_height="53sp"
+                android:layout_marginStart="3sp"
+                android:layout_marginTop="36sp"
+                android:background="@android:color/transparent"
+                android:backgroundTint="#00FFFFFF"
+                android:foreground="@android:drawable/ic_menu_close_clear_cancel" />
+
+            <!-- Katalogoa -->
+            <Button
+                android:id="@+id/idBtnMenuKatalogoa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="40sp"
+                android:background="@android:color/transparent"
+                android:backgroundTint="#00FFFFFF"
+                android:text="@string/menkatalogoa"
+                android:textAlignment="viewStart"
+                android:textAllCaps="true" />
+
+            <!-- Nire Kontua -->
+            <Button
+                android:id="@+id/idBtnMenuKontua"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="10sp"
+                android:background="@android:color/transparent"
+                android:backgroundTint="#00FFFFFF"
+                android:text="@string/menKontua"
+                android:textAlignment="viewStart"
+                android:textAllCaps="true" />
+
+            <!-- Erreserbak -->
+            <Button
+                android:id="@+id/idBtnMenuNireErreserbak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="10sp"
+                android:background="@android:color/transparent"
+                android:backgroundTint="#00FFFFFF"
+                android:text="@string/menErreserbak"
+                android:textAlignment="viewStart"
+                android:textAllCaps="true" />
+
+            <!--  <Space
+            android:layout_width="match_parent"
+            android:layout_height="300dp" /> -->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:layout_weight="1"></Space>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/ezagutu"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90sp"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="70sp"
+                    android:layout_height="90sp"
+                    android:layout_marginRight="15sp"
+                    android:orientation="vertical"
+                    android:paddingTop="10sp"
+                    android:paddingBottom="10sp">
+
+                    <Button
+                        android:id="@+id/btnEmpresaInsta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70sp"
+                        android:background="#00000000"
+                        android:foreground="@drawable/instagram" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="70sp"
+                    android:layout_height="90sp"
+                    android:layout_marginLeft="15sp"
+                    android:orientation="vertical"
+                    android:paddingTop="10sp"
+                    android:paddingBottom="10sp">
+
+                    <Button
+                        android:id="@+id/btnEmpresaX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70sp"
+                        android:background="#00000000"
+                        android:foreground="@drawable/x" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnAtzera"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
 
     </LinearLayout>
 

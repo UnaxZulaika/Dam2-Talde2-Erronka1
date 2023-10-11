@@ -49,7 +49,7 @@ public class erreserbak extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
-                opzioak.setVisibility(View.VISIBLE);
+                opzioak.setVisibility(View.INVISIBLE);
             }
         });
 

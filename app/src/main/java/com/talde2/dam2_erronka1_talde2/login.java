@@ -24,6 +24,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.talde2.dam2_erronka1_talde2.Objetuak.Erabiltzaile;
+import com.talde2.dam2_erronka1_talde2.Objetuak.JardueraEntitateak;
 import com.talde2.dam2_erronka1_talde2.Objetuak.JardueraPertsona;
 import com.talde2.dam2_erronka1_talde2.Objetuak.Tokia;
 
@@ -131,7 +132,7 @@ public class login extends AppCompatActivity {
                             if (document.exists()) {
                                 // Erabiltzaile izena eskuratzen du
                                 Erabiltzaile erabiltzaile = erabiltzaileaBete(document);
-                                ArrayList<Tokia> tokiak = tokiakBete(db, "Ibilbideak");
+                                ArrayList<JardueraPertsona> tokiakPertsona = tokiakBete(db, "Ibilbideak");
                                 // Login zuzenaren mezua erakusten du
                                 Toast.makeText(login.this, "Ongi etorri, "+ erabiltzaile.getIzena(), Toast.LENGTH_SHORT).show();
 
@@ -185,8 +186,8 @@ public class login extends AppCompatActivity {
         Erabiltzaile erabiltzaile = new Erabiltzaile(izena, nan, abizena, email, mugikorra, erabiltzaileMota);
         return erabiltzaile;
     }
-    private ArrayList<Tokia> tokiakBete(FirebaseFirestore db, String tokiMota){
-        ArrayList<Tokia> tokiak = new ArrayList<>();
+    private ArrayList<JardueraPertsona> tokiakBete(FirebaseFirestore db, String tokiMota){
+        ArrayList<JardueraPertsona> tokiak = new ArrayList<>();
 
         db.collection("Ibilbideak").get()
                 .addOnCompleteListener(task -> {
@@ -195,23 +196,47 @@ public class login extends AppCompatActivity {
                         QuerySnapshot ibilbideak = task.getResult();
                         List<DocumentSnapshot> documentIbilibideak = ibilbideak.getDocuments();
                         for(int i = 0;i<documentIbilibideak.size();i++) {
-                            Tokia t1 = new Tokia();
+
                             String kodea = documentIbilibideak.get(i).getString("code");
                             String ubikazioa = documentIbilibideak.get(i).getString("kokalekua");
                             String deskripzioa = documentIbilibideak.get(i).getString("informazioa");
                             String irudia = documentIbilibideak.get(i).getString("img");
+                            double balorazioa = documentIbilibideak.get(i).getDouble("balorazioa");
                             if (tokiMota.equals("Ibilbideak")||tokiMota.equals("Aisialdia")) {
-
+                                JardueraPertsona p1 = new JardueraPertsona();
+                                JardueraPertsona.jardueraMota m1;
+                                if (tokiMota.equals("Ibilbideak")){
+                                    m1 = JardueraPertsona.jardueraMota.ruta;
+                                } else if (tokiMota.equals("Aisialdia")) {
+                                    m1 = JardueraPertsona.jardueraMota.aisialdia;
+                                }
+                                p1.setUbikazioa(ubikazioa);
+                                p1.setDeskripzioa(deskripzioa);
+                                p1.setIrudia(irudia);
+                                p1.setKodea(kodea);
+                                p1.setBalorazioa(balorazioa);
+                                double prezioa = documentIbilibideak.get(i).getDouble("prezioa");
+                                double prezioa10 = documentIbilibideak.get(i).getDouble("prezioa10");
+                                double prezioa20 = documentIbilibideak.get(i).getDouble("prezioa20");
+                                p1.setMota(m1);
+                                p1.setSarreraPrezioa(prezioa);
+                                p1.setPrezioa10pertsona(prezioa10);
+                                p1.setPrezioa20pertsona(prezioa20);
                             } else if (tokiMota.equals("Konferentziak")||tokiMota.equals("Kumbreak")||tokiMota.equals("Presentazioak")||tokiMota.equals("Feriak")||tokiMota.equals("Tailerrak")) {
+                                JardueraEntitateak p1 = new JardueraPertsona();
+                                JardueraEntitateak.jardueraMota m1 = JardueraEntitateak.jardueraMota.feria;
+                                p1.setUbikazioa(ubikazioa);
+                                p1.setDeskripzioa(deskripzioa);
+                                p1.setIrudia(irudia);
+                                p1.setKodea(kodea);
+                                p1.setMota(m1);
 
                             } else {
                                 Toast.makeText(login.this, "Errorea " + tokiMota +" kargatzen", Toast.LENGTH_SHORT).show();
                             }
 
-                            t1.setUbikazioa(ubikazioa);
-                            t1.setDeskripzioa(deskripzioa);
-                            t1.setIrudia(irudia);
-                            t1.setKodea(kodea);
+
+
                             tokiak.add(t1);
                         }
 

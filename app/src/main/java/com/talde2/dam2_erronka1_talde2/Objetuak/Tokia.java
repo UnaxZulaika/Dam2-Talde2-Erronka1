@@ -45,10 +45,21 @@ public class Tokia {
     }
 
     public String getDeskripzioa() {
+
         return deskripzioa;
     }
 
     public void setDeskripzioa(String deskripzioa) {
+
         this.deskripzioa = deskripzioa;
     }
+
+    public double getBalorazioa() {
+        return balorazioa;
+    }
+
+    public void setBalorazioa(double balorazioa) {
+        this.balorazioa = balorazioa;
+    }
 }
+

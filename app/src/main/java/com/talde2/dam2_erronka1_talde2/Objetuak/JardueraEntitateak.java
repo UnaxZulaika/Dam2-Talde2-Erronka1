@@ -1,16 +1,17 @@
 package com.talde2.dam2_erronka1_talde2.Objetuak;
 
-public class JardueraEntitateak {
-    private enum jardueraMota{
+public class JardueraEntitateak extends Tokia {
+    public enum jardueraMota{
         konferentzia, kumbrea, presentazioa, feria, tailerrak
     }
-
+    private jardueraMota mota;
     private double prezioTxikia;
     private double prezioErdia;
     private double prezioHandia;
     private double prezioOsoHandia;
 
-    public JardueraEntitateak(double prezioTxikia, double prezioErdia, double prezioHandia, double prezioOsoHandia) {
+    public JardueraEntitateak(String kodea, String ubikazioa, String irudia, String deskripzioa, String jardueraInfo, double prezioTxikia, double prezioErdia, double prezioHandia, double prezioOsoHandia) {
+        super(kodea, ubikazioa, irudia, deskripzioa);
         this.prezioTxikia = prezioTxikia;
         this.prezioErdia = prezioErdia;
         this.prezioHandia = prezioHandia;
@@ -47,6 +48,14 @@ public class JardueraEntitateak {
 
     public void setPrezioOsoHandia(double prezioOsoHandia) {
         this.prezioOsoHandia = prezioOsoHandia;
+    }
+
+    public jardueraMota getMota() {
+        return mota;
+    }
+
+    public void setMota(jardueraMota mota) {
+        this.mota = mota;
     }
 }
 

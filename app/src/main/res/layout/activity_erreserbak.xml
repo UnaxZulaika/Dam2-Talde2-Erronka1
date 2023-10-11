@@ -103,7 +103,8 @@
         android:id="@+id/idLayOpzioak"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:visibility="invisible">
 
         <LinearLayout
             android:layout_width="265sp"

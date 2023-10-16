@@ -11,6 +11,19 @@ import android.widget.LinearLayout;
 
 public class erreserbak extends AppCompatActivity {
 
+    //metodos
+        public void variables_de_usuario(Intent intent, String izena,String abizena,String nan,String email,String mugikorra,String erabiltzaileMota) {
+
+            intent.putExtra("USER_izena", izena);
+            intent.putExtra("USER_abizena", abizena);
+            intent.putExtra("USER_nan", nan);
+            intent.putExtra("USER_email", email);
+            intent.putExtra("USER_mugikorra", mugikorra);
+            intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+
+        };
+    //fin metodos
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +67,7 @@ public class erreserbak extends AppCompatActivity {
 
 
     //LEHIOAK PASATZERA
+
         //datos a pasar a todas las pantallas del menu (para nire kontua)
         String izena = getIntent().getStringExtra("USER_izena");
         String abizena = getIntent().getStringExtra("USER_abizena");
@@ -61,6 +75,7 @@ public class erreserbak extends AppCompatActivity {
         String email = getIntent().getStringExtra("USER_email");
         String mugikorra = getIntent().getStringExtra("USER_mugikorra");
         String erabiltzaileMota = getIntent().getStringExtra("USER_erabiltzaileMota");
+
         //NIRE KONTUA
         Button btnNireKontua = findViewById(R.id.idBtnMenuKontua);
         btnNireKontua.setOnClickListener(new View.OnClickListener() {
@@ -69,12 +84,7 @@ public class erreserbak extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(erreserbak.this, Nire_Kontua.class);
 
-                intent.putExtra("USER_izena", izena);
-                intent.putExtra("USER_abizena", abizena);
-                intent.putExtra("USER_nan", nan);
-                intent.putExtra("USER_email", email);
-                intent.putExtra("USER_mugikorra", mugikorra);
-                intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+                variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
 
                 startActivity(intent);
             }
@@ -87,12 +97,7 @@ public class erreserbak extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(erreserbak.this, Egindako_Erreserbak.class);
 
-                intent.putExtra("USER_izena", izena);
-                intent.putExtra("USER_abizena", abizena);
-                intent.putExtra("USER_nan", nan);
-                intent.putExtra("USER_email", email);
-                intent.putExtra("USER_mugikorra", mugikorra);
-                intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+                variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
 
                 startActivity(intent);
             }
@@ -105,12 +110,7 @@ public class erreserbak extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(erreserbak.this, PribatasunPolitikak.class);
 
-                intent.putExtra("USER_izena", izena);
-                intent.putExtra("USER_abizena", abizena);
-                intent.putExtra("USER_nan", nan);
-                intent.putExtra("USER_email", email);
-                intent.putExtra("USER_mugikorra", mugikorra);
-                intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+                variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
 
                 startActivity(intent);
             }

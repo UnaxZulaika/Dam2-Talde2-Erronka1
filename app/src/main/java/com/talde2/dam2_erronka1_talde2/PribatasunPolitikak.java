@@ -13,11 +13,31 @@ import android.widget.TextView;
 
 public class PribatasunPolitikak extends AppCompatActivity {
 
+    //metodos
+        public void variables_de_usuario(Intent intent, String izena,String abizena,String nan,String email,String mugikorra,String erabiltzaileMota) {
+
+            intent.putExtra("USER_izena", izena);
+            intent.putExtra("USER_abizena", abizena);
+            intent.putExtra("USER_nan", nan);
+            intent.putExtra("USER_email", email);
+            intent.putExtra("USER_mugikorra", mugikorra);
+            intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+
+        };
+    //fin metodos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pribatasun_politikak);
         //menua izkutatzeko lehenik
+
+        //pasatutako datuak
+        String izena = getIntent().getStringExtra("USER_izena");
+        String abizena = getIntent().getStringExtra("USER_abizena");
+        String nan = getIntent().getStringExtra("USER_nan");
+        String email = getIntent().getStringExtra("USER_email");
+        String mugikorra = getIntent().getStringExtra("USER_mugikorra");
+        String erabiltzaileMota = getIntent().getStringExtra("USER_erabiltzaileMota");
 
         //MENUA
         //menua izkutatzeko lehenik
@@ -62,6 +82,9 @@ public class PribatasunPolitikak extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PribatasunPolitikak.this, erreserbak.class);
+
+                variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
+
                 startActivity(intent);
             }
         });
@@ -73,6 +96,8 @@ public class PribatasunPolitikak extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PribatasunPolitikak.this, Nire_Kontua.class);
 
+                variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
+
                 startActivity(intent);
             }
         });
@@ -83,6 +108,9 @@ public class PribatasunPolitikak extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PribatasunPolitikak.this, Egindako_Erreserbak.class);
+
+                variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
+
                 startActivity(intent);
             }
         });

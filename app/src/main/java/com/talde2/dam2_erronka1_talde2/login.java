@@ -88,6 +88,27 @@ public class login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Anonimo login ondo
                             Intent intent = new Intent(login.this, erreserbak.class);
+
+                            //nire kontua pantailari pasatzeko parametroak
+
+                            //variableak
+                            String izena ="anonimoa";
+                            String abizena = "anonimoa";
+                            String nan = "anonimoa";
+                            String email = "anonimoa";
+                            String mugikorra = "anonimoa";
+                            String erabiltzaileMota = "anonimoa";
+
+                            //Extrak
+                            intent.putExtra("USER_izena", izena);
+                            intent.putExtra("USER_abizena", abizena);
+                            intent.putExtra("USER_nan", nan);
+                            intent.putExtra("USER_email", email);
+                            intent.putExtra("USER_mugikorra", mugikorra);
+                            intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+
+                            //nire kontua pantailari pasatzeko parametroak FIN
+
                             startActivity(intent);
                             Toast.makeText(login.this, "Ongi etorri, Anonimoa", Toast.LENGTH_SHORT).show();
                             finish(); // Login aktibitatea ixteko

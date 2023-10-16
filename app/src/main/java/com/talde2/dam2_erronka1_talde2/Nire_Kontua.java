@@ -12,6 +12,20 @@ import android.widget.LinearLayout;
 
 public class Nire_Kontua extends AppCompatActivity {
 
+    //metodos
+        public void variables_de_usuario(Intent intent, String izena,String abizena,String nan,String email,String mugikorra,String erabiltzaileMota) {
+
+            intent.putExtra("USER_izena", izena);
+            intent.putExtra("USER_abizena", abizena);
+            intent.putExtra("USER_nan", nan);
+            intent.putExtra("USER_email", email);
+            intent.putExtra("USER_mugikorra", mugikorra);
+            intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+
+        };
+    //fin metodos
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,18 +126,15 @@ public class Nire_Kontua extends AppCompatActivity {
 
         //NIRE KONTUA
         Button btnNireKontua = findViewById(R.id.idBtnMenuKatalogoa);
+
+
         btnNireKontua.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Nire_Kontua.this, erreserbak.class);
 
-                intent.putExtra("USER_izena", izena);
-                intent.putExtra("USER_abizena", abizena);
-                intent.putExtra("USER_nan", nan);
-                intent.putExtra("USER_email", email);
-                intent.putExtra("USER_mugikorra", mugikorra);
-                intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+                variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
 
                 startActivity(intent);
             }
@@ -136,12 +147,7 @@ public class Nire_Kontua extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Nire_Kontua.this, Egindako_Erreserbak.class);
 
-                intent.putExtra("USER_izena", izena);
-                intent.putExtra("USER_abizena", abizena);
-                intent.putExtra("USER_nan", nan);
-                intent.putExtra("USER_email", email);
-                intent.putExtra("USER_mugikorra", mugikorra);
-                intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+                variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
 
                 startActivity(intent);
             }
@@ -154,12 +160,7 @@ public class Nire_Kontua extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Nire_Kontua.this, PribatasunPolitikak.class);
 
-                intent.putExtra("USER_izena", izena);
-                intent.putExtra("USER_abizena", abizena);
-                intent.putExtra("USER_nan", nan);
-                intent.putExtra("USER_email", email);
-                intent.putExtra("USER_mugikorra", mugikorra);
-                intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+                variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
 
                 startActivity(intent);
             }

@@ -43,6 +43,7 @@ public class login extends AppCompatActivity {
     private EditText erabiltzaileEditText;
     private EditText pasahitzaEditText;
     private Button loginBtnSartu;
+    private Button loginBtnAnonimo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,29 @@ public class login extends AppCompatActivity {
                 }
             }
         });
+
+        loginBtnAnonimo = findViewById(R.id.loginBtnAnonimo);
+        loginBtnAnonimo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Anonimo bezala login
+                mAuth.signInAnonymously().addOnCompleteListener(login.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Anonimo login ondo
+                            Intent intent = new Intent(login.this, erreserbak.class);
+                            startActivity(intent);
+                            Toast.makeText(login.this, "Ongi etorri, Anonimoa", Toast.LENGTH_SHORT).show();
+                            finish(); // Login aktibitatea ixteko
+                        } else {
+                            Toast.makeText(login.this, "Errorea, ezin izan da anonimo bezala hasi saioa", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
 
         Button btnErregistratu = findViewById(R.id.loginBtnErregistratu);
         btnErregistratu.setOnClickListener(new View.OnClickListener() {

@@ -10,6 +10,7 @@
     <string name="pasw">Pasahitza:</string>
     <string name="paswTxt">Sartu zure pasahitza</string>
     <string name="btnLogin">Sartu</string>
+    <string name="btnAnonimo">Anonimo bezala sartu</string>
     <string name="btnRegister">Erregistratu</string>
 
     <!-- login.java -->

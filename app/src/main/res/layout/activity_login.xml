@@ -81,6 +81,9 @@
         />
 
     <!-- "Erregistratu" botoia -->
+
+    <!-- "Sartu" botoia -->
+
     <Button
         android:id="@+id/loginBtnErregistratu"
         android:layout_width="148sp"
@@ -92,10 +95,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginEditPasahitza"
-        app:layout_constraintVertical_bias="0.502" />
+        app:layout_constraintTop_toBottomOf="@+id/loginBtnAnonimo"
+        app:layout_constraintVertical_bias="0.176" />
 
-    <!-- "Sartu" botoia -->
     <Button
         android:id="@+id/loginBtnSartu"
         android:layout_width="148sp"
@@ -107,7 +109,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.885"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtnAnonimo"
+        app:layout_constraintVertical_bias="0.176" />
+
+    <Button
+        android:id="@+id/loginBtnAnonimo"
+        android:layout_width="300sp"
+        android:layout_height="64sp"
+        android:background="@color/verdePastel"
+        android:backgroundTint="@color/ic_launcher_background"
+        android:text="@string/btnAnonimo"
+        android:textColor="#1347AC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginEditPasahitza"
-        app:layout_constraintVertical_bias="0.502" />
+        app:layout_constraintVertical_bias="0.094" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

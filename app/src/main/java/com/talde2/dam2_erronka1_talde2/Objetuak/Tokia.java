@@ -1,57 +1,57 @@
 package com.talde2.dam2_erronka1_talde2.Objetuak;
 
 public class Tokia {
-    private String kodea;
-    private String ubikazioa;
-    private String irudia;
-    private String deskripzioa;
+    private String code;
+    private String kokalekua;
+    private String img;
+    private String informazioa;
     private double balorazioa;
 
     public Tokia(String kodea, String ubikazioa, String irudia, String deskripzioa) {
-        this.kodea = kodea;
-        this.ubikazioa = ubikazioa;
-        this.irudia = irudia;
-        this.deskripzioa = deskripzioa;
+        this.code = kodea;
+        this.kokalekua = ubikazioa;
+        this.img = irudia;
+        this.informazioa = deskripzioa;
     }
     public Tokia() {
-        this.kodea = "";
-        this.ubikazioa = "";
-        this.irudia = "";
-        this.deskripzioa = "";
+        this.code = "";
+        this.kokalekua = "";
+        this.img = "";
+        this.informazioa = "";
     }
 
-    public String getKodea() {
-        return kodea;
+    public String getCode() {
+        return code;
     }
 
-    public void setKodea(String kodea) {
-        this.kodea = kodea;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getUbikazioa() {
-        return ubikazioa;
+    public String getKokalekua() {
+        return kokalekua;
     }
 
-    public void setUbikazioa(String ubikazioa) {
-        this.ubikazioa = ubikazioa;
+    public void setKokalekua(String kokalekua) {
+        this.kokalekua = kokalekua;
     }
 
-    public String getIrudia() {
-        return irudia;
+    public String getImg() {
+        return img;
     }
 
-    public void setIrudia(String irudia) {
-        this.irudia = irudia;
+    public void setImg(String img) {
+        this.img = img;
     }
 
-    public String getDeskripzioa() {
+    public String getInformazioa() {
 
-        return deskripzioa;
+        return informazioa;
     }
 
-    public void setDeskripzioa(String deskripzioa) {
+    public void setInformazioa(String informazioa) {
 
-        this.deskripzioa = deskripzioa;
+        this.informazioa = informazioa;
     }
 
     public double getBalorazioa() {

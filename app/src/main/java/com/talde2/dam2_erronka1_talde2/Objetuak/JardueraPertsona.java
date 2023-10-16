@@ -6,38 +6,46 @@ public class JardueraPertsona extends Tokia {
         aisialdia, ruta
     }
     private jardueraMota mota;
-    private double sarreraPrezioa;
-    private double prezioa10pertsona;
-    private double prezioa20pertsona;
+    private double prezioa;
+    private double prezioa10;
+    private double prezioa20;
 
     public JardueraPertsona(String kodea, String ubikazioa, String irudia, String deskripzioa, double sarreraPrezioa, double prezioa10pertsona, double prezioa20pertsona) {
         super(kodea, ubikazioa, irudia, deskripzioa);
-        this.sarreraPrezioa = sarreraPrezioa;
-        this.prezioa10pertsona = prezioa10pertsona;
-        this.prezioa20pertsona = prezioa20pertsona;
+        this.prezioa = sarreraPrezioa;
+        this.prezioa10 = prezioa10pertsona;
+        this.prezioa20 = prezioa20pertsona;
+    }
+    public JardueraPertsona() {
+        super();
+        this.prezioa = 0;
+        this.prezioa10 = 0;
+        this.prezioa20 = 0;
     }
 
-    public double getSarreraPrezioa() {
-        return sarreraPrezioa;
+
+    public double getPrezioa() {
+        return prezioa;
     }
 
-    public void setSarreraPrezioa(double sarreraPrezioa) {
-        this.sarreraPrezioa = sarreraPrezioa;
+    public void setPrezioa(double prezioa) {
+        this.prezioa = prezioa;
     }
 
-    public double getPrezioa10pertsona() {
-        return prezioa10pertsona;
+    public double getPrezioa10() {
+
+        return prezioa10;
     }
 
-    public void setPrezioa10pertsona(double prezioa10pertsona) {
-        this.prezioa10pertsona = prezioa10pertsona;
+    public void setPrezioa10(double prezioa10) {
+        this.prezioa10 = prezioa10;
     }
 
-    public double getPrezioa20pertsona() {
-        return prezioa20pertsona;
+    public double getPrezioa20() {
+        return prezioa20;
     }
-    public void setPrezioa20pertsona(double prezioa20pertsona) {
-        this.prezioa20pertsona = prezioa20pertsona;
+    public void setPrezioa20(double prezioa20) {
+        this.prezioa20 = prezioa20;
     }
 
     public jardueraMota getMota() {

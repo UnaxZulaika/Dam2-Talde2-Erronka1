@@ -2,7 +2,7 @@ package com.talde2.dam2_erronka1_talde2.Objetuak;
 
 public class JardueraEntitateak extends Tokia {
     public enum jardueraMota{
-        konferentzia, kumbrea, presentazioa, feria, tailerrak
+        konferentzia, kumbrea, aurkezpena, feria, tailerrak
     }
     private jardueraMota mota;
     private double prezioTxikia;

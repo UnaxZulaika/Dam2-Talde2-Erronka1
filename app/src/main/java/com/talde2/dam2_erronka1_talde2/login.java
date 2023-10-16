@@ -160,7 +160,16 @@ public class login extends AppCompatActivity {
                             if (document.exists()) {
                                 // Erabiltzaile izena eskuratzen du
                                 Erabiltzaile erabiltzaile = erabiltzaileaBete(document);
-                                ArrayList<JardueraPertsona> tokiakPertsona = tokiakBete(db, "Ibilbideak");
+                                ArrayList<JardueraPertsona> tokiakPertsona;
+                                ArrayList<JardueraEntitateak> tokiakEntitatea;
+                                tokiakPertsona = tokiakBete(db, "Ibilbideak", tokiakPertsona);
+                                tokiakPertsona = tokiakBete(db, "Aisialdiak", tokiakPertsona);
+                                tokiakEntitatea = tokiakBete(db, "Aurkezpenak", tokiakEntitatea);
+                                tokiakEntitatea = tokiakBete(db, "Feriak", tokiakEntitatea);
+                                tokiakEntitatea = tokiakBete(db, "Konferentziak", tokiakEntitatea);
+                                tokiakEntitatea = tokiakBete(db, "Kumbreak", tokiakEntitatea);
+                                tokiakEntitatea = tokiakBete(db, "Tailerrak", tokiakEntitatea);
+
                                 // Login zuzenaren mezua erakusten du
                                 Toast.makeText(login.this, "Ongi etorri, "+ erabiltzaile.getIzena(), Toast.LENGTH_SHORT).show();
 
@@ -214,10 +223,13 @@ public class login extends AppCompatActivity {
         Erabiltzaile erabiltzaile = new Erabiltzaile(izena, nan, abizena, email, mugikorra, erabiltzaileMota);
         return erabiltzaile;
     }
-    private ArrayList<JardueraPertsona> tokiakBete(FirebaseFirestore db, String tokiMota){
-        ArrayList<JardueraPertsona> tokiak = new ArrayList<>();
-
-
+    /**
+     *
+     * @param db firebase instantzia
+     * @param tokiMota zein toki kargatuko den
+     * @return arraylist bat tokiak objetuak transformatuta
+     */
+    private ArrayList<JardueraPertsona> tokiakBete(FirebaseFirestore db, String tokiMota, ArrayList<JardueraPertsona> tokiakPertsona) {
         db.collection(tokiMota)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -227,13 +239,48 @@ public class login extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 JardueraPertsona t1 = document.toObject(JardueraPertsona.class);
-                                tokiak.add(t1);
+                                if (tokiMota.equals("Ibilbideak")){
+                                    t1.setMota(JardueraPertsona.jardueraMota.ruta);
+                                } else {
+                                    t1.setMota(JardueraPertsona.jardueraMota.aisialdia);
+                                }
+                                tokiakPertsona.add(t1);
                             }
                         } else {
                             Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
                         }
                     }
                 });
-        return tokiak;
+        return tokiakPertsona;
+    }
+    private ArrayList<JardueraEntitateak> tokiakBete(FirebaseFirestore db, String tokiMota, ArrayList<JardueraEntitateak> tokiakEntitateak) {
+        db.collection(tokiMota)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                JardueraEntitateak t1 = document.toObject(JardueraEntitateak.class);
+                                if (tokiMota.equals("Aurkezpenak")) {
+                                    t1.setMota(JardueraEntitateak.jardueraMota.aurkezpena);
+                                } else if (tokiMota.equals("Feriak")){
+                                    t1.setMota(JardueraEntitateak.jardueraMota.feria);
+                                } else if (tokiMota.equals("Konferentziak")) {
+                                    t1.setMota(JardueraEntitateak.jardueraMota.konferentzia);
+                                } else if (tokiMota.equals("Kumbreak")) {
+                                    t1.setMota(JardueraEntitateak.jardueraMota.kumbrea);
+                                } else if (tokiMota.equals("Tailerrak")){
+                                    t1.setMota(JardueraEntitateak.jardueraMota.tailerrak);
+                                }
+                                tokiakEntitateak.add(t1);
+                            }
+                        } else {
+                            Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
+                        }
+                    }
+                });
+        return tokiakEntitateak;
     }
 }

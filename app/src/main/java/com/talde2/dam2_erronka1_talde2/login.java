@@ -160,15 +160,15 @@ public class login extends AppCompatActivity {
                             if (document.exists()) {
                                 // Erabiltzaile izena eskuratzen du
                                 Erabiltzaile erabiltzaile = erabiltzaileaBete(document);
-                                ArrayList<JardueraPertsona> tokiakPertsona;
-                                ArrayList<JardueraEntitateak> tokiakEntitatea;
-                                tokiakPertsona = tokiakBete(db, "Ibilbideak", tokiakPertsona);
-                                tokiakPertsona = tokiakBete(db, "Aisialdiak", tokiakPertsona);
-                                tokiakEntitatea = tokiakBete(db, "Aurkezpenak", tokiakEntitatea);
-                                tokiakEntitatea = tokiakBete(db, "Feriak", tokiakEntitatea);
-                                tokiakEntitatea = tokiakBete(db, "Konferentziak", tokiakEntitatea);
-                                tokiakEntitatea = tokiakBete(db, "Kumbreak", tokiakEntitatea);
-                                tokiakEntitatea = tokiakBete(db, "Tailerrak", tokiakEntitatea);
+                                ArrayList<JardueraPertsona> tokiakPertsona = new ArrayList<JardueraPertsona>();
+                                ArrayList<JardueraEntitateak> tokiakEntitatea = new ArrayList<JardueraEntitateak>();
+                                tokiakPertsona = tokiakBetePertsona(db, "Ibilbideak", tokiakPertsona);
+                                tokiakPertsona = tokiakBetePertsona(db, "Aisialdiak", tokiakPertsona);
+                                tokiakEntitatea = tokiakBeteEntitateak(db, "Aurkezpenak", tokiakEntitatea);
+                                tokiakEntitatea = tokiakBeteEntitateak(db, "Feriak", tokiakEntitatea);
+                                tokiakEntitatea = tokiakBeteEntitateak(db, "Konferentziak", tokiakEntitatea);
+                                tokiakEntitatea = tokiakBeteEntitateak(db, "Kumbreak", tokiakEntitatea);
+                                tokiakEntitatea = tokiakBeteEntitateak(db, "Tailerrak", tokiakEntitatea);
 
                                 // Login zuzenaren mezua erakusten du
                                 Toast.makeText(login.this, "Ongi etorri, "+ erabiltzaile.getIzena(), Toast.LENGTH_SHORT).show();
@@ -229,7 +229,7 @@ public class login extends AppCompatActivity {
      * @param tokiMota zein toki kargatuko den
      * @return arraylist bat tokiak objetuak transformatuta
      */
-    private ArrayList<JardueraPertsona> tokiakBete(FirebaseFirestore db, String tokiMota, ArrayList<JardueraPertsona> tokiakPertsona) {
+    private ArrayList<JardueraPertsona> tokiakBetePertsona(FirebaseFirestore db, String tokiMota, ArrayList<JardueraPertsona> tokiakPertsona) {
         db.collection(tokiMota)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -253,7 +253,7 @@ public class login extends AppCompatActivity {
                 });
         return tokiakPertsona;
     }
-    private ArrayList<JardueraEntitateak> tokiakBete(FirebaseFirestore db, String tokiMota, ArrayList<JardueraEntitateak> tokiakEntitateak) {
+    private ArrayList<JardueraEntitateak> tokiakBeteEntitateak(FirebaseFirestore db, String tokiMota, ArrayList<JardueraEntitateak> tokiakEntitateak) {
         db.collection(tokiMota)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

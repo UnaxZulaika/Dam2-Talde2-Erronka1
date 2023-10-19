@@ -66,42 +66,33 @@ public class erreserbak extends AppCompatActivity {
 
                                     // Pertsonentzako bakarrik direnak
                                     tokiakPertsona = tokiakBetePertsona(db, "Ibilbideak", pertsonaMota, tokiakPertsona);
-                                    //System.out.println(tokiakPertsona.get(0).getKokalekua()+" hola");
-                                    System.out.println(erabiltzaile.getErabiltzaileMota().toString());
+
+
                                     tokiakPertsona = tokiakBetePertsona(db, "Aisialdiak", pertsonaMota, tokiakPertsona);
-                                    System.out.println("ZZZZZZZZZ");
+
                                     for (int i = 0; i < tokiakPertsona.size(); i++) {
                                         System.out.println(tokiakPertsona.get(i).getMota());
-                                        System.out.println("BBBBBBBBBBBB");
+
                                     }
-                                    System.out.println("OOOOOOOOOOOO");
+
                                 } else if (erabiltzaile.getErabiltzaileMota().equals("Enpresa/Entitatea")) {
                                     // Enpresa/Entitatentzako bakarrik direnak
-                                    /*tokiakEntitatea = tokiakBeteEntitateak(db, "Aurkezpenak", tokiakEntitatea);
+                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Aurkezpenak", tokiakEntitatea);
                                     tokiakEntitatea = tokiakBeteEntitateak(db, "Feriak", tokiakEntitatea);
                                     tokiakEntitatea = tokiakBeteEntitateak(db, "Konferentziak", tokiakEntitatea);
                                     tokiakEntitatea = tokiakBeteEntitateak(db, "Kumbreak", tokiakEntitatea);
                                     tokiakEntitatea = tokiakBeteEntitateak(db, "Tailerrak", tokiakEntitatea);
                                 } else {
                                     // Denak kargatu
-                                    tokiakPertsona = tokiakBetePertsona(db, "Ibilbideak", tokiakPertsona);
-                                    tokiakPertsona = tokiakBetePertsona(db, "Aisialdiak", tokiakPertsona);
-                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Aurkezpenak", tokiakEntitatea);
-                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Feriak", tokiakEntitatea);
-                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Konferentziak", tokiakEntitatea);
-                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Kumbreak", tokiakEntitatea);
-                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Tailerrak", tokiakEntitatea);*/
+                                    tokiakBeteAnonimo(db, "Ibilbideak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Aisialdiak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Aurkezpenak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Feriak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Konferentziak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Kumbreak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Tailerrak", tokiakPertsona, tokiakEntitatea);
+
                                 }
-
-                                System.out.println("AAAAAAAAAAAAAAA");
-
-
-
-                                for (int i = 0; i < tokiakEntitatea.size(); i++) {
-                                    System.out.println(tokiakEntitatea.get(i).getMota());
-                                    System.out.println("AAAAAAAAAAAAAA1A");
-                                }
-
 
                             }
                         }
@@ -117,9 +108,9 @@ public class erreserbak extends AppCompatActivity {
         String erabiltzaileEmail = getIntent().getStringExtra("USER_email");
         //datuBaseKarga(erabiltzaileEmail);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        System.out.println("PRUEBAAAAAAAAAAAAAAAA");
+
         //tokiakPertsona = tokiakBetePertsona(db, "Ibilbideak", tokiakPertsona);
-        System.out.println("PRUEBAA2222222222222");
+
         LinearLayout buttonContainer = findViewById(R.id.filtroak);
         datuBaseKarga(erabiltzaileEmail);
         ArrayList<String> listaBotones = new ArrayList<>();
@@ -271,7 +262,7 @@ public class erreserbak extends AppCompatActivity {
                                         t1.setMota(JardueraPertsona.jardueraMota.aisialdia);
                                     }
                                     tokiakPertsona.add(t1);
-                                    System.out.println(tokiakPertsona.get(0).getKokalekua() + "AAAAAAAAAAAAAAAAAA");
+                                System.out.println("pertsonak hecho");
                                 }
                         } else {
                             Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
@@ -302,6 +293,7 @@ public class erreserbak extends AppCompatActivity {
                                     t1.setMota(JardueraEntitateak.jardueraMota.tailerrak);
                                 }
                                 tokiakEntitateak.add(t1);
+                                System.out.println("entitateak hecho");
                             }
                         } else {
                             Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
@@ -310,5 +302,43 @@ public class erreserbak extends AppCompatActivity {
                 });
         return tokiakEntitateak;
     }
+    public static void tokiakBeteAnonimo(FirebaseFirestore db, String tokiMota, ArrayList<JardueraPertsona> tokiakPertsona, ArrayList<JardueraEntitateak> tokiakEntitateak) {
+        db.collection(tokiMota)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                JardueraPertsona t1 = document.toObject(JardueraPertsona.class);
+                                if (tokiMota.equals("Ibilbideak")){
+                                    t1.setMota(JardueraPertsona.jardueraMota.ruta);
+                                } else {
+                                    t1.setMota(JardueraPertsona.jardueraMota.aisialdia);
+                                }
+                                tokiakPertsona.add(t1);
+                                System.out.println("pertsonak hecho");
+                                JardueraEntitateak te1 = document.toObject(JardueraEntitateak.class);
+                                if (tokiMota.equals("Aurkezpenak")) {
+                                    te1.setMota(JardueraEntitateak.jardueraMota.aurkezpena);
+                                } else if (tokiMota.equals("Feriak")){
+                                    te1.setMota(JardueraEntitateak.jardueraMota.feria);
+                                } else if (tokiMota.equals("Konferentziak")) {
+                                    te1.setMota(JardueraEntitateak.jardueraMota.konferentzia);
+                                } else if (tokiMota.equals("Kumbreak")) {
+                                    te1.setMota(JardueraEntitateak.jardueraMota.kumbrea);
+                                } else if (tokiMota.equals("Tailerrak")){
+                                    te1.setMota(JardueraEntitateak.jardueraMota.tailerrak);
+                                }
+                                tokiakEntitateak.add(te1);
+                                System.out.println("entitateak hecho");
+                            }
+                            }
+
+                        }
+                });
+            }
+
 
 }

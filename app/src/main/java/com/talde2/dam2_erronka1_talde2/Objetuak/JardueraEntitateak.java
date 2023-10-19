@@ -5,49 +5,56 @@ public class JardueraEntitateak extends Tokia {
         konferentzia, kumbrea, aurkezpena, feria, tailerrak
     }
     private jardueraMota mota;
-    private double prezioTxikia;
-    private double prezioErdia;
-    private double prezioHandia;
-    private double prezioOsoHandia;
+    private double prezioT;
+    private double prezioE;
+    private double prezioH;
+    private double prezioOH;
 
-    public JardueraEntitateak(String kodea, String ubikazioa, String irudia, String deskripzioa, String jardueraInfo, double prezioTxikia, double prezioErdia, double prezioHandia, double prezioOsoHandia) {
+    public JardueraEntitateak(String kodea, String ubikazioa, String irudia, String deskripzioa, double prezioTxikia, double prezioErdia, double prezioHandia, double prezioOsoHandia) {
         super(kodea, ubikazioa, irudia, deskripzioa);
-        this.prezioTxikia = prezioTxikia;
-        this.prezioErdia = prezioErdia;
-        this.prezioHandia = prezioHandia;
-        this.prezioOsoHandia = prezioOsoHandia;
+        this.prezioT = prezioTxikia;
+        this.prezioE = prezioErdia;
+        this.prezioH = prezioHandia;
+        this.prezioOH = prezioOsoHandia;
+    }
+    public JardueraEntitateak() {
+        super();
+        this.prezioT = 0;
+        this.prezioE = 0;
+        this.prezioH = 0;
+        this.prezioOH = 0;
     }
 
-    public double getPrezioTxikia() {
-        return prezioTxikia;
+    public double getPrezioT() {
+        return prezioT;
     }
 
-    public void setPrezioTxikia(double prezioTxikia) {
-        this.prezioTxikia = prezioTxikia;
+    public void setPrezioT(double prezioT) {
+        this.prezioT = prezioT;
     }
 
-    public double getPrezioErdia() {
-        return prezioErdia;
+    public double getPrezioE() {
+        return prezioE;
     }
 
-    public void setPrezioErdia(double prezioErdia) {
-        this.prezioErdia = prezioErdia;
+    public void setPrezioE(double prezioE) {
+        this.prezioE = prezioE;
     }
 
-    public double getPrezioHandia() {
-        return prezioHandia;
+    public double getPrezioH() {
+        return prezioH;
     }
 
-    public void setPrezioHandia(double prezioHandia) {
-        this.prezioHandia = prezioHandia;
+    public void setPrezioH(double prezioH) {
+        this.prezioH = prezioH;
     }
 
-    public double getPrezioOsoHandia() {
-        return prezioOsoHandia;
+    public double getPrezioOH() {
+        return prezioOH;
     }
 
-    public void setPrezioOsoHandia(double prezioOsoHandia) {
-        this.prezioOsoHandia = prezioOsoHandia;
+    public void setPrezioOH(double prezioOH) {
+        this.prezioOH = prezioOH;
     }
 
     public jardueraMota getMota() {

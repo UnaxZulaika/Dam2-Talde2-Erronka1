@@ -30,7 +30,7 @@
 
     <LinearLayout
         android:id="@+id/loginBanner"
-        android:layout_width="411sp"
+        android:layout_width="match_parent"
         android:layout_height="125sp"
         android:background="@color/verdePastel"
         android:orientation="horizontal"

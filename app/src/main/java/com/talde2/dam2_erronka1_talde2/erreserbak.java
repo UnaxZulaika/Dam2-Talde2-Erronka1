@@ -9,8 +9,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -70,10 +73,15 @@ public class erreserbak extends AppCompatActivity {
 
                                     tokiakPertsona = tokiakBetePertsona(db, "Aisialdiak", pertsonaMota, tokiakPertsona);
 
+                                    ArrayList<String> filtroak = new ArrayList<String>();
                                     for (int i = 0; i < tokiakPertsona.size(); i++) {
                                         System.out.println(tokiakPertsona.get(i).getMota());
-
+                                        filtroak.add(tokiakPertsona.get(i).getMota().toString());
                                     }
+
+                                    cargaFiltro(filtroak);
+
+                                    //   cargarBotonesYImagenes();
 
                                 } else if (erabiltzaile.getErabiltzaileMota().equals("Enpresa/Entitatea")) {
                                     // Enpresa/Entitatentzako bakarrik direnak
@@ -111,22 +119,6 @@ public class erreserbak extends AppCompatActivity {
 
         //tokiakPertsona = tokiakBetePertsona(db, "Ibilbideak", tokiakPertsona);
 
-        LinearLayout buttonContainer = findViewById(R.id.filtroak);
-        datuBaseKarga(erabiltzaileEmail);
-        ArrayList<String> listaBotones = new ArrayList<>();
-
-
-
-        for (String textoBoton : listaBotones) {
-            Button button = new Button(this);
-            button.setText(textoBoton);
-            button.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            ));
-
-            buttonContainer.addView(button);
-        }
 
         //MENUA
         //menua izkutatzeko lehenik
@@ -340,5 +332,84 @@ public class erreserbak extends AppCompatActivity {
                 });
             }
 
+    // Define el método cargarBotonesYImagenes para el código que sigue a continuación
+    private void cargarBotonesYImagenes(ArrayList<String> imageNames) {
+        LinearLayout btnImagenLayout = findViewById(R.id.layoutBtnImg);
+
+        // img guztiak
+        imageNames.add("x");
+        imageNames.add("instagram");
+        imageNames.add("instagram");
+        imageNames.add("x");
+        imageNames.add("x");
+        imageNames.add("instagram");
+        imageNames.add("instagram");
+        imageNames.add("x");
+        imageNames.add("x");
+        imageNames.add("instagram");
+        imageNames.add("instagram");
+        imageNames.add("x");
+        imageNames.add("x");
+        imageNames.add("instagram");
+        imageNames.add("instagram");
+        imageNames.add("x");
+        imageNames.add("x");
+        imageNames.add("instagram");
+        imageNames.add("instagram");
+        imageNames.add("x");
+
+        LinearLayout currentLinearLayout = null; // Hasiera ez dago beste LinearLayoutik
+
+        for (int i = 0; i < imageNames.size(); i++) {
+            String imageName = imageNames.get(i);
+
+            if (i % 2 == 0) {
+                // Bikoitia bada, LinearLayout (horizontal) berria sortzen du
+                currentLinearLayout = new LinearLayout(this);
+                currentLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
+                currentLinearLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+                btnImagenLayout.addView(currentLinearLayout); // LinearLayout berria, lehen linearLayout-era gehitzen du
+            }
+
+            ImageButton imageButton = new ImageButton(this);
+
+            int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+
+            // Botoiaren tamaina
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400, 400);
+
+            // botoiaren irudiaren escala
+            imageButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+
+            // irudia kargatzen du
+            if (resID != 0) {
+                imageButton.setImageResource(resID);
+            }
+
+            // botoieri margenak ipintzen dio
+            layoutParams.setMargins(75, 75, 75, 75);
+
+            imageButton.setLayoutParams(layoutParams);
+
+            currentLinearLayout.addView(imageButton); // ImgageButton-a LinearLayout berriare sartzen dio
+        }
+    }
+
+    private void cargaFiltro(ArrayList<String> listaBtn) {
+        LinearLayout buttonContainer = findViewById(R.id.filtroak);
+
+        listaBtn.add("aa");
+
+        for (String txtBtn : listaBtn) {
+            Button button = new Button(this);
+            button.setText(txtBtn);
+            button.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            ));
+
+            buttonContainer.addView(button);
+        }
+    }
 
 }

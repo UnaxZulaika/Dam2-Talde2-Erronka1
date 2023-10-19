@@ -9,7 +9,7 @@
     <!-- Banner fondo berdea -->
     <LinearLayout
         android:id="@+id/regBanner"
-        android:layout_width="411sp"
+        android:layout_width="match_parent"
         android:layout_height="125sp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"

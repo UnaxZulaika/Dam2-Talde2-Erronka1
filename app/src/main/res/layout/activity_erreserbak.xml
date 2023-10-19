@@ -7,7 +7,7 @@
     android:background="#00FFFFFF"
     tools:context=".erreserbak">
 
-  <!-- HEADER -->
+    <!-- HEADER -->
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
@@ -67,7 +67,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        tools:visibility="invisible">
+        android:visibility="gone"
+        tools:visibility="gone">
 
         <LinearLayout
             android:layout_width="265sp"
@@ -208,6 +209,22 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="564dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
+
+        <LinearLayout
+            android:id="@+id/layoutBtnImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+    </ScrollView>
+
     <!-- inside header fin -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

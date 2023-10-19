@@ -179,21 +179,6 @@ public class login extends AppCompatActivity {
                             DocumentSnapshot document = task.getResult();
 
                             if (document.exists()) {
-                                // Erabiltzaile izena eskuratzen du
-                                Erabiltzaile erabiltzaile = erabiltzaileaBete(document);
-                                ArrayList<JardueraPertsona> tokiakPertsona = new ArrayList<JardueraPertsona>();
-                                ArrayList<JardueraEntitateak> tokiakEntitatea = new ArrayList<JardueraEntitateak>();
-                                tokiakPertsona = tokiakBetePertsona(db, "Ibilbideak", tokiakPertsona);
-                                tokiakPertsona = tokiakBetePertsona(db, "Aisialdiak", tokiakPertsona);
-                                tokiakEntitatea = tokiakBeteEntitateak(db, "Aurkezpenak", tokiakEntitatea);
-                                tokiakEntitatea = tokiakBeteEntitateak(db, "Feriak", tokiakEntitatea);
-                                tokiakEntitatea = tokiakBeteEntitateak(db, "Konferentziak", tokiakEntitatea);
-                                tokiakEntitatea = tokiakBeteEntitateak(db, "Kumbreak", tokiakEntitatea);
-                                tokiakEntitatea = tokiakBeteEntitateak(db, "Tailerrak", tokiakEntitatea);
-
-                                // Login zuzenaren mezua erakusten du
-                                Toast.makeText(login.this, "Ongi etorri, "+ erabiltzaile.getIzena(), Toast.LENGTH_SHORT).show();
-
 
                                 // Hurrengo lehiora pasatzen da
                                 Intent intent = new Intent(login.this, erreserbak.class);
@@ -205,13 +190,13 @@ public class login extends AppCompatActivity {
                                 String mugikorra = document.getString("mugikorra");
                                 String erabiltzaileMota = document.getString("erabiltzaileMota");
 
+                                // Pertsonaren informazioa pasatzeko hurrengo aktibitatera
                                 intent.putExtra("USER_izena", izena);
                                 intent.putExtra("USER_abizena", abizena);
                                 intent.putExtra("USER_nan", nan);
                                 intent.putExtra("USER_email", email);
                                 intent.putExtra("USER_mugikorra", mugikorra);
                                 intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
-
 
                                 startActivity(intent);
                                 finish();
@@ -234,7 +219,7 @@ public class login extends AppCompatActivity {
      * @param document firebase erabiltzailearen kontulta
      * @return erabiltzile objetua beharrezko informazioarekin
      */
-    private Erabiltzaile erabiltzaileaBete(DocumentSnapshot document) {
+    public static Erabiltzaile erabiltzaileaBete(DocumentSnapshot document) {
         String izena = document.getString("izena");
         String abizena = document.getString("abizena");
         String nan = document.getString("nan");
@@ -250,58 +235,6 @@ public class login extends AppCompatActivity {
      * @param tokiMota zein toki kargatuko den
      * @return arraylist bat tokiak objetuak transformatuta
      */
-    private ArrayList<JardueraPertsona> tokiakBetePertsona(FirebaseFirestore db, String tokiMota, ArrayList<JardueraPertsona> tokiakPertsona) {
-        db.collection(tokiMota)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                JardueraPertsona t1 = document.toObject(JardueraPertsona.class);
-                                if (tokiMota.equals("Ibilbideak")){
-                                    t1.setMota(JardueraPertsona.jardueraMota.ruta);
-                                } else {
-                                    t1.setMota(JardueraPertsona.jardueraMota.aisialdia);
-                                }
-                                tokiakPertsona.add(t1);
-                            }
-                        } else {
-                            Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
-                        }
-                    }
-                });
-        return tokiakPertsona;
-    }
-    private ArrayList<JardueraEntitateak> tokiakBeteEntitateak(FirebaseFirestore db, String tokiMota, ArrayList<JardueraEntitateak> tokiakEntitateak) {
-        db.collection(tokiMota)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                JardueraEntitateak t1 = document.toObject(JardueraEntitateak.class);
-                                if (tokiMota.equals("Aurkezpenak")) {
-                                    t1.setMota(JardueraEntitateak.jardueraMota.aurkezpena);
-                                } else if (tokiMota.equals("Feriak")){
-                                    t1.setMota(JardueraEntitateak.jardueraMota.feria);
-                                } else if (tokiMota.equals("Konferentziak")) {
-                                    t1.setMota(JardueraEntitateak.jardueraMota.konferentzia);
-                                } else if (tokiMota.equals("Kumbreak")) {
-                                    t1.setMota(JardueraEntitateak.jardueraMota.kumbrea);
-                                } else if (tokiMota.equals("Tailerrak")){
-                                    t1.setMota(JardueraEntitateak.jardueraMota.tailerrak);
-                                }
-                                tokiakEntitateak.add(t1);
-                            }
-                        } else {
-                            Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
-                        }
-                    }
-                });
-        return tokiakEntitateak;
-    }
+
+
 }

@@ -55,4 +55,5 @@ public class JardueraPertsona extends Tokia {
     public void setMota(jardueraMota mota) {
         this.mota = mota;
     }
+
 }

@@ -27,8 +27,13 @@ import com.talde2.dam2_erronka1_talde2.Objetuak.Erabiltzaile;
 import com.talde2.dam2_erronka1_talde2.Objetuak.JardueraEntitateak;
 import com.talde2.dam2_erronka1_talde2.Objetuak.JardueraPertsona;
 
+import org.checkerframework.checker.units.qual.A;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class erreserbak extends AppCompatActivity {
 
@@ -48,73 +53,13 @@ public class erreserbak extends AppCompatActivity {
         };
     //fin metodos
 
-    private void datuBaseKarga(String erabiltzaileEmail) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        // Erabiltzailearen izena lortzeko kontsulta
-        db.collection("Erabiltzaileak").document(erabiltzaileEmail).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-
-                            if (document.exists()) {
-                                // Erabiltzaile izena eskuratzen du
-                                Erabiltzaile erabiltzaile = login.erabiltzaileaBete(document);
-                               String pertsonaMota = erabiltzaile.getErabiltzaileMota().toString();
-
-
-                                if (erabiltzaile.getErabiltzaileMota().equals("Pertsona")) {
-
-                                    // Pertsonentzako bakarrik direnak
-                                    tokiakPertsona = tokiakBetePertsona(db, "Ibilbideak", pertsonaMota, tokiakPertsona);
-
-
-                                    tokiakPertsona = tokiakBetePertsona(db, "Aisialdiak", pertsonaMota, tokiakPertsona);
-
-                                    ArrayList<String> filtroak = new ArrayList<String>();
-                                    for (int i = 0; i < tokiakPertsona.size(); i++) {
-                                        System.out.println(tokiakPertsona.get(i).getMota());
-                                        filtroak.add(tokiakPertsona.get(i).getMota().toString());
-                                    }
-
-                                    cargaFiltro(filtroak);
-
-                                    //   cargarBotonesYImagenes();
-
-                                } else if (erabiltzaile.getErabiltzaileMota().equals("Enpresa/Entitatea")) {
-                                    // Enpresa/Entitatentzako bakarrik direnak
-                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Aurkezpenak", tokiakEntitatea);
-                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Feriak", tokiakEntitatea);
-                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Konferentziak", tokiakEntitatea);
-                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Kumbreak", tokiakEntitatea);
-                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Tailerrak", tokiakEntitatea);
-                                } else {
-                                    // Denak kargatu
-                                    tokiakBeteAnonimo(db, "Ibilbideak", tokiakPertsona, tokiakEntitatea);
-                                    tokiakBeteAnonimo(db, "Aisialdiak", tokiakPertsona, tokiakEntitatea);
-                                    tokiakBeteAnonimo(db, "Aurkezpenak", tokiakPertsona, tokiakEntitatea);
-                                    tokiakBeteAnonimo(db, "Feriak", tokiakPertsona, tokiakEntitatea);
-                                    tokiakBeteAnonimo(db, "Konferentziak", tokiakPertsona, tokiakEntitatea);
-                                    tokiakBeteAnonimo(db, "Kumbreak", tokiakPertsona, tokiakEntitatea);
-                                    tokiakBeteAnonimo(db, "Tailerrak", tokiakPertsona, tokiakEntitatea);
-
-                                }
-
-                            }
-                        }
-                    }
-                });
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_erreserbak);
 
         String erabiltzaileEmail = getIntent().getStringExtra("USER_email");
-        //datuBaseKarga(erabiltzaileEmail);
+        datuBaseKarga(erabiltzaileEmail);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         //tokiakPertsona = tokiakBetePertsona(db, "Ibilbideak", tokiakPertsona);
@@ -232,30 +177,148 @@ public class erreserbak extends AppCompatActivity {
 //menua fin
 
     }
+
+
+    private void datuBaseKarga(String erabiltzaileEmail) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Erabiltzailearen izena lortzeko kontsulta
+        db.collection("Erabiltzaileak").document(erabiltzaileEmail).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+
+                            if (document.exists()) {
+                                // Erabiltzaile izena eskuratzen du
+                                Erabiltzaile erabiltzaile = login.erabiltzaileaBete(document);
+                                String pertsonaMota = erabiltzaile.getErabiltzaileMota().toString();
+
+
+                                if (erabiltzaile.getErabiltzaileMota().equals("Pertsona")) {
+
+                                    // Pertsonentzako bakarrik direnak
+                                    tokiakPertsona = tokiakBetePertsona(db, "Ibilbideak", pertsonaMota, tokiakPertsona);
+
+
+                                    tokiakPertsona = tokiakBetePertsona(db, "Aisialdiak", pertsonaMota, tokiakPertsona);
+
+
+                                    //   cargarBotonesYImagenes();
+
+                                } else if (erabiltzaile.getErabiltzaileMota().equals("Enpresa/Entitatea")) {
+                                    // Enpresa/Entitatentzako bakarrik direnak
+                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Aurkezpenak", tokiakEntitatea);
+                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Feriak", tokiakEntitatea);
+                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Konferentziak", tokiakEntitatea);
+                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Kumbreak", tokiakEntitatea);
+                                    tokiakEntitatea = tokiakBeteEntitateak(db, "Tailerrak", tokiakEntitatea);
+                                } else {
+                                    // Denak kargatu
+                                    tokiakBeteAnonimo(db, "Ibilbideak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Aisialdiak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Aurkezpenak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Feriak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Konferentziak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Kumbreak", tokiakPertsona, tokiakEntitatea);
+                                    tokiakBeteAnonimo(db, "Tailerrak", tokiakPertsona, tokiakEntitatea);
+
+                                }
+
+                            }
+                        }
+                    }
+                });
+    }
     /**
      *
      * @param db firebase instantzia
      * @param tokiMota zein toki kargatuko den
      * @return arraylist bat tokiak objetuak transformatuta
      */
-    public static ArrayList<JardueraPertsona> tokiakBetePertsona(FirebaseFirestore db, String tokiMota, String pertsonaMota, ArrayList<JardueraPertsona> tokiakPertsona) {
+    public ArrayList<JardueraPertsona> tokiakBetePertsona(FirebaseFirestore db, String tokiMota, String pertsonaMota, ArrayList<JardueraPertsona> tokiakPertsona) {
         db.collection(tokiMota)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            // Ez egoteko bikoiztuta
+                            Set<String> uniqueMotas = new HashSet<>();
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                    JardueraPertsona t1 = document.toObject(JardueraPertsona.class);
-                                    if (tokiMota.equals("Ibilbideak")){
-                                        t1.setMota(JardueraPertsona.jardueraMota.ruta);
-                                    } else {
-                                        t1.setMota(JardueraPertsona.jardueraMota.aisialdia);
-                                    }
-                                    tokiakPertsona.add(t1);
-                                System.out.println("pertsonak hecho");
+                                JardueraPertsona t1 = document.toObject(JardueraPertsona.class);
+                                if (tokiMota.equals("Ibilbideak")) {
+                                    t1.setMota(JardueraPertsona.jardueraMota.ruta);
+                                } else {
+                                    t1.setMota(JardueraPertsona.jardueraMota.aisialdia);
                                 }
+                                tokiakPertsona.add(t1);
+
+                                uniqueMotas.add(t1.getMota().toString());
+                            }
+
+                            LinearLayout buttonContainer = findViewById(R.id.filtroak);
+
+                            for (String txtBtn : uniqueMotas) {
+                                Button button = new Button(erreserbak.this);
+                                button.setText(txtBtn);
+                                button.setLayoutParams(new LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                                        LinearLayout.LayoutParams.WRAP_CONTENT
+                                ));
+
+                                buttonContainer.addView(button);
+
+                                LinearLayout btnImagenLayout = findViewById(R.id.layoutBtnImg);
+
+                                ArrayList<String> imageNames = new ArrayList<String>();
+
+                                for (int i = 0; i < tokiakPertsona.size(); i++) {
+                                    imageNames.add(tokiakPertsona.get(i).getImg());
+                                    System.out.println(imageNames.get(i));
+                                }
+
+                                LinearLayout currentLinearLayout = null; // Hasiera ez dago beste LinearLayoutik
+
+                                for (int i = 0; i < imageNames.size(); i++) {
+                                    String imageName = imageNames.get(i);
+
+                                    if (i % 2 == 0) {
+                                        // Bikoitia bada, LinearLayout (horizontal) berria sortzen du
+                                        currentLinearLayout = new LinearLayout(erreserbak.this);
+                                        currentLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
+                                        currentLinearLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+                                        btnImagenLayout.addView(currentLinearLayout); // LinearLayout berria, lehen linearLayout-era gehitzen du
+                                    }
+
+                                    ImageButton imageButton = new ImageButton(erreserbak.this);
+
+                                    int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+
+                                    // Botoiaren tamaina
+                                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400, 400);
+
+                                    // botoiaren irudiaren escala
+                                    imageButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+
+                                    // irudia kargatzen du
+                                    if (resID != 0) {
+                                        imageButton.setImageResource(resID);
+                                    }
+
+                                    // botoieri margenak ipintzen dio
+                                    layoutParams.setMargins(75, 75, 75, 75);
+
+                                    imageButton.setLayoutParams(layoutParams);
+
+                                    currentLinearLayout.addView(imageButton); // ImgageButton-a LinearLayout berriare sartzen dio
+                                }
+
+
+                            }
                         } else {
                             Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
                         }
@@ -263,29 +326,59 @@ public class erreserbak extends AppCompatActivity {
                 });
         return tokiakPertsona;
     }
-    public static ArrayList<JardueraEntitateak> tokiakBeteEntitateak(FirebaseFirestore db, String tokiMota, ArrayList<JardueraEntitateak> tokiakEntitateak) {
+
+    public ArrayList<JardueraEntitateak> tokiakBeteEntitateak(FirebaseFirestore db, String tokiMota, ArrayList<JardueraEntitateak> tokiakEntitateak) {
         db.collection(tokiMota)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            // Utiliza un conjunto para evitar duplicados
+                            Set<String> uniqueMotas = new HashSet<>();
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 JardueraEntitateak t1 = document.toObject(JardueraEntitateak.class);
                                 if (tokiMota.equals("Aurkezpenak")) {
                                     t1.setMota(JardueraEntitateak.jardueraMota.aurkezpena);
-                                } else if (tokiMota.equals("Feriak")){
+                                } else if (tokiMota.equals("Feriak")) {
                                     t1.setMota(JardueraEntitateak.jardueraMota.feria);
                                 } else if (tokiMota.equals("Konferentziak")) {
                                     t1.setMota(JardueraEntitateak.jardueraMota.konferentzia);
                                 } else if (tokiMota.equals("Kumbreak")) {
                                     t1.setMota(JardueraEntitateak.jardueraMota.kumbrea);
-                                } else if (tokiMota.equals("Tailerrak")){
+                                } else if (tokiMota.equals("Tailerrak")) {
                                     t1.setMota(JardueraEntitateak.jardueraMota.tailerrak);
                                 }
                                 tokiakEntitateak.add(t1);
-                                System.out.println("entitateak hecho");
+
+                                // Agrega la mota al conjunto
+                                uniqueMotas.add(t1.getMota().toString());
+                            }
+
+                            System.out.println("entitateak hecho");
+                            System.out.println("AAA");
+                            System.out.println("uniqueMotas: " + uniqueMotas.size());
+                            System.out.println("tokiakEntitateak: " + tokiakEntitateak.size());
+
+                            for (String mota : uniqueMotas) {
+                                System.out.println(mota);
+                            }
+
+                            System.out.println("entitateak hecho");
+
+                            LinearLayout buttonContainer = findViewById(R.id.filtroak);
+
+                            for (String txtBtn : uniqueMotas) {
+                                Button button = new Button(erreserbak.this);
+                                button.setText(txtBtn);
+                                button.setLayoutParams(new LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                                        LinearLayout.LayoutParams.WRAP_CONTENT
+                                ));
+
+                                buttonContainer.addView(button);
                             }
                         } else {
                             Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
@@ -294,6 +387,7 @@ public class erreserbak extends AppCompatActivity {
                 });
         return tokiakEntitateak;
     }
+
     public static void tokiakBeteAnonimo(FirebaseFirestore db, String tokiMota, ArrayList<JardueraPertsona> tokiakPertsona, ArrayList<JardueraEntitateak> tokiakEntitateak) {
         db.collection(tokiMota)
                 .get()
@@ -333,29 +427,9 @@ public class erreserbak extends AppCompatActivity {
             }
 
     // Define el método cargarBotonesYImagenes para el código que sigue a continuación
-    private void cargarBotonesYImagenes(ArrayList<String> imageNames) {
+    /*private void cargarBotonesYImagenes(ArrayList<String> imageNames) {
         LinearLayout btnImagenLayout = findViewById(R.id.layoutBtnImg);
 
-        // img guztiak
-        imageNames.add("x");
-        imageNames.add("instagram");
-        imageNames.add("instagram");
-        imageNames.add("x");
-        imageNames.add("x");
-        imageNames.add("instagram");
-        imageNames.add("instagram");
-        imageNames.add("x");
-        imageNames.add("x");
-        imageNames.add("instagram");
-        imageNames.add("instagram");
-        imageNames.add("x");
-        imageNames.add("x");
-        imageNames.add("instagram");
-        imageNames.add("instagram");
-        imageNames.add("x");
-        imageNames.add("x");
-        imageNames.add("instagram");
-        imageNames.add("instagram");
         imageNames.add("x");
 
         LinearLayout currentLinearLayout = null; // Hasiera ez dago beste LinearLayoutik
@@ -393,9 +467,9 @@ public class erreserbak extends AppCompatActivity {
 
             currentLinearLayout.addView(imageButton); // ImgageButton-a LinearLayout berriare sartzen dio
         }
-    }
+    }*/
 
-    private void cargaFiltro(ArrayList<String> listaBtn) {
+    /*private void cargaFiltro(ArrayList<String> listaBtn) {
         LinearLayout buttonContainer = findViewById(R.id.filtroak);
 
         listaBtn.add("aa");
@@ -410,6 +484,6 @@ public class erreserbak extends AppCompatActivity {
 
             buttonContainer.addView(button);
         }
-    }
+    }*/
 
 }

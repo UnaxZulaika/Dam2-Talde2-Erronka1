@@ -70,6 +70,8 @@
     <string name="menLogoDeskripzioa">Gure app logoa</string>
     <string name="menPribatutasunPolitikak">Pribatutasun Politikak</string>
     <string name="ezagutu">Ezagutu gaitzazu:</string>
+    <string name="ezabatu">Ezabatu erabiltzailea</string>
+    <string name="editatu">Aldatu izena</string>
 
     <!-- Nire Kontua -->
     <string name="nrkntEditErbltzMota">USER mota</string>
@@ -84,5 +86,7 @@
     <!-- Erresrebak -->
     <string name="erreTxartelaEskerrak">Eskerrik asko</string>
     <string name="nrkntTxtErabiltzaileMota">Erabiltzaile Mota</string>
+    <string name="aldaketaOndo">Aldatu da izena</string>
+    <string name="izenaErrorea">Errorea izena aldatzen</string>
 
 </resources>

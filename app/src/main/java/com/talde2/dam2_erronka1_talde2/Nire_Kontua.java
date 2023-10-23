@@ -1,17 +1,38 @@
 package com.talde2.dam2_erronka1_talde2;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Transaction;
+
+import org.checkerframework.checker.units.qual.Current;
 
 public class Nire_Kontua extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private EditText nrkntEditIzena;
     //metodos
         public void variables_de_usuario(Intent intent, String izena,String abizena,String nan,String email,String mugikorra,String erabiltzaileMota) {
 
@@ -43,12 +64,30 @@ public class Nire_Kontua extends AppCompatActivity {
         String mugikorra = getIntent().getStringExtra("USER_mugikorra");
         String erabiltzaileMota = getIntent().getStringExtra("USER_erabiltzaileMota");
 
+        //Datu Baserako
+        nrkntEditIzena = findViewById(R.id.nrkntEditIzena);
+        nrkntEditIzena.setText("");
+
+        //get izena from BD
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Erabiltzaileak").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    nrkntEditIzena.setText(document.get("izena").toString());
+                }else{
+                    Log.d("Get BD", "izena ez da kargatu");
+                }
+            }
+        });
+
         //desabilitatu testua zartzea edit textean eta datuak gehitu
 
             //izena
             EditText nrkntEditIzena = findViewById(R.id.nrkntEditIzena);
             nrkntEditIzena.setText(izena);
-            nrkntEditIzena.setEnabled(false); nrkntEditIzena.setInputType(0);
+            //nrkntEditIzena.setEnabled(false); nrkntEditIzena.setInputType(0);
 
             //abizenak
             EditText nrkntEditAbizenak = findViewById(R.id.nrkntEditAbizenak);
@@ -85,7 +124,84 @@ public class Nire_Kontua extends AppCompatActivity {
             nrkntEditErbltzMta.setText(erabiltzaileMota);
             nrkntEditErbltzMta.setEnabled(false); nrkntEditErbltzMta.setInputType(0);
 
+            //Ezabatzeko botoia
+            Button btnEzabatu = findViewById(R.id.IdBtnDelete);
+
+        btnEzabatu.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("Erabiltzaileak").document(email)
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                mAuth= FirebaseAuth.getInstance();
+                                mAuth.getCurrentUser().delete();
+                                Log.d(TAG, "erabiltzailea ondo ezabatu da");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Errorea erabiltzailea ezabatzen", e);
+                            }
+                        });
+            }
+        });
+
         //fin desabilitatu dit text idaztea
+
+        //Update database onclic
+        //FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Button nrkntBtnUpdateIzena = findViewById(R.id.nrkntBtnUpdateIzena);
+        nrkntBtnUpdateIzena.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String erabiltzaile_izena = nrkntEditIzena.getText().toString().trim();
+
+                if(TextUtils.isEmpty(erabiltzaile_izena) || erabiltzaile_izena==""){ //izena hutzik badago
+                    String sartuIzena = getString(R.string.izenaErrorea);
+                    nrkntEditIzena.setError(sartuIzena);
+                }else{ //UPDATE BD
+
+                    // (coleccion / documento)
+                    final DocumentReference sfDocRef = db.collection("Erabiltzaileak").document(email);
+
+                    db.runTransaction(new Transaction.Function<Void>() {
+                                @Override
+                                public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
+                                    DocumentSnapshot document = transaction.get(sfDocRef);
+
+                                    //update( DocRef / izena / nuevo valor )
+                                    transaction.update(sfDocRef, "izena", erabiltzaile_izena);
+
+                                    // Success
+                                    return null;
+                                }
+
+                                //LOGS
+                            }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    String erabiltzailea_updateatu_da = getString(R.string.aldaketaOndo);
+                                    // Errorea erabiltzailea ez da aurkitzen
+                                    Toast.makeText(Nire_Kontua.this, erabiltzailea_updateatu_da, Toast.LENGTH_SHORT).show();
+                                    Log.d("update BD", "Transaction success!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w("update BD", "Transaction failure.", e);
+                                }
+                            });
+                }
+
+
+            }
+        });
 
         //MENUA
         //menua izkutatzeko lehenik

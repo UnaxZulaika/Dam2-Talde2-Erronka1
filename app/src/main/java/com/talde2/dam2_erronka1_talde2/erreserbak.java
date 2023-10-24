@@ -41,16 +41,18 @@ public class erreserbak extends AppCompatActivity {
     ArrayList<JardueraEntitateak> tokiakEntitatea = new ArrayList<JardueraEntitateak>();
 
     //metodos
-        public void variables_de_usuario(Intent intent, String izena,String abizena,String nan,String email,String mugikorra,String erabiltzaileMota) {
 
-            intent.putExtra("USER_izena", izena);
-            intent.putExtra("USER_abizena", abizena);
-            intent.putExtra("USER_nan", nan);
-            intent.putExtra("USER_email", email);
-            intent.putExtra("USER_mugikorra", mugikorra);
-            intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+        //pasatu informazioa intent batera
+            public void variables_de_usuario(Intent intent, String izena,String abizena,String nan,String email,String mugikorra,String erabiltzaileMota) {
 
-        };
+                intent.putExtra("USER_izena", izena);
+                intent.putExtra("USER_abizena", abizena);
+                intent.putExtra("USER_nan", nan);
+                intent.putExtra("USER_email", email);
+                intent.putExtra("USER_mugikorra", mugikorra);
+                intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+
+            };
     //fin metodos
 
     @Override
@@ -182,6 +184,17 @@ public class erreserbak extends AppCompatActivity {
     private void datuBaseKarga(String erabiltzaileEmail) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        //anonimoa bada kontrolatzeko
+        String izena = getIntent().getStringExtra("USER_izena");
+
+        if (izena.equals("anonimoa")) { //pertsona bezala izango da?
+
+            // Pertsonentzako bakarrik direnak
+            tokiakPertsona = tokiakBetePertsona(db, "Ibilbideak", "Pertsona", tokiakPertsona);
+            tokiakPertsona = tokiakBetePertsona(db, "Aisialdiak", "Pertsona", tokiakPertsona);
+
+        } else { //ez bada anonimoa
+
         // Erabiltzailearen izena lortzeko kontsulta
         db.collection("Erabiltzaileak").document(erabiltzaileEmail).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -226,10 +239,15 @@ public class erreserbak extends AppCompatActivity {
 
                                 }
 
+                            } else {
+                                Log.e("dokumentua existitzen da?", "Dokumentua ez da existitzena"); //console log
                             }
+                        }else {
+                            Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
                         }
                     }
                 });
+        }
     }
     /**
      *
@@ -248,7 +266,7 @@ public class erreserbak extends AppCompatActivity {
                             Set<String> uniqueMotas = new HashSet<>();
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Log.d(TAG, document.getId() + " => " + document.getData()); //console log
                                 JardueraPertsona t1 = document.toObject(JardueraPertsona.class);
                                 if (tokiMota.equals("Ibilbideak")) {
                                     t1.setMota(JardueraPertsona.jardueraMota.ruta);
@@ -320,7 +338,7 @@ public class erreserbak extends AppCompatActivity {
 
                             }
                         } else {
-                            Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
+                            Log.d(TAG, "Error dokumentuak lortzen: ", task.getException()); //console log
                         }
                     }
                 });

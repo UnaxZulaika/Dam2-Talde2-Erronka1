@@ -1,6 +1,8 @@
 package com.talde2.dam2_erronka1_talde2;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -53,11 +55,13 @@ public class login extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         erabiltzaileEditText = findViewById(R.id.loginEditErbiltzaile);
-        erabiltzaileEditText.setText("admin@gmail.com");
+        erabiltzaileEditText.setHint(getResources().getString(R.string.userTxt));
 
         pasahitzaEditText = findViewById(R.id.loginEditPasahitza);
-        pasahitzaEditText.setText("admin123");
+        pasahitzaEditText.setHint(getResources().getString(R.string.paswTxt));
         loginBtnSartu = findViewById(R.id.loginBtnSartu);
+
+        lehentasunakKargatu();
 
         loginBtnSartu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +78,7 @@ public class login extends AppCompatActivity {
                 } else {
                     saioaHasi(erabiltzaile, pasahitza);
                 }
+
             }
         });
 
@@ -139,6 +144,7 @@ public class login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            lehentasunakGorde();
                             // Saioa ondo hasi da
                             FirebaseUser user = mAuth.getCurrentUser();
                             // Erabiltzailearen izena lortzeko metodoa.
@@ -179,7 +185,6 @@ public class login extends AppCompatActivity {
                             DocumentSnapshot document = task.getResult();
 
                             if (document.exists()) {
-
                                 // Hurrengo lehiora pasatzen da
                                 Intent intent = new Intent(login.this, erreserbak.class);
 
@@ -229,12 +234,36 @@ public class login extends AppCompatActivity {
         Erabiltzaile erabiltzaile = new Erabiltzaile(izena, nan, abizena, email, mugikorra, erabiltzaileMota);
         return erabiltzaile;
     }
-    /**
-     *
-     * @param db firebase instantzia
-     * @param tokiMota zein toki kargatuko den
-     * @return arraylist bat tokiak objetuak transformatuta
-     */
 
+    private void lehentasunakKargatu() {
+        // kredentzialak.xml kargatzen du (lehenengo aldia bada 'kredentzialak.xml' sortzen du)
+        SharedPreferences preferences = getSharedPreferences("kredentzialak", Context.MODE_PRIVATE);
+
+        // xml barruan 'user'-ean eta 'pass'-ean gordetako informazioa gordetzen du.
+        String erabiltzailea = preferences.getString("user", "");
+        String pasahitza = preferences.getString("pass", "");
+
+        // editText-etan ipintzen du kargatutako informazioa
+        erabiltzaileEditText.setText(erabiltzailea);
+        pasahitzaEditText.setText(pasahitza);
+    }
+
+    private void lehentasunakGorde() {
+        // kredentzialak.xml kargatzen da informazioa gordetzeko (lehenengo aldia bada 'kredentzialak.xml' sortzen du)
+        SharedPreferences preferences = getSharedPreferences("kredentzialak", Context.MODE_PRIVATE);
+        // sartutako erabiltzaile eta pasahitzak eskuratzen dira
+        String erabiltzailea = erabiltzaileEditText.getText().toString();
+        String pasahitza = pasahitzaEditText.getText().toString();
+
+        // xml-an gordetzeko editorea.
+        // <string name="user">'erabiltzailea'</string>
+        // <string name="pass>'pasahitza'</string>
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("user", erabiltzailea);
+        editor.putString("pass", pasahitza);
+
+        // dena gordeko da xml-an.
+        editor.commit();
+    }
 
 }

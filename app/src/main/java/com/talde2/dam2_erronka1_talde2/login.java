@@ -48,10 +48,16 @@ public class login extends AppCompatActivity {
     private Button loginBtnAnonimo;
 
     @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         mAuth = FirebaseAuth.getInstance();
         erabiltzaileEditText = findViewById(R.id.loginEditErbiltzaile);
@@ -134,7 +140,6 @@ public class login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
     }
 

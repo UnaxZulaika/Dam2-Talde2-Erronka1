@@ -3,8 +3,10 @@ package com.talde2.dam2_erronka1_talde2;
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -94,9 +96,7 @@ public class Nire_Kontua extends AppCompatActivity {
             //izena
             EditText nrkntEditIzena = findViewById(R.id.nrkntEditIzena);
             nrkntEditIzena.setText(izena);
-            if(izena.equals("anonimoa")){//aninimoa bada desabilitatu EditTexta
-                nrkntEditIzena.setEnabled(false); nrkntEditIzena.setInputType(0); //disable only in anonimoa
-            }
+            nrkntEditIzena.setEnabled(false); nrkntEditIzena.setInputType(0);
 
             //abizenak
             EditText nrkntEditAbizenak = findViewById(R.id.nrkntEditAbizenak);
@@ -143,78 +143,124 @@ public class Nire_Kontua extends AppCompatActivity {
             btnEzabatu.setEnabled(false);
         }
 
-        btnEzabatu.setOnClickListener(new View.OnClickListener(){ //DELETE botoia klikatzean
+        btnEzabatu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                db.collection("Erabiltzaileak").document(email)
-                        .delete()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() { //user deleted successfully
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                mAuth= FirebaseAuth.getInstance();
-                                mAuth.getCurrentUser().delete();
-                                Log.d("delete BD", "Erabiltzailea ondo ezabatu da"); //console log
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {//user deleted failure
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.e("delete BD", "Errorea erabiltzailea ezabatzen", e);//console log
-                            }
-                        });
+                AlertDialog.Builder builder = new AlertDialog.Builder(Nire_Kontua.this);
+                builder.setMessage("Ziur zaude kontua ezabatu nahi duzula?");
+                builder.setPositiveButton("Bai", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        db.collection("Erabiltzaileak").document(email)
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() { //user deleted successfully
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        mAuth= FirebaseAuth.getInstance();
+                                        mAuth.getCurrentUser().delete();
+                                        Log.d("delete BD", "Erabiltzailea ondo ezabatu da"); //console log
+
+                                        Intent intent = new Intent(Nire_Kontua.this, login.class);
+                                        startActivity(intent); // Iniciar la nueva actividad
+                                        finish(); // Cierra la actividad actual
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {//user deleted failure
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.e("delete BD", "Errorea erabiltzailea ezabatzen", e);//console log
+                                    }
+                                });
+                    }
+                });
+                builder.setNegativeButton("Ez", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // No hacer nada, simplemente cerrar el cuadro de diálogo
+                    }
+                });
+                builder.show();
             }
         });
 
 
+
         //UPDATE botoia
         Button nrkntBtnUpdateIzena = findViewById(R.id.nrkntBtnUpdateIzena);
+
         if(izena.equals("anonimoa")){ //anonimoa bada ezin borratzea erabiltzailea(ez da agertzen BD)
             nrkntBtnUpdateIzena.setEnabled(false);
         }
         nrkntBtnUpdateIzena.setOnClickListener(new View.OnClickListener() { //UPDATE botoia klikatzean
             @Override
             public void onClick(View view) {
-                String erabiltzaile_izena = nrkntEditIzena.getText().toString().trim();
+                AlertDialog.Builder builder = new AlertDialog.Builder(Nire_Kontua.this);
+                builder.setTitle("Sartu zure izena:");
 
-                if(TextUtils.isEmpty(erabiltzaile_izena) || erabiltzaile_izena==""){ //izena hutzik badago
-                    String sartuIzena = getString(R.string.izenaErrorea);
-                    nrkntEditIzena.setError(sartuIzena);
-                }else{ //UPDATE BD
+                final EditText editText = new EditText(Nire_Kontua.this);
+                builder.setView(editText);
 
-                    // (coleccion / documento)
-                    final DocumentReference sfDocRef = db.collection("Erabiltzaileak").document(email);
+                builder.setPositiveButton("Onartu", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String erabiltzaile_izena = editText.getText().toString().trim();
 
-                    db.runTransaction(new Transaction.Function<Void>() {
-                                @Override
-                                public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
-                                    DocumentSnapshot document = transaction.get(sfDocRef);
+                      //  String erabiltzaile_izena = nrkntEditIzena.getText().toString().trim();
 
-                                    //update( DocRef / izena / nuevo valor )
-                                    transaction.update(sfDocRef, "izena", erabiltzaile_izena);
+                        if(TextUtils.isEmpty(erabiltzaile_izena) || erabiltzaile_izena==""){ //izena hutzik badago
+                            String sartuIzena = getString(R.string.izenaErrorea);
+                            nrkntEditIzena.setError(sartuIzena);
+                        }else{ //UPDATE BD
 
-                                    // Success
-                                    return null;
-                                }
+                            // (coleccion / documento)
+                            final DocumentReference sfDocRef = db.collection("Erabiltzaileak").document(email);
 
-                          //LOGS runTransaction
-                            }).addOnSuccessListener(new OnSuccessListener<Void>() { //runTransaction completed
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    String erabiltzailea_updateatu_da = getString(R.string.aldaketaOndo); //toast msg
-                                    Toast.makeText(Nire_Kontua.this, erabiltzailea_updateatu_da, Toast.LENGTH_SHORT).show(); //UI message
-                                    Log.d("update BD", "Transaction success!"); //console log
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() { //runTransaction failure
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.e("update BD", "Transaction failure.", e);//console log
-                                }
-                            });
-                }
+                            db.runTransaction(new Transaction.Function<Void>() {
+                                        @Override
+                                        public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
+                                            DocumentSnapshot document = transaction.get(sfDocRef);
+
+                                            //update( DocRef / izena / nuevo valor )
+                                            transaction.update(sfDocRef, "izena", erabiltzaile_izena);
+
+                                            // Success
+                                            return null;
+                                        }
+
+                                        //LOGS runTransaction
+                                    }).addOnSuccessListener(new OnSuccessListener<Void>() { //runTransaction completed
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            String erabiltzailea_updateatu_da = getString(R.string.aldaketaOndo); //toast msg
+                                            Toast.makeText(Nire_Kontua.this, erabiltzailea_updateatu_da, Toast.LENGTH_SHORT).show(); //UI message
+                                            Log.d("update BD", "Transaction success!"); //console log
+
+                                            nrkntEditIzena.setText(erabiltzaile_izena);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() { //runTransaction failure
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e("update BD", "Transaction failure.", e);//console log
+                                        }
+                                    });
+                        }
 
 
+
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.setNegativeButton("Ezeztatu", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.show();
             }
         });
 
@@ -255,9 +301,8 @@ public class Nire_Kontua extends AppCompatActivity {
         });
 
 
-        //NIRE KONTUA
+        //ERRESERBAK
         Button btnNireKontua = findViewById(R.id.idBtnMenuKatalogoa);
-
 
         btnNireKontua.setOnClickListener(new View.OnClickListener() {
 
@@ -268,10 +313,11 @@ public class Nire_Kontua extends AppCompatActivity {
                 variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
 
                 startActivity(intent);
+                finish();
             }
         });
 
-        //RESERBAK
+        //EGINDAKO_ERRESERBAK
         Button btnErregistratu = findViewById(R.id.idBtnMenuNireErreserbak);
         btnErregistratu.setOnClickListener(new View.OnClickListener() {
             @Override

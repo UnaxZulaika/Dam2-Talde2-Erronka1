@@ -61,6 +61,7 @@ public class erreserbak extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_erreserbak);
 
+
         String erabiltzaileEmail = getIntent().getStringExtra("USER_email");
         datuBaseKarga(erabiltzaileEmail);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -115,6 +116,7 @@ public class erreserbak extends AppCompatActivity {
         String email = getIntent().getStringExtra("USER_email");
         String mugikorra = getIntent().getStringExtra("USER_mugikorra");
         String erabiltzaileMota = getIntent().getStringExtra("USER_erabiltzaileMota");
+
 
         //NIRE KONTUA
         Button btnNireKontua = findViewById(R.id.idBtnMenuKontua);
@@ -334,6 +336,16 @@ public class erreserbak extends AppCompatActivity {
                                             intent.putExtra("dbColelction1", "Aisialdiak");
                                             intent.putExtra("dbColelction2", "Ibilbideak");
                                             intent.putParcelableArrayListExtra("tokiak_pertsona", tokiakPertsona);
+
+                                            //datos a pasar a todas las pantallas del menu (para nire kontua)
+                                            String izena = getIntent().getStringExtra("USER_izena");
+                                            String abizena = getIntent().getStringExtra("USER_abizena");
+                                            String nan = getIntent().getStringExtra("USER_nan");
+                                            String email = getIntent().getStringExtra("USER_email");
+                                            String mugikorra = getIntent().getStringExtra("USER_mugikorra");
+                                            String erabiltzaileMota = getIntent().getStringExtra("USER_erabiltzaileMota");
+
+                                            variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
                                             startActivity(intent);
                                         }
                                     });

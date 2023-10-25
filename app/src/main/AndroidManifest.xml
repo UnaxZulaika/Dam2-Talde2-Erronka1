@@ -25,7 +25,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ErreserbaTxartela"
+            android:name=".erreserbaTxartela"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

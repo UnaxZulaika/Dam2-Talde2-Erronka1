@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ErreserbaTxartela extends AppCompatActivity {
+public class erreserbaTxartela extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

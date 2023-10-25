@@ -42,8 +42,8 @@
 
     <ImageView
         android:id="@+id/ivArgazkia"
-        android:layout_width="311dp"
-        android:layout_height="254dp"
+        android:layout_width="356dp"
+        android:layout_height="257dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,27 +51,84 @@
         app:layout_constraintVertical_bias="0.059"
         app:srcCompat="@drawable/logo_sin_fondo" />
 
-    <TextView
-        android:id="@+id/tvInfo"
-        android:layout_width="303dp"
-        android:layout_height="231dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
-        app:layout_constraintStart_toStartOf="parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="264dp"
+        app:layout_constraintBottom_toTopOf="@+id/infBtnErreserbaEgin"
         app:layout_constraintTop_toBottomOf="@+id/ivArgazkia"
-        app:layout_constraintVertical_bias="0.245" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvKokalekua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginBottom="5sp"
+                android:text="Kokalekua:"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvKokalekua2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginBottom="20sp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/tvInformazioa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginBottom="15sp"
+                android:text="Informazioa:"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginBottom="20sp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/tvBalorazioa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginBottom="5sp"
+                android:text="Balorazioa:"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <RatingBar
+                android:id="@+id/rbBalorazioak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
-        android:id="@+id/infBtnAAA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+        android:id="@+id/infBtnErreserbaEgin"
+        android:layout_width="match_parent"
+        android:layout_height="65sp"
+        android:background="@color/verdeClaro"
+        android:text="Erreserba egin"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvInfo" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/idLayOpzioak"
@@ -79,7 +136,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:visibility="gone"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="265sp"
@@ -220,4 +277,5 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -298,12 +298,16 @@ public class erreserbak extends AppCompatActivity {
 
                                 ArrayList<String> imageNames = new ArrayList<String>();
                                 ArrayList<Integer> imageIDs = new ArrayList<Integer>();
+                                ArrayList<String> kokalekuak = new ArrayList<String>();
                                 ArrayList<String> informazioaGuztia = new ArrayList<String>();
+                                ArrayList<Double> balorazioak = new ArrayList<>();
 
                                 for (int i = 0; i < tokiakPertsona.size(); i++) {
                                     imageNames.add(tokiakPertsona.get(i).getImg());
                                     imageIDs.add(tokiakPertsona.get(i).getCode());
+                                    kokalekuak.add(tokiakPertsona.get(i).getKokalekua());
                                     informazioaGuztia.add(tokiakPertsona.get(i).getInformazioa());
+                                    balorazioak.add(tokiakPertsona.get(i).getBalorazioa());
                                     System.out.println(imageNames.get(i));
                                 }
 
@@ -312,7 +316,11 @@ public class erreserbak extends AppCompatActivity {
                                 for (int i = 0; i < imageNames.size(); i++) {
                                     String imageName = imageNames.get(i);
                                     int imageID = imageIDs.get(i);
+                                    String kokalekua = kokalekuak.get(i);
                                     String informazioa = informazioaGuztia.get(i);
+                                    double balorazioaDouble = balorazioak.get(i);
+                                    int balorazioa = (int) balorazioaDouble;
+
 
                                     if (i % 2 == 0) {
                                         // Bikoitia bada, LinearLayout (horizontal) berria sortzen du
@@ -332,7 +340,9 @@ public class erreserbak extends AppCompatActivity {
                                             Intent intent = new Intent(erreserbak.this, ErreserbaInfo.class);
                                             intent.putExtra("id", v.getId());
                                             intent.putExtra("img", imageName);
+                                            intent.putExtra("kokalekua", kokalekua);
                                             intent.putExtra("informazioa", informazioa);
+                                            intent.putExtra("balorazioa", balorazioa);
                                             intent.putExtra("dbColelction1", "Aisialdiak");
                                             intent.putExtra("dbColelction2", "Ibilbideak");
                                             intent.putParcelableArrayListExtra("tokiak_pertsona", tokiakPertsona);

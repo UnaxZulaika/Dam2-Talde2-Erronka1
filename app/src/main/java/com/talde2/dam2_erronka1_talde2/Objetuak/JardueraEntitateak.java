@@ -10,7 +10,7 @@ public class JardueraEntitateak extends Tokia {
     private double prezioH;
     private double prezioOH;
 
-    public JardueraEntitateak(String kodea, String ubikazioa, String irudia, String deskripzioa, double prezioTxikia, double prezioErdia, double prezioHandia, double prezioOsoHandia) {
+    public JardueraEntitateak(int kodea, String ubikazioa, String irudia, String deskripzioa, double prezioTxikia, double prezioErdia, double prezioHandia, double prezioOsoHandia) {
         super(kodea, ubikazioa, irudia, deskripzioa);
         this.prezioT = prezioTxikia;
         this.prezioE = prezioErdia;

@@ -1,6 +1,41 @@
 package com.talde2.dam2_erronka1_talde2.Objetuak;
 
-public class JardueraPertsona extends Tokia {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class JardueraPertsona extends Tokia implements Parcelable {
+
+    protected JardueraPertsona(Parcel in) {
+        prezioa = in.readDouble();
+        prezioa10 = in.readDouble();
+        prezioa20 = in.readDouble();
+    }
+
+    public static final Creator<JardueraPertsona> CREATOR = new Creator<JardueraPertsona>() {
+        @Override
+        public JardueraPertsona createFromParcel(Parcel in) {
+            return new JardueraPertsona(in);
+        }
+
+        @Override
+        public JardueraPertsona[] newArray(int size) {
+            return new JardueraPertsona[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeDouble(prezioa);
+        parcel.writeDouble(prezioa10);
+        parcel.writeDouble(prezioa20);
+    }
 
     public enum jardueraMota {
         aisialdia, ruta
@@ -10,7 +45,7 @@ public class JardueraPertsona extends Tokia {
     private double prezioa10;
     private double prezioa20;
 
-    public JardueraPertsona(String kodea, String ubikazioa, String irudia, String deskripzioa, double sarreraPrezioa, double prezioa10pertsona, double prezioa20pertsona) {
+    public JardueraPertsona(int kodea, String ubikazioa, String irudia, String deskripzioa, double sarreraPrezioa, double prezioa10pertsona, double prezioa20pertsona) {
         super(kodea, ubikazioa, irudia, deskripzioa);
         this.prezioa = sarreraPrezioa;
         this.prezioa10 = prezioa10pertsona;

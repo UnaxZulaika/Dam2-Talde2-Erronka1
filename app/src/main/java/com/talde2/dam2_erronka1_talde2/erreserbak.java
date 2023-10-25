@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -259,6 +260,7 @@ public class erreserbak extends AppCompatActivity {
         db.collection(tokiMota)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("ResourceType")
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
@@ -293,9 +295,13 @@ public class erreserbak extends AppCompatActivity {
                                 LinearLayout btnImagenLayout = findViewById(R.id.layoutBtnImg);
 
                                 ArrayList<String> imageNames = new ArrayList<String>();
+                                ArrayList<Integer> imageIDs = new ArrayList<Integer>();
+                                ArrayList<String> informazioaGuztia = new ArrayList<String>();
 
                                 for (int i = 0; i < tokiakPertsona.size(); i++) {
                                     imageNames.add(tokiakPertsona.get(i).getImg());
+                                    imageIDs.add(tokiakPertsona.get(i).getCode());
+                                    informazioaGuztia.add(tokiakPertsona.get(i).getInformazioa());
                                     System.out.println(imageNames.get(i));
                                 }
 
@@ -303,6 +309,8 @@ public class erreserbak extends AppCompatActivity {
 
                                 for (int i = 0; i < imageNames.size(); i++) {
                                     String imageName = imageNames.get(i);
+                                    int imageID = imageIDs.get(i);
+                                    String informazioa = informazioaGuztia.get(i);
 
                                     if (i % 2 == 0) {
                                         // Bikoitia bada, LinearLayout (horizontal) berria sortzen du
@@ -313,6 +321,22 @@ public class erreserbak extends AppCompatActivity {
                                     }
 
                                     ImageButton imageButton = new ImageButton(erreserbak.this);
+                                    imageButton.setId(imageID);
+
+                                    imageButton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                            Intent intent = new Intent(erreserbak.this, ErreserbaInfo.class);
+                                            intent.putExtra("id", v.getId());
+                                            intent.putExtra("img", imageName);
+                                            intent.putExtra("informazioa", informazioa);
+                                            intent.putExtra("dbColelction1", "Aisialdiak");
+                                            intent.putExtra("dbColelction2", "Ibilbideak");
+                                            intent.putParcelableArrayListExtra("tokiak_pertsona", tokiakPertsona);
+                                            startActivity(intent);
+                                        }
+                                    });
 
                                     int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
 

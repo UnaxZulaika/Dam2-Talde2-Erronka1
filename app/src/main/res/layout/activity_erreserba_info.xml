@@ -40,7 +40,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivArgazkia"
         android:layout_width="311dp"
         android:layout_height="254dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +51,7 @@
         app:srcCompat="@drawable/logo_sin_fondo" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvInfo"
         android:layout_width="303dp"
         android:layout_height="231dp"
         android:text="TextView"
@@ -59,6 +59,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/ivArgazkia"
         app:layout_constraintVertical_bias="0.245" />
+
+    <Button
+        android:id="@+id/infBtnAAA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,30 +1,30 @@
 package com.talde2.dam2_erronka1_talde2.Objetuak;
 
 public class Tokia {
-    private String code;
+    private int code;
     private String kokalekua;
     private String img;
     private String informazioa;
     private double balorazioa;
 
-    public Tokia(String kodea, String ubikazioa, String irudia, String deskripzioa) {
+    public Tokia(int kodea, String ubikazioa, String irudia, String deskripzioa) {
         this.code = kodea;
         this.kokalekua = ubikazioa;
         this.img = irudia;
         this.informazioa = deskripzioa;
     }
     public Tokia() {
-        this.code = "";
+        this.code = 0;
         this.kokalekua = "";
         this.img = "";
         this.informazioa = "";
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

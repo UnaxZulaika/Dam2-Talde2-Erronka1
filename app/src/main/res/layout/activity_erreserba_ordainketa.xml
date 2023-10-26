@@ -7,19 +7,18 @@
     tools:context=".erreserbaOrdainketa">
 
     <Button
-        android:id="@+id/regBtnErregistraty2"
-        android:layout_width="148sp"
-        android:layout_height="64sp"
-        android:layout_marginTop="136dp"
-        android:backgroundTint="#C6E5B1"
-        android:text="@string/btnRegister"
-        android:textColor="@color/black"
+        android:id="@+id/regBtnErreserbaBukatu"
+        android:layout_width="match_parent"
+        android:layout_height="65sp"
+        android:background="@color/verdeClaro"
+        android:text="ERRESERBA BUKATU"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kredituTxartelData"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintTop_toBottomOf="@+id/loginBanner"
+        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:id="@+id/loginBanner"
@@ -61,6 +60,34 @@
         app:layout_constraintTop_toBottomOf="@+id/loginBanner"
         app:layout_constraintVertical_bias="0.024" />
 
+    <Spinner
+        android:id="@+id/spinnerPrezioak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText3"
+        app:layout_constraintVertical_bias="0.033" />
+
+    <TextView
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aukeratu pertsona kantitatea:"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.058" />
+
     <TextView
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
@@ -73,7 +100,7 @@
         app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintVertical_bias="0.256" />
 
     <TextView
         android:id="@+id/txvKredituTxartela"
@@ -190,6 +217,21 @@
         app:layout_constraintStart_toEndOf="@+id/kredituTxartelData"
         app:layout_constraintTop_toBottomOf="@+id/kredituTxartela"
         app:layout_constraintVertical_bias="0.076" />
+
+    <TextView
+        android:id="@+id/txvAzkenPrezioa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prezioa: "
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kredituTxartelData"
+        app:layout_constraintVertical_bias="0.284" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

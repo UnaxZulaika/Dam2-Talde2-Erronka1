@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ErreserbaInfo">
-
+    tools:context=".erreserbaBukatuta">
 
     <LinearLayout
         android:id="@+id/loginBanner"
-        android:layout_width="match_parent"
+        android:layout_width="411sp"
         android:layout_height="125sp"
         android:background="@color/verdePastel"
         android:orientation="horizontal"
@@ -21,43 +20,46 @@
 
         <!-- Banner logo -->
 
-        <Button
-            android:id="@+id/IdBtnMenuZabaldu"
-            android:layout_width="61sp"
-            android:layout_height="53sp"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:foreground="@drawable/menu" />
-
         <ImageView
             android:id="@+id/loginBannerLogo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:contentDescription="@string/menLogoDeskripzioa"
+            android:layout_weight="1"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/logo_oma" />
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/ivArgazkia"
+        android:id="@+id/erreserbaBukatutaImg"
         android:layout_width="356dp"
         android:layout_height="257dp"
+        android:src="@drawable/logo_sin_fondo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginBanner"
-        app:layout_constraintVertical_bias="0.059"
-        app:srcCompat="@drawable/logo_sin_fondo" />
+        app:layout_constraintVertical_bias="0.059" />
+
+    <Button
+        android:id="@+id/btnNireErreserbak"
+        android:layout_width="match_parent"
+        android:layout_height="65sp"
+        android:background="@color/verdeClaro"
+        android:text="NIRE ERRESERBAK"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="264dp"
-        app:layout_constraintBottom_toTopOf="@+id/infBtnErreserbaEgin"
-        app:layout_constraintTop_toBottomOf="@+id/ivArgazkia"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="-16dp">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btnNireErreserbak"
+        app:layout_constraintTop_toBottomOf="@+id/erreserbaBukatutaImg"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,108 +67,37 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvKokalekua"
-                android:layout_width="wrap_content"
+                android:id="@+id/idtxtErreserbaEskerrak"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20sp"
-                android:layout_marginBottom="5sp"
-                android:text="Kokalekua:"
-                android:textColor="#000000"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvKokalekua2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20sp"
-                android:layout_marginBottom="20sp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvInformazioa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20sp"
-                android:layout_marginBottom="15sp"
-                android:text="Informazioa:"
-                android:textColor="#000000"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20sp"
-                android:layout_marginBottom="20sp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/tvBalorazioa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20sp"
-                android:layout_marginBottom="5sp"
-                android:text="Balorazioa:"
-                android:textColor="#000000"
-                android:textStyle="bold" />
-
-            <RatingBar
-                android:id="@+id/rbBalorazioak"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="20sp"
+                android:textColor="#514949"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:layout_marginBottom="20sp"/>
 
             <TextView
-                android:id="@+id/tvPrezioak"
+                android:id="@+id/idtxtErreserbaInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20sp"
-                android:layout_marginBottom="5sp"
-                android:text="Prezioak:"
-                android:textColor="#000000"
+                android:layout_marginRight="20sp"
+                android:textColor="#514949"
+                android:textSize="17sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvPrezioa"
+                android:id="@+id/idtxtErreserbaOndo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20sp"
-                android:layout_marginBottom="5sp"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/tvPrezioa10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20sp"
-                android:layout_marginBottom="5sp"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/tvPrezioa20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20sp"
-                android:layout_marginBottom="5sp"
-                android:textColor="#000000" />
+                android:layout_marginRight="20sp"
+                android:textColor="#514949"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
-
-
-    <Button
-        android:id="@+id/infBtnErreserbaEgin"
-        android:layout_width="match_parent"
-        android:layout_height="65sp"
-        android:background="@color/verdeClaro"
-        android:text="Erreserba egin"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginBanner"
-        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:id="@+id/idLayOpzioak"

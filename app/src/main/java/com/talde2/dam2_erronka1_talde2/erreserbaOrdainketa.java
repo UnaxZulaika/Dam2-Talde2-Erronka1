@@ -7,20 +7,22 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.api.SystemParameterOrBuilder;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -36,6 +38,9 @@ public class erreserbaOrdainketa extends AppCompatActivity {
     private TextView kredituTxartela;
     private EditText kredituTxartelData;
     private EditText kredituTxartelSegurtasuna;
+    private Spinner spinnerPrezioak;
+    private TextView txvAzkenPrezioa;
+    private double azkenPrezioa;
 
 
     @Override
@@ -43,20 +48,77 @@ public class erreserbaOrdainketa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_erreserba_ordainketa);
 
+        String kokalekua = getIntent().getStringExtra("kokalekua");
+        double prezioa = getIntent().getDoubleExtra("prezioa", 0);
+        double prezioa10 = getIntent().getDoubleExtra("prezioa10", 0);
+        double prezioa20 = getIntent().getDoubleExtra("prezioa20", 0);
+        String imageName = getIntent().getStringExtra("img");
+
+        //LEHIOAK PASATZERA
+        //datos a pasar a todas las pantallas del menu (para nire kontua)
+        String izena = getIntent().getStringExtra("USER_izena");
+        String abizena = getIntent().getStringExtra("USER_abizena");
+        String nan = getIntent().getStringExtra("USER_nan");
+        String email = getIntent().getStringExtra("USER_email");
+        String mugikorra = getIntent().getStringExtra("USER_mugikorra");
+        String erabiltzaileMota = getIntent().getStringExtra("USER_erabiltzaileMota");
+
+
         editTextFecha = findViewById(R.id.editTextFecha);
         radioGroup = findViewById(R.id.radioGroup);
         rbKredituTxartela = findViewById(R.id.RBkredituTxartela);
         rbSukurtsala = findViewById(R.id.RBsukurtsala);
-        regBtnErregistratu = findViewById(R.id.regBtnErregistraty2);
+        regBtnErregistratu = findViewById(R.id.regBtnErreserbaBukatu);
         txvKredituTxartela = findViewById(R.id.txvKredituTxartela);
         kredituTxartela = findViewById(R.id.kredituTxartela);
         kredituTxartelData = findViewById(R.id.kredituTxartelData);
         kredituTxartelSegurtasuna = findViewById(R.id.kredituTxartelSegurtasun);
+        spinnerPrezioak = findViewById(R.id.spinnerPrezioak);
+        txvAzkenPrezioa = findViewById(R.id.txvAzkenPrezioa);
 
         txvKredituTxartela.setVisibility(View.INVISIBLE);
         kredituTxartela.setVisibility(View.INVISIBLE);
         kredituTxartelData.setVisibility(View.INVISIBLE);
         kredituTxartelSegurtasuna.setVisibility(View.INVISIBLE);
+
+        ArrayList<String> aukerak = new ArrayList<>();
+        if (prezioa >= 1) {
+            aukerak.add("Prezioa (Pertsona kopurua: 1): " + prezioa + "€");
+        }
+        if (prezioa10 >= 1) {
+            aukerak.add("Prezioa (Pertsona kopurua: 10): " + prezioa10 + "€");
+        }
+        if (prezioa20 >= 1) {
+            aukerak.add("Prezioa (Pertsona kopurua: 20): " + prezioa20 + "€");
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, aukerak);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPrezioak.setAdapter(adapter);
+
+        spinnerPrezioak.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Obtén la opción seleccionada
+                String opcionSeleccionada = (String) spinnerPrezioak.getSelectedItem();
+
+                // Actualiza el TextView en función de la opción seleccionada
+                if (opcionSeleccionada.contains("Prezioa (Pertsona kopurua: 1): " + prezioa + "€")) {
+                    txvAzkenPrezioa.setText("Prezioa: " + prezioa + "€");
+                    azkenPrezioa = prezioa;
+                } else if (opcionSeleccionada.contains("Prezioa (Pertsona kopurua: 10): " + prezioa10 + "€")) {
+                    txvAzkenPrezioa.setText("Prezioa: " + prezioa10 + "€");
+                    azkenPrezioa = prezioa10;
+                } else if (opcionSeleccionada.contains("Prezioa (Pertsona kopurua: 20): " + prezioa20 + "€")) {
+                    txvAzkenPrezioa.setText("Prezioa: " + prezioa20 + "€");
+                    azkenPrezioa = prezioa20;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
 
         kredituTxartelData.addTextChangedListener(new TextWatcher() {
             @Override
@@ -123,11 +185,21 @@ public class erreserbaOrdainketa extends AppCompatActivity {
                             String iraungintzaData = kredituTxartelData.getText().toString();
                             String ccv = kredituTxartelSegurtasuna.getText().toString();
 
+                        String erreserbaData = editTextFecha.getText().toString();
+
                             // Kreditu txartelaren egiaztapenak
                             if (txartelZenbakiKonprobaketa(txartelZenabkia)) {
                                 if (iraungitzeDataKonprobaketa(iraungintzaData)) {
                                     if (esCCVValido(ccv)) {
-                                        Intent intent = new Intent(erreserbaOrdainketa.this, erreserbaTxartela.class);
+                                        Intent intent = new Intent(erreserbaOrdainketa.this, erreserbaBukatuta.class);
+                                        System.out.println("PREZIOA: " + azkenPrezioa);
+                                        System.out.println("KOKALEKUA: " + kokalekua);
+                                        System.out.println("ERRESERBA DATA: " + erreserbaData);
+                                        intent.putExtra("prezioa", azkenPrezioa);
+                                        intent.putExtra("kokalekua", kokalekua);
+                                        intent.putExtra("erreserbaData", erreserbaData);
+                                        intent.putExtra("img", imageName);
+                                        variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
                                         startActivity(intent);
                                         finish();
                                     } else {
@@ -141,7 +213,16 @@ public class erreserbaOrdainketa extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Kreditu-txartelaren zenbakia ez da baliozkoa", Toast.LENGTH_SHORT).show();
                             }
                         } else if (rbSukurtsala.isChecked()) {
-                        Intent intent = new Intent(erreserbaOrdainketa.this, erreserbaTxartela.class);
+                        Intent intent = new Intent(erreserbaOrdainketa.this, erreserbaBukatuta.class);
+                        String erreserbaData = editTextFecha.getText().toString();
+                        System.out.println("PREZIOA: " + azkenPrezioa);
+                        System.out.println("KOKALEKUA: " + kokalekua);
+                        System.out.println("ERRESERBA DATA: " + erreserbaData);
+                        intent.putExtra("prezioa", azkenPrezioa);
+                        intent.putExtra("kokalekua", kokalekua);
+                        intent.putExtra("erreserbaData", erreserbaData);
+                        intent.putExtra("img", imageName);
+                        variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
                         startActivity(intent);
                         finish();
                     } else {
@@ -253,4 +334,15 @@ public class erreserbaOrdainketa extends AppCompatActivity {
             return false;
         }
     }
+    //pasatu informazioa intent batera
+    public void variables_de_usuario(Intent intent, String izena,String abizena,String nan,String email,String mugikorra,String erabiltzaileMota) {
+
+        intent.putExtra("USER_izena", izena);
+        intent.putExtra("USER_abizena", abizena);
+        intent.putExtra("USER_nan", nan);
+        intent.putExtra("USER_email", email);
+        intent.putExtra("USER_mugikorra", mugikorra);
+        intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
+
+    };
 }

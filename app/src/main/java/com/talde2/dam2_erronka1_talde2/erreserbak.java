@@ -184,6 +184,8 @@ public class erreserbak extends AppCompatActivity {
 
         //anonimoa bada kontrolatzeko
         String izena = getIntent().getStringExtra("USER_izena");
+        System.out.println("AAAAAAAAAA");
+        System.out.println("ANONIMOAAAAA: " + izena);
 
         if (izena.equals("anonimoa")) { //pertsona bezala izango da?
 
@@ -292,6 +294,9 @@ public class erreserbak extends AppCompatActivity {
                                 ArrayList<String> kokalekuak = new ArrayList<String>();
                                 ArrayList<String> informazioaGuztia = new ArrayList<String>();
                                 ArrayList<Double> balorazioak = new ArrayList<>();
+                                ArrayList<Double> prezioak = new ArrayList<>();
+                                ArrayList<Double> prezioak10 = new ArrayList<>();
+                                ArrayList<Double> prezioak20 = new ArrayList<>();
 
                                 for (int i = 0; i < tokiakPertsona.size(); i++) {
                                     imageNames.add(tokiakPertsona.get(i).getImg());
@@ -299,7 +304,9 @@ public class erreserbak extends AppCompatActivity {
                                     kokalekuak.add(tokiakPertsona.get(i).getKokalekua());
                                     informazioaGuztia.add(tokiakPertsona.get(i).getInformazioa());
                                     balorazioak.add(tokiakPertsona.get(i).getBalorazioa());
-                                    System.out.println(imageNames.get(i));
+                                    prezioak.add(tokiakPertsona.get(i).getPrezioa());
+                                    prezioak10.add(tokiakPertsona.get(i).getPrezioa10());
+                                    prezioak20.add(tokiakPertsona.get(i).getPrezioa20());
                                 }
 
                                 LinearLayout currentLinearLayout = null; // Hasiera ez dago beste LinearLayoutik
@@ -311,7 +318,16 @@ public class erreserbak extends AppCompatActivity {
                                     String informazioa = informazioaGuztia.get(i);
                                     double balorazioaDouble = balorazioak.get(i);
                                     int balorazioa = (int) balorazioaDouble;
+                                    double prezioa = prezioak.get(i);
+                                    double prezioa10 = prezioak10.get(i);
+                                    double prezioa20 = prezioak20.get(i);
 
+                                    String izena = getIntent().getStringExtra("USER_izena");
+                                    String abizena = getIntent().getStringExtra("USER_abizena");
+                                    String nan = getIntent().getStringExtra("USER_nan");
+                                    String email = getIntent().getStringExtra("USER_email");
+                                    String mugikorra = getIntent().getStringExtra("USER_mugikorra");
+                                    String erabiltzaileMota = getIntent().getStringExtra("USER_erabiltzaileMota");
 
                                     if (i % 2 == 0) {
                                         // Bikoitia bada, LinearLayout (horizontal) berria sortzen du
@@ -335,8 +351,12 @@ public class erreserbak extends AppCompatActivity {
                                             intent.putExtra("kokalekua", kokalekua);
                                             intent.putExtra("informazioa", informazioa);
                                             intent.putExtra("balorazioa", balorazioa);
+                                            intent.putExtra("prezioa", prezioa);
+                                            intent.putExtra("prezioa10", prezioa10);
+                                            intent.putExtra("prezioa20", prezioa20);
                                             intent.putExtra("dbColelction1", "Aisialdiak");
                                             intent.putExtra("dbColelction2", "Ibilbideak");
+                                            variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
                                             intent.putParcelableArrayListExtra("tokiak_pertsona", tokiakPertsona);
 
                                             startActivity(intent);

@@ -14,14 +14,17 @@ import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.w3c.dom.Text;
+
 public class ErreserbaInfo extends AppCompatActivity {
 
-    TextView tvKokalekua;
-    TextView tvInfo;
-    ImageView ivArgazkia;
-
-    RatingBar rbBalorazioak;
-
+    private TextView tvKokalekua;
+    private TextView tvInfo;
+    private ImageView ivArgazkia;
+    private RatingBar rbBalorazioak;
+    private TextView tvPrezioa;
+    private TextView tvPrezioa10;
+    private TextView tvPrezioa20;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +41,20 @@ public class ErreserbaInfo extends AppCompatActivity {
         String kokalekua = getIntent().getStringExtra("kokalekua");
         String informazioa = getIntent().getStringExtra("informazioa");
         int balorazioa = getIntent().getIntExtra("balorazioa", 0);
+        double prezioa = getIntent().getDoubleExtra("prezioa", 0);
+        double prezioa10 = getIntent().getDoubleExtra("prezioa10", 0);
+        double prezioa20 = getIntent().getDoubleExtra("prezioa20", 0);
         String dbColelction1 = getIntent().getStringExtra("dbColelction1");
         String dbColelction2 = getIntent().getStringExtra("dbColelction2");
+
+        //LEHIOAK PASATZERA
+        //datos a pasar a todas las pantallas del menu (para nire kontua)
+        String izena = getIntent().getStringExtra("USER_izena");
+        String abizena = getIntent().getStringExtra("USER_abizena");
+        String nan = getIntent().getStringExtra("USER_nan");
+        String email = getIntent().getStringExtra("USER_email");
+        String mugikorra = getIntent().getStringExtra("USER_mugikorra");
+        String erabiltzaileMota = getIntent().getStringExtra("USER_erabiltzaileMota");
 
         // argazkia ipintzen du
         ivArgazkia = findViewById(R.id.ivArgazkia);
@@ -63,12 +78,31 @@ public class ErreserbaInfo extends AppCompatActivity {
         rbBalorazioak.setRating(balorazioa);
         rbBalorazioak.setIsIndicator(true);
 
+        tvPrezioa = findViewById(R.id.tvPrezioa);
+        if (prezioa >= 1) {
+            tvPrezioa.setText("Prezioa (pertsona 1): " + prezioa + "€");
+        }
+        tvPrezioa10 = findViewById(R.id.tvPrezioa10);
+        if (prezioa10 >= 1) {
+            tvPrezioa10.setText("Prezioa (10 pertsona): " + prezioa10 + "€");
+        }
+        tvPrezioa20 = findViewById(R.id.tvPrezioa20);
+        if (prezioa20 >= 1) {
+            tvPrezioa20.setText("Prezioa (20 pertsona): " + prezioa20 + "€");
+        }
+
         // Erreserbaren Ordainketara eramaten duen botoia
         Button infBtnErreserbaEgin = findViewById(R.id.infBtnErreserbaEgin);
         infBtnErreserbaEgin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ErreserbaInfo.this, erreserbaOrdainketa.class);
+                intent.putExtra("kokalekua", kokalekua);
+                intent.putExtra("prezioa", prezioa);
+                intent.putExtra("prezioa10", prezioa10);
+                intent.putExtra("prezioa20", prezioa20);
+                intent.putExtra("img", imageName);
+                variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
                 startActivity(intent);
             }
         });
@@ -110,17 +144,6 @@ public class ErreserbaInfo extends AppCompatActivity {
             }
         });
 
-
-        //LEHIOAK PASATZERA
-
-
-        //datos a pasar a todas las pantallas del menu (para nire kontua)
-        String izena = getIntent().getStringExtra("USER_izena");
-        String abizena = getIntent().getStringExtra("USER_abizena");
-        String nan = getIntent().getStringExtra("USER_nan");
-        String email = getIntent().getStringExtra("USER_email");
-        String mugikorra = getIntent().getStringExtra("USER_mugikorra");
-        String erabiltzaileMota = getIntent().getStringExtra("USER_erabiltzaileMota");
 
         //NIRE KONTUA
         Button btnNireKontua = findViewById(R.id.idBtnMenuKontua);

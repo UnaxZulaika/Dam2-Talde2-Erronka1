@@ -32,6 +32,7 @@ public class ErreserbaInfo extends AppCompatActivity {
                 "aurkezpena1", "aurkezpena2", "feria1", "feria2", "konferentzia1", "konferentzia2", "kumbre1",
                 "kumbre2", "tailerra1", "tailerra2"};
 
+        // erreserbak activity-tik pasatzen den informazio guztia
         int id = getIntent().getIntExtra("id", 0);
         String imageName = getIntent().getStringExtra("img");
         String kokalekua = getIntent().getStringExtra("kokalekua");
@@ -40,13 +41,12 @@ public class ErreserbaInfo extends AppCompatActivity {
         String dbColelction1 = getIntent().getStringExtra("dbColelction1");
         String dbColelction2 = getIntent().getStringExtra("dbColelction2");
 
+        // argazkia ipintzen du
         ivArgazkia = findViewById(R.id.ivArgazkia);
-
-        System.out.println("IMAGE NAME: " + imageName);
         int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
-
         ivArgazkia.setImageResource(resID);
 
+        // Kokalekua ipintzen du
         tvKokalekua = findViewById(R.id.tvKokalekua2);
         String txtKokalekua = kokalekua + ", " + documentArray[id];
         if (kokalekua.equals(documentArray[id])) {
@@ -54,14 +54,16 @@ public class ErreserbaInfo extends AppCompatActivity {
         }
         tvKokalekua.setText(txtKokalekua);
 
+        //Informazioa ipintzen du
         tvInfo = findViewById(R.id.tvInfo);
         tvInfo.setText(informazioa);
 
+        // Balorazioa ipintzen du
         rbBalorazioak = findViewById(R.id.rbBalorazioak);
-
         rbBalorazioak.setRating(balorazioa);
         rbBalorazioak.setIsIndicator(true);
 
+        // Erreserbaren Ordainketara eramaten duen botoia
         Button infBtnErreserbaEgin = findViewById(R.id.infBtnErreserbaEgin);
         infBtnErreserbaEgin.setOnClickListener(new View.OnClickListener() {
             @Override

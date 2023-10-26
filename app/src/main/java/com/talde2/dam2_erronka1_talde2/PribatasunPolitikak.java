@@ -140,6 +140,7 @@ public class PribatasunPolitikak extends AppCompatActivity {
         LinearLayout aukerak = findViewById(R.id.idLayOpzioak);
         aukerak.setVisibility(View.INVISIBLE);
         TextView TerminosYCondiciones = (TextView)findViewById(R.id.tvPribatasunPolitikak);
+        //HTML formatoarekin ipintzen du testua
         TerminosYCondiciones.setText(Html.fromHtml("<h1>Oma Aplikazioaren Pribatutasun Politika</h1>\n" +
                 "\n" +
                 "    <p><strong>Azken Eguneratze Data: 2023-10-28</strong></p>\n" +

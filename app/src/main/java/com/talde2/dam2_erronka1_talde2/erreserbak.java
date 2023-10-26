@@ -66,9 +66,6 @@ public class erreserbak extends AppCompatActivity {
         datuBaseKarga(erabiltzaileEmail);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        //tokiakPertsona = tokiakBetePertsona(db, "Ibilbideak", tokiakPertsona);
-
-
         //MENUA
         //menua izkutatzeko lehenik
         LinearLayout opzioak = findViewById(R.id.idLayOpzioak);
@@ -107,8 +104,6 @@ public class erreserbak extends AppCompatActivity {
 
 
     //LEHIOAK PASATZERA
-
-
         //datos a pasar a todas las pantallas del menu (para nire kontua)
         String izena = getIntent().getStringExtra("USER_izena");
         String abizena = getIntent().getStringExtra("USER_abizena");
@@ -183,7 +178,7 @@ public class erreserbak extends AppCompatActivity {
 
     }
 
-
+    // Datu baseko erreserben informazioa kargatzen du
     private void datuBaseKarga(String erabiltzaileEmail) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -252,12 +247,8 @@ public class erreserbak extends AppCompatActivity {
                 });
         }
     }
-    /**
-     *
-     * @param db firebase instantzia
-     * @param tokiMota zein toki kargatuko den
-     * @return arraylist bat tokiak objetuak transformatuta
-     */
+
+    // Datu baseko erreserben informazioa kargatzen du Pertsonentzat
     public ArrayList<JardueraPertsona> tokiakBetePertsona(FirebaseFirestore db, String tokiMota, String pertsonaMota, ArrayList<JardueraPertsona> tokiakPertsona) {
         db.collection(tokiMota)
                 .get()
@@ -279,11 +270,12 @@ public class erreserbak extends AppCompatActivity {
                                 }
                                 tokiakPertsona.add(t1);
 
+                                //Pertsonentzako erreserba motak gordetzen dira
                                 uniqueMotas.add(t1.getMota().toString());
                             }
 
+                            // Filtroen botoiak sortzen dira
                             LinearLayout buttonContainer = findViewById(R.id.filtroak);
-
                             for (String txtBtn : uniqueMotas) {
                                 Button button = new Button(erreserbak.this);
                                 button.setText(txtBtn);
@@ -291,11 +283,10 @@ public class erreserbak extends AppCompatActivity {
                                         LinearLayout.LayoutParams.WRAP_CONTENT,
                                         LinearLayout.LayoutParams.WRAP_CONTENT
                                 ));
-
                                 buttonContainer.addView(button);
 
+                                // Pertsonentzako erreserba guztiak kargatzen dira eta ArrayList desberdinetan gordetzen dira
                                 LinearLayout btnImagenLayout = findViewById(R.id.layoutBtnImg);
-
                                 ArrayList<String> imageNames = new ArrayList<String>();
                                 ArrayList<Integer> imageIDs = new ArrayList<Integer>();
                                 ArrayList<String> kokalekuak = new ArrayList<String>();
@@ -330,13 +321,14 @@ public class erreserbak extends AppCompatActivity {
                                         btnImagenLayout.addView(currentLinearLayout); // LinearLayout berria, lehen linearLayout-era gehitzen du
                                     }
 
+                                    // ImageButton berriak sortzen dira aktibitate bakaoitzaren argazkiarekin
                                     ImageButton imageButton = new ImageButton(erreserbak.this);
                                     imageButton.setId(imageID);
-
                                     imageButton.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
 
+                                            // Erreserba egiteko behar dugun informazio pasatzeko hurrengo activity-etara.
                                             Intent intent = new Intent(erreserbak.this, ErreserbaInfo.class);
                                             intent.putExtra("id", v.getId());
                                             intent.putExtra("img", imageName);
@@ -347,38 +339,24 @@ public class erreserbak extends AppCompatActivity {
                                             intent.putExtra("dbColelction2", "Ibilbideak");
                                             intent.putParcelableArrayListExtra("tokiak_pertsona", tokiakPertsona);
 
-                                            //datos a pasar a todas las pantallas del menu (para nire kontua)
-                                            String izena = getIntent().getStringExtra("USER_izena");
-                                            String abizena = getIntent().getStringExtra("USER_abizena");
-                                            String nan = getIntent().getStringExtra("USER_nan");
-                                            String email = getIntent().getStringExtra("USER_email");
-                                            String mugikorra = getIntent().getStringExtra("USER_mugikorra");
-                                            String erabiltzaileMota = getIntent().getStringExtra("USER_erabiltzaileMota");
-
-                                            variables_de_usuario(intent, izena, abizena, nan, email, mugikorra, erabiltzaileMota);
                                             startActivity(intent);
                                         }
                                     });
 
                                     int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
-
-                                    // Botoiaren tamaina
+                                    // imageButton-aren tamaina
                                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400, 400);
-
                                     // botoiaren irudiaren escala
                                     imageButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-
                                     // irudia kargatzen du
                                     if (resID != 0) {
                                         imageButton.setImageResource(resID);
                                     }
-
                                     // botoieri margenak ipintzen dio
                                     layoutParams.setMargins(75, 75, 75, 75);
-
                                     imageButton.setLayoutParams(layoutParams);
-
-                                    currentLinearLayout.addView(imageButton); // ImgageButton-a LinearLayout berriare sartzen dio
+                                    // ImgageButton-a LinearLayout berrira sartzen da
+                                    currentLinearLayout.addView(imageButton);
                                 }
 
 
@@ -391,6 +369,7 @@ public class erreserbak extends AppCompatActivity {
         return tokiakPertsona;
     }
 
+    // Datu baseko erreserben informazioa kargatzen du Entitateentzat
     public ArrayList<JardueraEntitateak> tokiakBeteEntitateak(FirebaseFirestore db, String tokiMota, ArrayList<JardueraEntitateak> tokiakEntitateak) {
         db.collection(tokiMota)
                 .get()
@@ -452,6 +431,7 @@ public class erreserbak extends AppCompatActivity {
         return tokiakEntitateak;
     }
 
+    // // Datu baseko erreserben informazioa kargatzen du Anonimoentzat
     public static void tokiakBeteAnonimo(FirebaseFirestore db, String tokiMota, ArrayList<JardueraPertsona> tokiakPertsona, ArrayList<JardueraEntitateak> tokiakEntitateak) {
         db.collection(tokiMota)
                 .get()
@@ -489,65 +469,4 @@ public class erreserbak extends AppCompatActivity {
                         }
                 });
             }
-
-    // Define el método cargarBotonesYImagenes para el código que sigue a continuación
-    /*private void cargarBotonesYImagenes(ArrayList<String> imageNames) {
-        LinearLayout btnImagenLayout = findViewById(R.id.layoutBtnImg);
-
-        imageNames.add("x");
-
-        LinearLayout currentLinearLayout = null; // Hasiera ez dago beste LinearLayoutik
-
-        for (int i = 0; i < imageNames.size(); i++) {
-            String imageName = imageNames.get(i);
-
-            if (i % 2 == 0) {
-                // Bikoitia bada, LinearLayout (horizontal) berria sortzen du
-                currentLinearLayout = new LinearLayout(this);
-                currentLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
-                currentLinearLayout.setGravity(Gravity.CENTER_HORIZONTAL);
-                btnImagenLayout.addView(currentLinearLayout); // LinearLayout berria, lehen linearLayout-era gehitzen du
-            }
-
-            ImageButton imageButton = new ImageButton(this);
-
-            int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
-
-            // Botoiaren tamaina
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400, 400);
-
-            // botoiaren irudiaren escala
-            imageButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-
-            // irudia kargatzen du
-            if (resID != 0) {
-                imageButton.setImageResource(resID);
-            }
-
-            // botoieri margenak ipintzen dio
-            layoutParams.setMargins(75, 75, 75, 75);
-
-            imageButton.setLayoutParams(layoutParams);
-
-            currentLinearLayout.addView(imageButton); // ImgageButton-a LinearLayout berriare sartzen dio
-        }
-    }*/
-
-    /*private void cargaFiltro(ArrayList<String> listaBtn) {
-        LinearLayout buttonContainer = findViewById(R.id.filtroak);
-
-        listaBtn.add("aa");
-
-        for (String txtBtn : listaBtn) {
-            Button button = new Button(this);
-            button.setText(txtBtn);
-            button.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            ));
-
-            buttonContainer.addView(button);
-        }
-    }*/
-
 }

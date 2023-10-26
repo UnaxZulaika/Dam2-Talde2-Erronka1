@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

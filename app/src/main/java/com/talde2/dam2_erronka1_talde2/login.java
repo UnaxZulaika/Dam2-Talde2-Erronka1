@@ -224,11 +224,7 @@ public class login extends AppCompatActivity {
                 });
     }
 
-    /**
-     * Erabiltzailearen objetua sortzen du
-     * @param document firebase erabiltzailearen kontulta
-     * @return erabiltzile objetua beharrezko informazioarekin
-     */
+    // erabiltzile objetua beharrezko informazioarekin
     public static Erabiltzaile erabiltzaileaBete(DocumentSnapshot document) {
         String izena = document.getString("izena");
         String abizena = document.getString("abizena");

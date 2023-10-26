@@ -67,15 +67,15 @@ public class erreserbaOrdainketa extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
 
+            // 2 karaketereko 'lenght'a dagoenean automatikoki '/' ipiniko du.
             @Override
             public void afterTextChanged(Editable s) {
                 String input = s.toString();
-
-                // Comprobar si se han ingresado los primeros 2 números y no hay '/'
+                // Egiaztatu lehenengo 2 zenbakiak sartu diren eta ez dagoen '/'
                 if (input.length() == 2 && !input.contains("/")) {
-                    // Agregar automáticamente el carácter '/' después de los primeros 2 números
+                    // Gehitu automatikoki '/' karakterea lehenengo 2 zenbakien ondoren
                     kredituTxartelData.setText(input + "/");
-                    kredituTxartelData.setSelection(kredituTxartelData.getText().length()); // Colocar el cursor al final del texto
+                    kredituTxartelData.setSelection(kredituTxartelData.getText().length());
                 }
             }
         });
@@ -84,7 +84,7 @@ public class erreserbaOrdainketa extends AppCompatActivity {
         editTextFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarCalendario();
+                erakutsiEgutegia();
             }
         });
 
@@ -92,14 +92,15 @@ public class erreserbaOrdainketa extends AppCompatActivity {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // Kreditu txartelaren aukera badago aukeratuta, hurrengo kanpo desbedinak erakutsiko dira
                 if (checkedId == R.id.RBkredituTxartela) {
                     // Kreditu txartelaren aukera aukeratzean, editText eta TextView-a erakusten du
                     txvKredituTxartela.setVisibility(View.VISIBLE);
                     kredituTxartela.setVisibility(View.VISIBLE);
                     kredituTxartelData.setVisibility(View.VISIBLE);
                     kredituTxartelSegurtasuna.setVisibility(View.VISIBLE);
+                    // Sukurtsala aukera badago aukeratuta, hurrengo kanpo desbedinak ez dira erakutsiko
                 } else if (checkedId == R.id.RBsukurtsala) {
-                    // Kreditu txartelaren aukera aukeratzean, editText eta TextView-a eskutatzen du
                     txvKredituTxartela.setVisibility(View.INVISIBLE);
                     kredituTxartela.setVisibility(View.INVISIBLE);
                     kredituTxartelData.setVisibility(View.INVISIBLE);
@@ -188,12 +189,10 @@ public class erreserbaOrdainketa extends AppCompatActivity {
             if (hilabetea < 1 || hilabetea > 12) {
                 return false;
             }
-
             // Urtea 1etik 31ra bitarteko tartean dagoela egiaztatzea
             if (urtea < 1 || urtea > 31) {
                 return false;
             }
-
             // Posizio egokian barra diagonal bat dagoela egiaztatzea
             if (!barraDiagonal.equals("/")) {
                 return false;
@@ -217,8 +216,7 @@ public class erreserbaOrdainketa extends AppCompatActivity {
         }
     }
 
-
-    private void mostrarCalendario() {
+    private void erakutsiEgutegia() {
         final Calendar calendario = Calendar.getInstance();
         int urtea = calendario.get(Calendar.YEAR);
         int hilabetea = calendario.get(Calendar.MONTH);
@@ -244,11 +242,11 @@ public class erreserbaOrdainketa extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    private boolean dataBaliozkatu(String fechaSeleccionada) {
+    private boolean dataBaliozkatu(String aukeratuData) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         Date dataGaur = Calendar.getInstance().getTime();
         try {
-            Date aukeratutakoData = sdf.parse(fechaSeleccionada);
+            Date aukeratutakoData = sdf.parse(aukeratuData);
             return aukeratutakoData.before(dataGaur);
         } catch (ParseException e) {
             e.printStackTrace();

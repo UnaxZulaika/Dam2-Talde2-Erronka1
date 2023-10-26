@@ -44,10 +44,7 @@ public class Nire_Kontua extends AppCompatActivity {
             intent.putExtra("USER_email", email);
             intent.putExtra("USER_mugikorra", mugikorra);
             intent.putExtra("USER_erabiltzaileMota", erabiltzaileMota);
-
         };
-    //fin metodos
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +132,7 @@ public class Nire_Kontua extends AppCompatActivity {
         //fin desabilitatu dit text idaztea
 
 
-      //BD BOTOAK UPDATE ETA DELETE
+      //BD BOTOIAK UPDATE ETA DELETE
 
         //DELETE botoia
         Button btnEzabatu = findViewById(R.id.IdBtnDelete);
@@ -146,10 +143,11 @@ public class Nire_Kontua extends AppCompatActivity {
         btnEzabatu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // AlertDialog bat zabalduko da kontua ezabatu nahi den edo ez aukeratzeko.
                 AlertDialog.Builder builder = new AlertDialog.Builder(Nire_Kontua.this);
                 builder.setMessage("Ziur zaude kontua ezabatu nahi duzula?");
                 builder.setPositiveButton("Bai", new DialogInterface.OnClickListener() {
+                    // 'Bai' aukeratzean erabiltzailea ezabatuko da Authenticator eta datubasetik,
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         db.collection("Erabiltzaileak").document(email)
@@ -162,8 +160,8 @@ public class Nire_Kontua extends AppCompatActivity {
                                         Log.d("delete BD", "Erabiltzailea ondo ezabatu da"); //console log
 
                                         Intent intent = new Intent(Nire_Kontua.this, login.class);
-                                        startActivity(intent); // Iniciar la nueva actividad
-                                        finish(); // Cierra la actividad actual
+                                        startActivity(intent);
+                                        finish();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {//user deleted failure
@@ -177,7 +175,7 @@ public class Nire_Kontua extends AppCompatActivity {
                 builder.setNegativeButton("Ez", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // No hacer nada, simplemente cerrar el cuadro de diálogo
+                        // Ez aukeratzean ez du ezer egingo, Alertdialoga itxiko da
                     }
                 });
                 builder.show();
@@ -206,14 +204,11 @@ public class Nire_Kontua extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String erabiltzaile_izena = editText.getText().toString().trim();
 
-                      //  String erabiltzaile_izena = nrkntEditIzena.getText().toString().trim();
-
                         if(TextUtils.isEmpty(erabiltzaile_izena) || erabiltzaile_izena==""){ //izena hutzik badago
                             String sartuIzena = getString(R.string.izenaErrorea);
                             nrkntEditIzena.setError(sartuIzena);
                         }else{ //UPDATE BD
 
-                            // (coleccion / documento)
                             final DocumentReference sfDocRef = db.collection("Erabiltzaileak").document(email);
 
                             db.runTransaction(new Transaction.Function<Void>() {
@@ -221,14 +216,12 @@ public class Nire_Kontua extends AppCompatActivity {
                                         public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
                                             DocumentSnapshot document = transaction.get(sfDocRef);
 
-                                            //update( DocRef / izena / nuevo valor )
+                                            //update( DocRef / izena / balio berria)
                                             transaction.update(sfDocRef, "izena", erabiltzaile_izena);
 
                                             // Success
                                             return null;
                                         }
-
-                                        //LOGS runTransaction
                                     }).addOnSuccessListener(new OnSuccessListener<Void>() { //runTransaction completed
                                         @Override
                                         public void onSuccess(Void aVoid) {

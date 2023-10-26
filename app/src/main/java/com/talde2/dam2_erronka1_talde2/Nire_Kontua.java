@@ -84,7 +84,7 @@ public class Nire_Kontua extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         nrkntEditIzena.setText(document.get("izena").toString()); //ipini EditTextean BD-ko izena
                     }else{
-                        Log.d("Get BD", "izena ez da kargatu"); //console log
+                        Log.d("Get BD", getResources().getString(R.string.nrkntIzenaEzKargatu)); //console log
                     }
                 }
             });
@@ -148,8 +148,8 @@ public class Nire_Kontua extends AppCompatActivity {
             public void onClick(View v) {
                 // AlertDialog bat zabalduko da kontua ezabatu nahi den edo ez aukeratzeko.
                 AlertDialog.Builder builder = new AlertDialog.Builder(Nire_Kontua.this);
-                builder.setMessage("Ziur zaude kontua ezabatu nahi duzula?");
-                builder.setPositiveButton("Bai", new DialogInterface.OnClickListener() {
+                builder.setMessage(getResources().getString(R.string.izenaAldatuZiur));
+                builder.setPositiveButton(getResources().getString(R.string.bai), new DialogInterface.OnClickListener() {
                     // 'Bai' aukeratzean erabiltzailea ezabatuko da Authenticator eta datubasetik,
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -160,7 +160,7 @@ public class Nire_Kontua extends AppCompatActivity {
                                     public void onSuccess(Void aVoid) {
                                         mAuth= FirebaseAuth.getInstance();
                                         mAuth.getCurrentUser().delete();
-                                        Log.d("delete BD", "Erabiltzailea ondo ezabatu da"); //console log
+                                        Log.d("delete BD", getResources().getString(R.string.erabiltzaileaEzabatu)); //console log
 
                                         Intent intent = new Intent(Nire_Kontua.this, login.class);
                                         startActivity(intent);
@@ -170,12 +170,12 @@ public class Nire_Kontua extends AppCompatActivity {
                                 .addOnFailureListener(new OnFailureListener() {//user deleted failure
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Log.e("delete BD", "Errorea erabiltzailea ezabatzen", e);//console log
+                                        Log.e("delete BD", getResources().getString(R.string.errErabiltzaileaEzabatu), e);//console log
                                     }
                                 });
                     }
                 });
-                builder.setNegativeButton("Ez", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getResources().getString(R.string.ez), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Ez aukeratzean ez du ezer egingo, Alertdialoga itxiko da
@@ -195,28 +195,28 @@ public class Nire_Kontua extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Nire_Kontua.this);
-                builder.setTitle("Aukeratu egin nahai duzun aldaketa");
+                builder.setTitle(getResources().getString(R.string.aukeratuAldaketa));
 
-                builder.setPositiveButton("Aldatu Pasahitza", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getResources().getString(R.string.aldatuPasahitza), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Crear un nuevo cuadro de diálogo para cambiar la contraseña
                         AlertDialog.Builder changePasswordBuilder = new AlertDialog.Builder(Nire_Kontua.this);
-                        changePasswordBuilder.setTitle("Aldatu pasahitza:");
+                        changePasswordBuilder.setTitle(getResources().getString(R.string.aldatuPasahitza2));
 
                         final EditText newPasswordEditText = new EditText(Nire_Kontua.this);
                         newPasswordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         newPasswordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        newPasswordEditText.setHint("Sartu pasahitz berria");
+                        newPasswordEditText.setHint(getResources().getString(R.string.sartuPasahitzBerria));
                         changePasswordBuilder.setView(newPasswordEditText);
 
-                        changePasswordBuilder.setPositiveButton("Onartu", new DialogInterface.OnClickListener() {
+                        changePasswordBuilder.setPositiveButton(getResources().getString(R.string.onartu), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String newPassword = newPasswordEditText.getText().toString().trim();
 
                                 if (TextUtils.isEmpty(newPassword) || newPassword.equals("")) {
-                                    Toast.makeText(Nire_Kontua.this, "Ezin izan da pasahitza aldatu", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Nire_Kontua.this, getResources().getString(R.string.ezPasahitzaAldatu), Toast.LENGTH_SHORT).show();
                                 } else {
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     newPassword = newPasswordEditText.getText().toString().trim();
@@ -228,11 +228,11 @@ public class Nire_Kontua extends AppCompatActivity {
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
                                                             // Pasahitza ondo aldatu da
-                                                            String contraseñaUpdateExitosa = "Pasahitza aldatu da";
+                                                            String contraseñaUpdateExitosa = getResources().getString(R.string.pasahitzaAldatuta);
                                                             Toast.makeText(Nire_Kontua.this, contraseñaUpdateExitosa, Toast.LENGTH_SHORT).show();
                                                         } else {
                                                             // Pasahitza aldatzena errore bat egon da
-                                                            String errorContraseñaUpdate = "Errorea pasahitza aldatzean: " + task.getException().getMessage();
+                                                            String errorContraseñaUpdate = getResources().getString(R.string.errPasahitzaAldatzen) + " " + task.getException().getMessage();
                                                             Toast.makeText(Nire_Kontua.this, errorContraseñaUpdate, Toast.LENGTH_SHORT).show();
                                                         }
                                                     }
@@ -244,7 +244,7 @@ public class Nire_Kontua extends AppCompatActivity {
                             }
                         });
 
-                        changePasswordBuilder.setNegativeButton("Ezeztatu", new DialogInterface.OnClickListener() {
+                        changePasswordBuilder.setNegativeButton(getResources().getString(R.string.ezeztatu), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -255,16 +255,16 @@ public class Nire_Kontua extends AppCompatActivity {
                     }
                 });
 
-                builder.setNegativeButton("Aldatu izena", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getResources().getString(R.string.aldatuIzena), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         AlertDialog.Builder updateIzenaBuilder = new AlertDialog.Builder(Nire_Kontua.this);
-                        updateIzenaBuilder.setTitle("Sartu zure izena:");
+                        updateIzenaBuilder.setTitle(getResources().getString(R.string.sartuIzena));
 
                         final EditText newIzenaEditText = new EditText(Nire_Kontua.this);
                         updateIzenaBuilder.setView(newIzenaEditText);
 
-                        updateIzenaBuilder.setPositiveButton("Onartu", new DialogInterface.OnClickListener() {
+                        updateIzenaBuilder.setPositiveButton(getResources().getString(R.string.onartu), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String newIzena = newIzenaEditText.getText().toString().trim();
@@ -282,7 +282,7 @@ public class Nire_Kontua extends AppCompatActivity {
                                             DocumentSnapshot document = transaction.get(sfDocRef);
 
                                             // Eguneratu (DocRef / izena / nuevo valor)
-                                            transaction.update(sfDocRef, "izena", newIzena);
+                                            transaction.update(sfDocRef, getResources().getString(R.string.izena), newIzena);
                                             return null;
                                         }
                                     }).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -290,21 +290,21 @@ public class Nire_Kontua extends AppCompatActivity {
                                         public void onSuccess(Void aVoid) {
                                             String erabiltzailea_updateatu_da = getString(R.string.aldaketaOndo);
                                             Toast.makeText(Nire_Kontua.this, erabiltzailea_updateatu_da, Toast.LENGTH_SHORT).show();
-                                            Log.d("update BD", "Transakzioa arrakastatsua!"); // Registro en la consola
+                                            Log.d("update BD", getResources().getString(R.string.transakzioOndo)); // Registro en la consola
 
                                             nrkntEditIzena.setText(newIzena);
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Log.e("update BD", "Transakzioa huts egin du.", e);
+                                            Log.e("update BD", getResources().getString(R.string.transakzioaGaizki), e);
                                         }
                                     });
                                 }
                                 dialog.dismiss();
                             }
                         });
-                        updateIzenaBuilder.setNegativeButton("Ezeztatu", new DialogInterface.OnClickListener() {
+                        updateIzenaBuilder.setNegativeButton(getResources().getString(R.string.ezeztatu), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();

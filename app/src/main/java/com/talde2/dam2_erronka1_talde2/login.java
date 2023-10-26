@@ -121,10 +121,10 @@ public class login extends AppCompatActivity {
                             //nire kontua pantailari pasatzeko parametroak FIN
 
                             startActivity(intent);
-                            Toast.makeText(login.this, "Ongi etorri, Anonimoa", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(login.this, getResources().getString(R.string.sartuPasahitza), Toast.LENGTH_SHORT).show();
                             finish(); // Login aktibitatea ixteko
                         } else {
-                            Toast.makeText(login.this, "Errorea, ezin izan da anonimo bezala hasi saioa", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(login.this, getResources().getString(R.string.loginAnonErr), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

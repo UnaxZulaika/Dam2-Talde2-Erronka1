@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20sp"
                 android:layout_marginBottom="5sp"
-                android:text="Kokalekua:"
+                android:text="@string/kokalekuaActivity"
                 android:textColor="#000000"
                 android:textStyle="bold" />
 
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20sp"
                 android:layout_marginBottom="15sp"
-                android:text="Informazioa:"
+                android:text="@string/informazioaActivity"
                 android:textColor="#000000"
                 android:textStyle="bold" />
 
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20sp"
                 android:layout_marginBottom="5sp"
-                android:text="Balorazioa:"
+                android:text="@string/balorazioaActivity"
                 android:textColor="#000000"
                 android:textStyle="bold" />
 
@@ -123,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20sp"
                 android:layout_marginBottom="5sp"
-                android:text="Prezioak:"
+                android:text="@string/prezioakActivity"
                 android:textColor="#000000"
                 android:textStyle="bold" />
 
@@ -159,7 +159,7 @@
         android:layout_width="match_parent"
         android:layout_height="65sp"
         android:background="@color/verdeClaro"
-        android:text="Erreserba egin"
+        android:text="@string/erreserbaEgin"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

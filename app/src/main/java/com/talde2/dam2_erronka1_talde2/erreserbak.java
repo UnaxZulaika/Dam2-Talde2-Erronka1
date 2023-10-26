@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -184,8 +185,6 @@ public class erreserbak extends AppCompatActivity {
 
         //anonimoa bada kontrolatzeko
         String izena = getIntent().getStringExtra("USER_izena");
-        System.out.println("AAAAAAAAAA");
-        System.out.println("ANONIMOAAAAA: " + izena);
 
         if (izena.equals("anonimoa")) { //pertsona bezala izango da?
 
@@ -240,10 +239,12 @@ public class erreserbak extends AppCompatActivity {
                                 }
 
                             } else {
-                                Log.e("dokumentua existitzen da?", "Dokumentua ez da existitzena"); //console log
+                                Resources resources =  getResources();
+                                Log.e(resources.getString(R.string.dokumentuaExistitu), resources.getString(R.string.dokumentuaEzExistitu)); //console log
                             }
                         }else {
-                            Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
+                            Resources resources =  getResources();
+                            Log.d(TAG, resources.getString(R.string.errDokumentua) + " ", task.getException());
                         }
                     }
                 });
@@ -382,7 +383,8 @@ public class erreserbak extends AppCompatActivity {
 
                             }
                         } else {
-                            Log.d(TAG, "Error dokumentuak lortzen: ", task.getException()); //console log
+                            Resources resources =  getResources();
+                            Log.d(TAG, resources.getString(R.string.errDokumentua) + " ", task.getException()); //console log
                         }
                     }
                 });
@@ -420,17 +422,6 @@ public class erreserbak extends AppCompatActivity {
                                 uniqueMotas.add(t1.getMota().toString());
                             }
 
-                            System.out.println("entitateak hecho");
-                            System.out.println("AAA");
-                            System.out.println("uniqueMotas: " + uniqueMotas.size());
-                            System.out.println("tokiakEntitateak: " + tokiakEntitateak.size());
-
-                            for (String mota : uniqueMotas) {
-                                System.out.println(mota);
-                            }
-
-                            System.out.println("entitateak hecho");
-
                             LinearLayout buttonContainer = findViewById(R.id.filtroak);
 
                             for (String txtBtn : uniqueMotas) {
@@ -444,7 +435,8 @@ public class erreserbak extends AppCompatActivity {
                                 buttonContainer.addView(button);
                             }
                         } else {
-                            Log.d(TAG, "Error dokumentuak lortzen: ", task.getException());
+                            Resources resources =  getResources();
+                            Log.d(TAG, resources.getString(R.string.errDokumentua) + " ", task.getException());
                         }
                     }
                 });
@@ -468,7 +460,6 @@ public class erreserbak extends AppCompatActivity {
                                     t1.setMota(JardueraPertsona.jardueraMota.aisialdia);
                                 }
                                 tokiakPertsona.add(t1);
-                                System.out.println("pertsonak hecho");
                                 JardueraEntitateak te1 = document.toObject(JardueraEntitateak.class);
                                 if (tokiMota.equals("Aurkezpenak")) {
                                     te1.setMota(JardueraEntitateak.jardueraMota.aurkezpena);
@@ -482,7 +473,6 @@ public class erreserbak extends AppCompatActivity {
                                     te1.setMota(JardueraEntitateak.jardueraMota.tailerrak);
                                 }
                                 tokiakEntitateak.add(te1);
-                                System.out.println("entitateak hecho");
                             }
                             }
 

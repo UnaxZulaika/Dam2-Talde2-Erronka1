@@ -2,6 +2,7 @@ package com.talde2.dam2_erronka1_talde2;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -80,16 +81,16 @@ public class erreserbaOrdainketa extends AppCompatActivity {
         kredituTxartela.setVisibility(View.INVISIBLE);
         kredituTxartelData.setVisibility(View.INVISIBLE);
         kredituTxartelSegurtasuna.setVisibility(View.INVISIBLE);
-
+        Resources resources =  getResources();
         ArrayList<String> aukerak = new ArrayList<>();
         if (prezioa >= 1) {
-            aukerak.add("Prezioa (Pertsona kopurua: 1): " + prezioa + "€");
+            aukerak.add(resources.getString(R.string.prezioa1) + " " + prezioa + "€");
         }
         if (prezioa10 >= 1) {
-            aukerak.add("Prezioa (Pertsona kopurua: 10): " + prezioa10 + "€");
+            aukerak.add(resources.getString(R.string.prezioa10) + " " + prezioa10 + "€");
         }
         if (prezioa20 >= 1) {
-            aukerak.add("Prezioa (Pertsona kopurua: 20): " + prezioa20 + "€");
+            aukerak.add(resources.getString(R.string.prezioa20) + " " + prezioa20 + "€");
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, aukerak);
@@ -103,14 +104,14 @@ public class erreserbaOrdainketa extends AppCompatActivity {
                 String opcionSeleccionada = (String) spinnerPrezioak.getSelectedItem();
 
                 // Actualiza el TextView en función de la opción seleccionada
-                if (opcionSeleccionada.contains("Prezioa (Pertsona kopurua: 1): " + prezioa + "€")) {
-                    txvAzkenPrezioa.setText("Prezioa: " + prezioa + "€");
+                if (opcionSeleccionada.contains(resources.getString(R.string.prezioa1) + " " + prezioa + "€")) {
+                    txvAzkenPrezioa.setText(resources.getString(R.string.prezioa) + " " + prezioa + "€");
                     azkenPrezioa = prezioa;
-                } else if (opcionSeleccionada.contains("Prezioa (Pertsona kopurua: 10): " + prezioa10 + "€")) {
-                    txvAzkenPrezioa.setText("Prezioa: " + prezioa10 + "€");
+                } else if (opcionSeleccionada.contains(resources.getString(R.string.prezioa10) + " " + prezioa10 + "€")) {
+                    txvAzkenPrezioa.setText(resources.getString(R.string.prezioa) + " " + prezioa10 + "€");
                     azkenPrezioa = prezioa10;
-                } else if (opcionSeleccionada.contains("Prezioa (Pertsona kopurua: 20): " + prezioa20 + "€")) {
-                    txvAzkenPrezioa.setText("Prezioa: " + prezioa20 + "€");
+                } else if (opcionSeleccionada.contains(resources.getString(R.string.prezioa20) + " "  + prezioa20 + "€")) {
+                    txvAzkenPrezioa.setText(resources.getString(R.string.prezioa) + " " + prezioa20 + "€");
                     azkenPrezioa = prezioa20;
                 }
             }
@@ -192,9 +193,6 @@ public class erreserbaOrdainketa extends AppCompatActivity {
                                 if (iraungitzeDataKonprobaketa(iraungintzaData)) {
                                     if (esCCVValido(ccv)) {
                                         Intent intent = new Intent(erreserbaOrdainketa.this, erreserbaBukatuta.class);
-                                        System.out.println("PREZIOA: " + azkenPrezioa);
-                                        System.out.println("KOKALEKUA: " + kokalekua);
-                                        System.out.println("ERRESERBA DATA: " + erreserbaData);
                                         intent.putExtra("prezioa", azkenPrezioa);
                                         intent.putExtra("kokalekua", kokalekua);
                                         intent.putExtra("erreserbaData", erreserbaData);
@@ -203,21 +201,18 @@ public class erreserbaOrdainketa extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "Kreditu-txartelaren CCV baliogabea", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), resources.getString(R.string.ccvBaliogabea), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 else {
-                                    Toast.makeText(getApplicationContext(), "Kreditu-txartelaren iraungitze-data baliogabea", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), resources.getString(R.string.iraungitzeDataBalioganea), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
-                                Toast.makeText(getApplicationContext(), "Kreditu-txartelaren zenbakia ez da baliozkoa", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), resources.getString(R.string.kreditTxartelZbkBaliogabea), Toast.LENGTH_SHORT).show();
                             }
                         } else if (rbSukurtsala.isChecked()) {
                         Intent intent = new Intent(erreserbaOrdainketa.this, erreserbaBukatuta.class);
                         String erreserbaData = editTextFecha.getText().toString();
-                        System.out.println("PREZIOA: " + azkenPrezioa);
-                        System.out.println("KOKALEKUA: " + kokalekua);
-                        System.out.println("ERRESERBA DATA: " + erreserbaData);
                         intent.putExtra("prezioa", azkenPrezioa);
                         intent.putExtra("kokalekua", kokalekua);
                         intent.putExtra("erreserbaData", erreserbaData);
@@ -226,11 +221,11 @@ public class erreserbaOrdainketa extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Aukeratu ordainketa-metodo bat", Toast.LENGTH_SHORT).show();
-                        return; // Salir del método si no se seleccionó un RadioButton
+                        Toast.makeText(getApplicationContext(), resources.getString(R.string.aukeratuOrdainketa), Toast.LENGTH_SHORT).show();
+                        return;
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Aukeratu data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), resources.getString(R.string.aukeratuData), Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
@@ -308,11 +303,11 @@ public class erreserbaOrdainketa extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 // Aukeratutako data editTextean agertzen da
                 String aukeratutakoData =  dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-
+                Resources resources =  getResources();
                 // Data baliozko egun batean dagoen konproabtzen du.
                 if (dataBaliozkatu(aukeratutakoData)) {
                     // Errore mezua
-                    Toast.makeText(getApplicationContext(), "Aukeratu den data ez da baliozkoa.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), resources.getString(R.string.dataEzBaliozkoa), Toast.LENGTH_SHORT).show();
                     editTextFecha.setText(""); // EditText garbitu.
                 } else {
                     editTextFecha.setText(aukeratutakoData);

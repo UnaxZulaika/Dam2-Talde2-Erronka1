@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -59,11 +60,12 @@ public class erreserbaBukatuta extends AppCompatActivity {
         int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
         erreserbaBukatutaImg.setImageResource(resID);
 
-        String txtEskerrak = "Zure erreserba arrakastatsua izan da! Eskerrik asko gugan konfiatzeagatik.\nHemen daukazu erreserbaren informazioa:";
-        String info = "Kokalekua: " + kokalekua + "\n";
-        info += "Prezioa: " + prezioa + "€\n";
-        info += "Erreserba data: " + erreserbaData + "\n\n";
-        String ondo = "Zure eskaera ondo gorde da.";
+        Resources resources =  getResources();
+        String txtEskerrak = resources.getString(R.string.eskerrak);
+        String info = resources.getString(R.string.kokalekua) + " "  + kokalekua + "\n";
+        info += resources.getString(R.string.prezioa) + " "  + prezioa + "€\n";
+        info += resources.getString(R.string.erreserbaData) + " " + erreserbaData + "\n\n";
+        String ondo = resources.getString(R.string.ondo);
 
         idtxtErreserbaEskerrak.setText(txtEskerrak);
         idtxtErreserbaInfo.setText(info);

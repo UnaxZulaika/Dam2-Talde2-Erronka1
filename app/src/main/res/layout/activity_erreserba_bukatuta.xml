@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="65sp"
         android:background="@color/verdeClaro"
-        android:text="NIRE ERRESERBAK"
+        android:text="@string/btnErreserba"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

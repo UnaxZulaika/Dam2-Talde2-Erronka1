@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="65sp"
         android:background="@color/verdeClaro"
-        android:text="ERRESERBA BUKATU"
+        android:text="@string/erreserbaBukatu"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Aukeratu data:"
+        android:text="@string/aukeratuDatA"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -78,7 +78,7 @@
         android:id="@+id/editText3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aukeratu pertsona kantitatea:"
+        android:text="@string/aukeratuPertsonaKant"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -92,7 +92,7 @@
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Metodo de pago:"
+        android:text="@string/ordaitzeModua"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -106,7 +106,7 @@
         android:id="@+id/txvKredituTxartela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kreditu txartela:"
+        android:text="@string/kredituTxartela"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -165,7 +165,7 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Kedritu txartela" />
+            android:text="@string/kredituTxartelA" />
 
         <!-- RaddioButton "Enpresa/Entitatea" -->
         <RadioButton
@@ -173,7 +173,7 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Sukurtsalean" />
+            android:text="@string/sukurtsalean" />
     </RadioGroup>
 
     <EditText
@@ -222,7 +222,7 @@
         android:id="@+id/txvAzkenPrezioa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prezioa: "
+        android:text="@string/prezioA"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"

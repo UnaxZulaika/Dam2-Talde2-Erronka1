@@ -1,0 +1,155 @@
+<resources>
+    <string name="app_name">OMA</string>
+
+    <!-- MainActivity -->
+    <string name="createdBy">Sortuta:</string>
+
+    <!-- login -->
+    <string name="user">Erabiltzailea:</string>
+    <string name="userTxt">adibidea@adibide.eus</string>
+    <string name="pasw">Pasahitza:</string>
+    <string name="paswTxt">Sartu zure pasahitza</string>
+    <string name="btnLogin">Sartu</string>
+    <string name="btnAnonimo">Anonimo bezala sartu</string>
+    <string name="btnRegister">Erregistratu</string>
+    <string name="ongiEtorriAn">Ongi etorri, Anonimoa</string>
+    <string name="loginAnonErr">Errorea, ezin izan da anonimo bezala hasi saioa</string>
+
+    <!-- login.java -->
+    <string name="sartuEposta">Sartu zure e-posta</string>
+    <string name="sartuPasahitza">Sartu zure pasahitza</string>
+    <string name="erKonexioaLogin">Ez dago Internet konexiorik. Saiatu berriro geroago</string>
+    <string name="erEpostaLogin">Eposta ez da aurkitu</string>
+    <string name="erPasahitzaLogin">Pasahitz okerra</string>
+    <string name="erLoginLogin">E-posta edo pasahitz okerra</string>
+    <string name="ongiEtorriLogin">Ongi etorri,</string>
+    <string name="erErabiltzaileaLogin">Errorea: Erabiltzailea ez da aurkitu</string>
+    <string name="erroreaLogin">Errorea:</string>
+
+    <!-- register -->
+    <string name="regIzena">Izena:</string>
+    <string name="regEditIzena">Sartu zure izena</string>
+    <string name="regNan">NAN:</string>
+    <string name="regEditNan">Sartu zure NAN-a</string>
+    <string name="regAbizena">Abizenak:</string>
+    <string name="regEditAbizena">Sartu zure abizenak</string>
+    <string name="regMugikorra">Mugikor zenbakia:</string>
+    <string name="regEditMugikorra">Sartu zure mugikor zenbakia</string>
+    <string name="regEposta">E-posta:</string>
+    <string name="regEditEposta">Sartu zure E-posta</string>
+    <string name="regPasw">Pasahitza:</string>
+    <string name="regEditPasw">Sartu pasahitza</string>
+    <string name="regPasw2">Errepikatu pasahitza:</string>
+    <string name="regEditPasw2">Errepikatu pasahitza</string>
+    <string name="regErabMota">Erabiltzaile mota:</string>
+    <string name="regErabiltzaile1">Pertsona</string>
+    <string name="regErabiltzaile2">Enpresa/Entitatea</string>
+
+    <!-- register.java -->
+    <string name="erIzena">Izena bete behar da</string>
+    <string name="erNan">Nan formatua okerra</string>
+    <string name="erAbizenak">Zure lehen bi abizenak sartu, mesedez</string>
+    <string name="erEmail">Email okerra</string>
+    <string name="erMugikorra">Mugikor zenbaki okerra</string>
+    <string name="erPasahitza1">Pasahitza bete mesedez</string>
+    <string name="erPasahitza2">Pasahitzak ez dira berdinak</string>
+    <string name="erMotak">Aukeratu erabiltzale mota bat</string>
+    <string name="erabiltzaileaSortu">Zure erabiltzailea sortu da</string>
+    <string name="erOkerra">Erregistro okerra: </string>
+    <string name="erNanBikoiztua">Beste erabiltzaile bat dago NAN berarekin.</string>
+    <string name="erPasahitzFormatua">Pasahitzak ez dago behar bezalako formatua (gutxienez 6 karaktere)</string>
+    <string name="erEpostaErregistratuta">E-posta dagoeneko erregistratua dago</string>
+    <string name="erInternet">Ez dago Internet konexiorik. Saiatu berriro geroago</string>
+    <string name="erEzezaguna">Errore ezezaguna: </string>
+    <string name="erDbNan">Ezin izan da NAN-a datu basean konprobatu. Saiatu berriro geroago</string>
+    <string name="dbGorde">Datu basean gorde da</string>
+    <string name="erErrorea">Errorea</string>
+
+    <!-- Menua -->
+    <string name="menKontua">Nire Kontua</string>
+    <string name="menErreserbak">Nire Erreserbak</string>
+    <string name="menkatalogoa">Katalogoa</string>
+    <string name="menLogoDeskripzioa">Gure app logoa</string>
+    <string name="menPribatutasunPolitikak">Pribatutasun Politikak</string>
+    <string name="ezagutu">Ezagutu gaitzazu:</string>
+    <string name="ezabatu">Ezabatu erabiltzailea</string>
+    <string name="editatu">Aldatu datuak</string>
+
+    <!-- Nire Kontua -->
+    <string name="nrkntEditErbltzMota">USER mota</string>
+    <string name="nrkntEditPasahitza">USER pasahitza</string>
+    <string name="nrkntEditMugikorra">USER mugikor zenbakia</string>
+    <string name="nrkntEditPosta">USER e-posta</string>
+    <string name="nrkntEditAbizenak">USER abizena</string>
+    <string name="nrkntEditIzena">USER izena</string>
+    <string name="nrkntEditNan">USER nan</string>
+    <string name="nrkntEditErbltzMta">User Erabiltzaile Mota</string>
+    <string name="nrkntIzenaEzKargatu">izena ez da kargatu</string>
+    <string name="izenaAldatuZiur">Ziur zaude kontua ezabatu nahi duzula?</string>
+    <string name="erabiltzaileaEzabatu">Erabiltzailea ondo ezabatu da</string>
+    <string name="errErabiltzaileaEzabatu">Errorea erabiltzailea ezabatzen></string>
+    <string name="bai">Bai</string>
+    <string name="ez">Ez</string>
+    <string name="aukeratuAldaketa">Aukeratu egin nahi duzun aldaketa</string>
+    <string name="aldatuPasahitza">Aldatu Pasahitza</string>
+    <string name="aldatuPasahitza2">Aldatu pasahitza:</string>
+    <string name="sartuPasahitzBerria">Sartu pasahitz berria</string>
+    <string name="onartu">Onartu</string>
+    <string name="ezPasahitzaAldatu">Ezin izan da pasahitza aldatu</string>
+    <string name="pasahitzaAldatuta">Pasahitza aldatu da</string>
+    <string name="errPasahitzaAldatzen">Errorea pasahitza aldatzen: </string>
+    <string name="ezeztatu">Ezeztatu</string>
+    <string name="aldatuIzena">Aldatu izena</string>
+    <string name="sartuIzena">Sartu zure izena:</string>
+    <string name="izena">izena</string>
+    <string name="transakzioOndo">Transakzio arrakastatsua!</string>
+    <string name="transakzioaGaizki">Transakzioa huts egin du.</string>
+
+    <!-- Erresrebak -->
+    <string name="erreTxartelaEskerrak">Eskerrik asko</string>
+    <string name="nrkntTxtErabiltzaileMota">Erabiltzaile Mota</string>
+    <string name="aldaketaOndo">Aldatu da izena</string>
+    <string name="izenaErrorea">Errorea izena aldatzen</string>
+    <string name="dokumentuaExistitu">dokumentua existitzen da?</string>
+    <string name="dokumentuaEzExistitu">Dokumentua ez da existitzena</string>
+    <string name="errDokumentua">Error dokumentuak lortzen:</string>
+
+    <!-- erreserbaBukatuta -->
+    <string name="eskerrak">Zure erreserba arrakastatsua izan da! Eskerrik asko gugan konfiatzeagatik.
+Hemen daukazu erreserbaren informazioa:</string>
+    <string name="kokalekua">Kokalekua: </string>
+    <string name="prezioa">Prezioa: </string>
+    <string name="erreserbaData">Erreserba data: </string>
+    <string name="ondo">Zure eskaera ondo gorde da.</string>
+    <string name="btnErreserba">BUKATU ERRESERBA</string>
+
+    <!-- ErreserbaInfo / erreserbaOrdainketa -->
+    <string name="prezioa1">Prezioa (pertsona 1):</string>
+    <string name="prezioa10">Prezioa (10 pertsona):</string>
+    <string name="prezioa20">Prezioa (20 pertsona):</string>
+    <string name="ccvBaliogabea">Kreditu-txartelaren CCV baliogabea</string>
+    <string name="iraungitzeDataBalioganea">Kreditu-txartelaren iraungitze-data baliogabea</string>
+    <string name="kreditTxartelZbkBaliogabea">Kreditu-txartelaren zenbakia ez da baliozkoa</string>
+    <string name="aukeratuOrdainketa">Aukeratu ordainketa-metodo bat</string>
+    <string name="aukeratuData">Aukeratu data</string>
+    <string name="dataEzBaliozkoa">Aukeratu den data ez da baliozkoa.</string>
+
+    <string name="kokalekuaActivity">Kokalekua:</string>
+    <string name="informazioaActivity">Informazioa:</string>
+    <string name="balorazioaActivity">Balorazioa:</string>
+    <string name="prezioakActivity">Prezioak:</string>
+    <string name="erreserbaEgin">Erreserba egin</string>
+
+    <string name="erreserbaBukatu">ERRESERBA BUKATU</string>
+    <string name="aukeratuDatA">Aukeratu data:</string>
+    <string name="aukeratuPertsonaKant">Aukeratu pertsona kantitatea:</string>
+    <string name="ordaitzeModua">Ordaintzeko modua:</string>
+    <string name="kredituTxartela">Kreditu txartela:</string>
+    <string name="kredituTxartelA">Kreditu txartela</string>
+    <string name="sukurtsalean">Sukurtsalean</string>
+    <string name="prezioA">Prezioa: </string>
+
+    <!-- egindakoErreserbak -->
+    <string name="egindakoErreserbak">EGINDAKO ERRESERBAK(RESERBAK)</string>
+
+</resources>

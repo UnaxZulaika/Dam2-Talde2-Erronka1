@@ -3,6 +3,7 @@ package com.talde2.dam2_erronka1_talde2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -78,17 +79,18 @@ public class ErreserbaInfo extends AppCompatActivity {
         rbBalorazioak.setRating(balorazioa);
         rbBalorazioak.setIsIndicator(true);
 
+        Resources resources =  getResources();
         tvPrezioa = findViewById(R.id.tvPrezioa);
         if (prezioa >= 1) {
-            tvPrezioa.setText("Prezioa (pertsona 1): " + prezioa + "€");
+            tvPrezioa.setText(resources.getString(R.string.prezioa1) + " " + prezioa + "€");
         }
         tvPrezioa10 = findViewById(R.id.tvPrezioa10);
         if (prezioa10 >= 1) {
-            tvPrezioa10.setText("Prezioa (10 pertsona): " + prezioa10 + "€");
+            tvPrezioa10.setText(resources.getString(R.string.prezioa10) + " " + prezioa10 + "€");
         }
         tvPrezioa20 = findViewById(R.id.tvPrezioa20);
         if (prezioa20 >= 1) {
-            tvPrezioa20.setText("Prezioa (20 pertsona): " + prezioa20 + "€");
+            tvPrezioa20.setText(resources.getString(R.string.prezioa20) + " " + prezioa20 + "€");
         }
 
         // Erreserbaren Ordainketara eramaten duen botoia

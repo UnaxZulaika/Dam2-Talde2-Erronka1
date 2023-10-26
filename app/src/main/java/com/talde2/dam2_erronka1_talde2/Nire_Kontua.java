@@ -10,7 +10,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +25,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -182,80 +185,139 @@ public class Nire_Kontua extends AppCompatActivity {
             }
         });
 
-
-
         //UPDATE botoia
         Button nrkntBtnUpdateIzena = findViewById(R.id.nrkntBtnUpdateIzena);
 
         if(izena.equals("anonimoa")){ //anonimoa bada ezin borratzea erabiltzailea(ez da agertzen BD)
             nrkntBtnUpdateIzena.setEnabled(false);
         }
-        nrkntBtnUpdateIzena.setOnClickListener(new View.OnClickListener() { //UPDATE botoia klikatzean
+        nrkntBtnUpdateIzena.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Nire_Kontua.this);
-                builder.setTitle("Sartu zure izena:");
+                builder.setTitle("Aukeratu egin nahai duzun aldaketa");
 
-                final EditText editText = new EditText(Nire_Kontua.this);
-                builder.setView(editText);
-
-                builder.setPositiveButton("Onartu", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Aldatu Pasahitza", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String erabiltzaile_izena = editText.getText().toString().trim();
+                        // Crear un nuevo cuadro de diálogo para cambiar la contraseña
+                        AlertDialog.Builder changePasswordBuilder = new AlertDialog.Builder(Nire_Kontua.this);
+                        changePasswordBuilder.setTitle("Aldatu pasahitza:");
 
-                        if(TextUtils.isEmpty(erabiltzaile_izena) || erabiltzaile_izena==""){ //izena hutzik badago
-                            String sartuIzena = getString(R.string.izenaErrorea);
-                            nrkntEditIzena.setError(sartuIzena);
-                        }else{ //UPDATE BD
+                        final EditText newPasswordEditText = new EditText(Nire_Kontua.this);
+                        newPasswordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        newPasswordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        newPasswordEditText.setHint("Sartu pasahitz berria");
+                        changePasswordBuilder.setView(newPasswordEditText);
 
-                            final DocumentReference sfDocRef = db.collection("Erabiltzaileak").document(email);
+                        changePasswordBuilder.setPositiveButton("Onartu", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String newPassword = newPasswordEditText.getText().toString().trim();
 
-                            db.runTransaction(new Transaction.Function<Void>() {
+                                if (TextUtils.isEmpty(newPassword) || newPassword.equals("")) {
+                                    Toast.makeText(Nire_Kontua.this, "Ezin izan da pasahitza aldatu", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    newPassword = newPasswordEditText.getText().toString().trim();
+
+                                    if (user != null) {
+                                        user.updatePassword(newPassword)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            // Pasahitza ondo aldatu da
+                                                            String contraseñaUpdateExitosa = "Pasahitza aldatu da";
+                                                            Toast.makeText(Nire_Kontua.this, contraseñaUpdateExitosa, Toast.LENGTH_SHORT).show();
+                                                        } else {
+                                                            // Pasahitza aldatzena errore bat egon da
+                                                            String errorContraseñaUpdate = "Errorea pasahitza aldatzean: " + task.getException().getMessage();
+                                                            Toast.makeText(Nire_Kontua.this, errorContraseñaUpdate, Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
+                                    }
+
+                                }
+                                dialog.dismiss();
+                            }
+                        });
+
+                        changePasswordBuilder.setNegativeButton("Ezeztatu", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                        changePasswordBuilder.show();
+                    }
+                });
+
+                builder.setNegativeButton("Aldatu izena", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AlertDialog.Builder updateIzenaBuilder = new AlertDialog.Builder(Nire_Kontua.this);
+                        updateIzenaBuilder.setTitle("Sartu zure izena:");
+
+                        final EditText newIzenaEditText = new EditText(Nire_Kontua.this);
+                        updateIzenaBuilder.setView(newIzenaEditText);
+
+                        updateIzenaBuilder.setPositiveButton("Onartu", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String newIzena = newIzenaEditText.getText().toString().trim();
+
+                                if (TextUtils.isEmpty(newIzena) || newIzena.equals("")) {
+                                    String sartuIzena = getString(R.string.izenaErrorea);
+                                    nrkntEditIzena.setError(sartuIzena);
+                                } else {
+                                    // Erabiltzailearen izena eguneratzen du, datu basean
+                                    final DocumentReference sfDocRef = db.collection("Erabiltzaileak").document(email);
+
+                                    db.runTransaction(new Transaction.Function<Void>() {
                                         @Override
                                         public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
                                             DocumentSnapshot document = transaction.get(sfDocRef);
 
-                                            //update( DocRef / izena / balio berria)
-                                            transaction.update(sfDocRef, "izena", erabiltzaile_izena);
-
-                                            // Success
+                                            // Eguneratu (DocRef / izena / nuevo valor)
+                                            transaction.update(sfDocRef, "izena", newIzena);
                                             return null;
                                         }
-                                    }).addOnSuccessListener(new OnSuccessListener<Void>() { //runTransaction completed
+                                    }).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            String erabiltzailea_updateatu_da = getString(R.string.aldaketaOndo); //toast msg
-                                            Toast.makeText(Nire_Kontua.this, erabiltzailea_updateatu_da, Toast.LENGTH_SHORT).show(); //UI message
-                                            Log.d("update BD", "Transaction success!"); //console log
+                                            String erabiltzailea_updateatu_da = getString(R.string.aldaketaOndo);
+                                            Toast.makeText(Nire_Kontua.this, erabiltzailea_updateatu_da, Toast.LENGTH_SHORT).show();
+                                            Log.d("update BD", "Transakzioa arrakastatsua!"); // Registro en la consola
 
-                                            nrkntEditIzena.setText(erabiltzaile_izena);
+                                            nrkntEditIzena.setText(newIzena);
                                         }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() { //runTransaction failure
+                                    }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Log.e("update BD", "Transaction failure.", e);//console log
+                                            Log.e("update BD", "Transakzioa huts egin du.", e);
                                         }
                                     });
-                        }
-
-
-
-                        dialog.dismiss();
-                    }
-                });
-
-                builder.setNegativeButton("Ezeztatu", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
+                                }
+                                dialog.dismiss();
+                            }
+                        });
+                        updateIzenaBuilder.setNegativeButton("Ezeztatu", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        updateIzenaBuilder.show();
                     }
                 });
 
                 builder.show();
             }
         });
+
 
         //MENUA
         //menua izkutatzeko lehenik

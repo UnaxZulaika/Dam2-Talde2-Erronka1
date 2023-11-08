@@ -13,9 +13,37 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".register"
+            android:name=".PribatasunPolitikak"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".erreserbaOrdainketa"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Nire_Kontua"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".erreserbaBukatuta"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ErreserbaInfo"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Egindako_Erreserbak"
             android:exported="false"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".erreserbak"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".register"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login"
             android:exported="false"

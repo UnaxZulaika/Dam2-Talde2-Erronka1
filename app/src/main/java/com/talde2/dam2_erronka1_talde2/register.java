@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.talde2.dam2_erronka1_talde2.Objetuak.Erabiltzaile;
 
 public class register extends AppCompatActivity {
 
@@ -135,10 +136,8 @@ public class register extends AppCompatActivity {
                 else {
                     // Aukeratutako IDa RadioButton objetu batean sortzen du.
                     RadioButton mota = findViewById(aukeratutakoMota);
-
                     // erabiltzaileMota String-ean aukeratutako mota gordetzen du.
                     erabiltzaileMota = mota.getText().toString();
-
                     // NAN-a datu basean existizen den konprobatzen du
                     nanKonprobaketa(nan);
                 }
@@ -175,7 +174,6 @@ public class register extends AppCompatActivity {
     // NAN-a datu basean existizen den konprobatzen du
     private void nanKonprobaketa(final String nan) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         db.collection("Erabiltzaileak").whereEqualTo("nan", nan).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -203,7 +201,6 @@ public class register extends AppCompatActivity {
 
                                                     // Zein izan den errorea.
                                                     Exception exception = task.getException();
-
                                                     if (exception instanceof FirebaseAuthInvalidCredentialsException) {
                                                         // Pasaitzak ez du formatu ona.
                                                         String erPasahitzFormatua = getResources().getString(R.string.erPasahitzFormatua);
@@ -221,7 +218,6 @@ public class register extends AppCompatActivity {
                                                         String erEzezaguna = getResources().getString(R.string.erEzezaguna);
                                                         erroreMezua += erEzezaguna + exception.getMessage();
                                                     }
-
                                                     Toast.makeText(register.this, erroreMezua, Toast.LENGTH_SHORT).show();
                                                 }
                                             }
@@ -237,16 +233,12 @@ public class register extends AppCompatActivity {
     }
 
     private void erabiltzaileaDatuBaseanGorde() {
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        erabiltzaileak erabiltzaile = new erabiltzaileak(izena, nan, abizenak, email, mugikorra, erabiltzaileMota);
-
+        Erabiltzaile erabiltzaile = new Erabiltzaile(izena, nan, abizenak, email, mugikorra, erabiltzaileMota);
         db.collection("Erabiltzaileak").document(email).set(erabiltzaile).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        String dbGorde = getResources().getString(R.string.dbGorde);
-                        Toast.makeText(register.this, dbGorde, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(register.this, getResources().getString(R.string.dbGorde), Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

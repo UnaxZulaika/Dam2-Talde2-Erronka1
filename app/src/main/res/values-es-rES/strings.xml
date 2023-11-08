@@ -1,0 +1,156 @@
+<resources>
+    <string name="app_name">OMA</string>
+
+    <!-- MainActivity -->
+    <string name="createdBy">Creado por:</string>
+
+    <!-- login -->
+    <string name="user">Usuario:</string>
+    <string name="userTxt">ejemplo@ejemplo.com</string>
+    <string name="pasw">Contraseña:</string>
+    <string name="paswTxt">Introduce tu contraseña</string>
+    <string name="btnLogin">Iniciar sesión</string>
+    <string name="btnAnonimo">Iniciar sesión como anónimo</string>
+    <string name="btnRegister">Registrarse</string>
+    <string name="ongiEtorriAn">Bienvenido, Anónimo</string>
+    <string name="loginAnonErr">Error, no se puede iniciar sesión como anónimo</string>
+
+    <!-- login.java -->
+    <string name="sartuEposta">Introduce tu correo electrónico</string>
+    <string name="sartuPasahitza">Introduce tu contraseña</string>
+    <string name="erKonexioaLogin">No hay conexión a Internet. Inténtalo de nuevo más tarde</string>
+    <string name="erEpostaLogin">Correo electrónico no encontrado</string>
+    <string name="erPasahitzaLogin">Contraseña incorrecta</string>
+    <string name="erLoginLogin">Correo electrónico o contraseña incorrecta</string>
+    <string name="ongiEtorriLogin">Bienvenido,</string>
+    <string name="erErabiltzaileaLogin">Error: Usuario no encontrado</string>
+    <string name="erroreaLogin">Error:</string>
+
+    <!-- register -->
+    <string name="regIzena">Nombre:</string>
+    <string name="regEditIzena">Introduce tu nombre</string>
+    <string name="regNan">NIF:</string>
+    <string name="regEditNan">Introduce tu NIF</string>
+    <string name="regAbizena">Apellidos:</string>
+    <string name="regEditAbizena">Introduce tus apellidos</string>
+    <string name="regMugikorra">Número de teléfono:</string>
+    <string name="regEditMugikorra">Introduce tu número de teléfono</string>
+    <string name="regEposta">Correo electrónico:</string>
+    <string name="regEditEposta">Introduce tu correo electrónico</string>
+    <string name="regPasw">Contraseña:</string>
+    <string name="regEditPasw">Introduce una contraseña</string>
+    <string name="regPasw2">Repetir contraseña:</string>
+    <string name="regEditPasw2">Repite la contraseña</string>
+    <string name="regErabMota">Tipo de usuario:</string>
+    <string name="regErabiltzaile1">Persona</string>
+    <string name="regErabiltzaile2">Empresa/Entidad</string>
+
+    <!-- register.java -->
+    <string name="erIzena">El nombre es obligatorio</string>
+    <string name="erNan">Formato NIF incorrecto</string>
+    <string name="erAbizenak">Introduce tus dos apellidos, por favor</string>
+    <string name="erEmail">Correo electrónico incorrecto</string>
+    <string name="erMugikorra">Número de teléfono incorrecto</string>
+    <string name="erPasahitza1">Por favor, introduce una contraseña</string>
+    <string name="erPasahitza2">Las contraseñas no coinciden</string>
+    <string name="erMotak">Selecciona un tipo de usuario</string>
+    <string name="erabiltzaileaSortu">Tu usuario ha sido creado</string>
+    <string name="erOkerra">Error en el registro: </string>
+    <string name="erNanBikoiztua">Ya existe otro usuario con el mismo NIF.</string>
+    <string name="erPasahitzFormatua">La contraseña no cumple con el formato requerido (mínimo 6 caracteres)</string>
+    <string name="erEpostaErregistratuta">El correo electrónico ya está registrado</string>
+    <string name="erInternet">No hay conexión a Internet. Inténtalo de nuevo más tarde</string>
+    <string name="erEzezaguna">Error desconocido: </string>
+    <string name="erDbNan">No se ha podido comprobar el NIF en la base de datos. Inténtalo de nuevo más tarde</string>
+    <string name="dbGorde">Guardado en la base de datos</string>
+    <string name="erErrorea">Error</string>
+
+    <!-- Menua -->
+    <string name="menKontua">Mi Cuenta</string>
+    <string name="menErreserbak">Mis Reservas</string>
+    <string name="menkatalogoa">Catálogo</string>
+    <string name="menLogoDeskripzioa">Descripción de nuestra aplicación</string>
+    <string name="menPribatutasunPolitikak">Política de Privacidad</string>
+    <string name="ezagutu">Conócenos:</string>
+    <string name="ezabatu">Borrar usuario</string>
+    <string name="editatu">Editar datos</string>
+
+    <!-- Nire Kontua -->
+    <string name="nrkntEditErbltzMota">Tipo de usuario</string>
+    <string name="nrkntEditPasahitza">Contraseña</string>
+    <string name="nrkntEditMugikorra">Número de teléfono</string>
+    <string name="nrkntEditPosta">Correo electrónico</string>
+    <string name="nrkntEditAbizenak">Apellidos</string>
+    <string name="nrkntEditIzena">Nombre</string>
+    <string name="nrkntEditNan">NIF</string>
+    <string name="nrkntEditErbltzMta">Tipo de Usuario</string>
+    <string name="nrkntIzenaEzKargatu">No se ha podido cargar el nombre</string>
+    <string name="izenaAldatuZiur">¿Estás seguro de que quieres borrar la cuenta?</string>
+    <string name="erabiltzaileaEzabatu">El usuario ha sido eliminado correctamente</string>
+    <string name="errErabiltzaileaEzabatu">Error al eliminar el usuario</string>
+    <string name="bai">Sí</string>
+    <string name="ez">No</string>
+    <string name="aukeratuAldaketa">Selecciona el cambio que deseas realizar</string>
+    <string name="aldatuPasahitza">Cambiar Contraseña</string>
+    <string name="aldatuPasahitza2">Nueva contraseña:</string>
+    <string name="sartuPasahitzBerria">Introduce la nueva contraseña</string>
+    <string name="onartu">Aceptar</string>
+    <string name="ezPasahitzaAldatu">No se pudo cambiar la contraseña</string>
+    <string name="pasahitzaAldatuta">Contraseña cambiada correctamente</string>
+    <string name="errPasahitzaAldatzen">Error al cambiar la contraseña: </string>
+    <string name="ezeztatu">Cancelar</string>
+    <string name="aldatuIzena">Cambiar Nombre</string>
+    <string name="sartuIzena">Introduce tu nombre:</string>
+    <string name="izena">Nombre</string>
+    <string name="transakzioOndo">Transacción exitosa!</string>
+    <string name="transakzioaGaizki">La transacción ha fallado.</string>
+
+    <!-- Erresrebak -->
+    <string name="erreTxartelaEskerrak">Gracias</string>
+    <string name="nrkntTxtErabiltzaileMota">Tipo de Usuario</string>
+    <string name="aldaketaOndo">Nombre cambiado correctamente</string>
+    <string name="izenaErrorea">Error al cambiar el nombre</string>
+    <string name="dokumentuaExistitu">¿Documento existente?</string>
+    <string name="dokumentuaEzExistitu">El documento no existe</string>
+    <string name="errDokumentua">Error al obtener documentos:</string>
+
+    <!-- erreserbaBukatuta -->
+    <string name="eskerrak">¡Tu reserva ha sido exitosa! Gracias por confiar en nosotros.
+Aquí tienes la información de tu reserva:</string>
+    <string name="kokalekua">Ubicación: </string>
+    <string name="prezioa">Precio: </string>
+    <string name="erreserbaData">Fecha de la reserva: </string>
+    <string name="ondo">Tu solicitud ha sido guardada correctamente.</string>
+    <string name="btnErreserba">FINALIZAR RESERVA</string>
+
+    <!-- ErreserbaInfo / erreserbaOrdainketa -->
+    <string name="prezioa1">Precio (1 persona):</string>
+    <string name="prezioa10">Precio (10 personas):</string>
+    <string name="prezioa20">Precio (20 personas):</string>
+    <string name="ccvBaliogabea">CCV de tarjeta de crédito no válido</string>
+    <string name="iraungitzeDataBalioganea">Fecha de caducidad de tarjeta de crédito no válida</string>
+    <string name="kreditTxartelZbkBaliogabea">Número de tarjeta de crédito no válido</string>
+    <string name="aukeratuOrdainketa">Selecciona un método de pago</string>
+    <string name="aukeratuData">Selecciona una fecha</string>
+    <string name="dataEzBaliozkoa">La fecha seleccionada no es válida.</string>
+
+    <string name="kokalekuaActivity">Ubicación:</string>
+    <string name="informazioaActivity">Información:</string>
+    <string name="balorazioaActivity">Valoración:</string>
+    <string name="prezioakActivity">Precios:</string>
+    <string name="erreserbaEgin">Realizar Reserva</string>
+
+    <string name="erreserbaBukatu">FINALIZAR RESERVA</string>
+    <string name="aukeratuDatA">Selecciona una fecha:</string>
+    <string name="aukeratuPertsonaKant">Selecciona la cantidad de personas:</string>
+    <string name="ordaitzeModua">Forma de Pago:</string>
+    <string name="kredituTxartela">Tarjeta de Crédito:</string>
+    <string name="kredituTxartelA">Tarjeta de Crédito</string>
+    <string name="sukurtsalean">En Sucursal</string>
+    <string name="prezioA">Precio: </string>
+
+    <!-- egindakoErreserbak -->
+    <string name="egindakoErreserbak">RESERVAS REALIZADAS</string>
+
+</resources>
+

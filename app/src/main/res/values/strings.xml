@@ -1,64 +1,155 @@
 <resources>
-    <string name="app_name">DAM2-Erronka1-Talde2</string>
+    <string name="app_name">OMA</string>
 
     <!-- MainActivity -->
-    <string name="createdBy">Sortuta:</string>
+    <string name="createdBy">Created by:</string>
 
     <!-- login -->
-    <string name="user">Erabiltzailea:</string>
-    <string name="userTxt">adibidea@adibide.eus</string>
-    <string name="pasw">Pasahitza:</string>
-    <string name="paswTxt">Sartu zure pasahitza</string>
-    <string name="btnLogin">Sartu</string>
-    <string name="btnRegister">Erregistratu</string>
+    <string name="user">User:</string>
+    <string name="userTxt">example@example.com</string>
+    <string name="pasw">Password:</string>
+    <string name="paswTxt">Enter your password</string>
+    <string name="btnLogin">Log In</string>
+    <string name="btnAnonimo">Log In as Anonymous</string>
+    <string name="btnRegister">Register</string>
+    <string name="ongiEtorriAn">Welcome, Anonymous</string>
+    <string name="loginAnonErr">Error, unable to log in as anonymous</string>
 
     <!-- login.java -->
-    <string name="sartuEposta">Sartu zure e-posta</string>
-    <string name="sartuPasahitza">Sartu zure pasahitza</string>
-    <string name="erKonexioaLogin">Ez dago Internet konexiorik. Saiatu berriro geroago</string>
-    <string name="erEpostaLogin">Eposta ez da aurkitu</string>
-    <string name="erPasahitzaLogin">Pasahitz okerra</string>
-    <string name="erLoginLogin">E-posta edo pasahitz okerra</string>
-    <string name="ongiEtorriLogin">Ongi etorri,</string>
-    <string name="erErabiltzaileaLogin">Errorea: Erabiltzailea ez da aurkitu</string>
-    <string name="erroreaLogin">Errorea:</string>
+    <string name="sartuEposta">Enter your email</string>
+    <string name="sartuPasahitza">Enter your password</string>
+    <string name="erKonexioaLogin">No internet connection. Please try again later</string>
+    <string name="erEpostaLogin">Email not found</string>
+    <string name="erPasahitzaLogin">Incorrect password</string>
+    <string name="erLoginLogin">Incorrect email or password</string>
+    <string name="ongiEtorriLogin">Welcome,</string>
+    <string name="erErabiltzaileaLogin">Error: User not found</string>
+    <string name="erroreaLogin">Error:</string>
 
     <!-- register -->
-    <string name="regIzena">Izena:</string>
-    <string name="regEditIzena">Sartu zure izena</string>
-    <string name="regNan">NAN:</string>
-    <string name="regEditNan">Sartu zure NAN-a</string>
-    <string name="regAbizena">Abizenak:</string>
-    <string name="regEditAbizena">Sartu zure abizenak</string>
-    <string name="regMugikorra">Mugikor zenbakia:</string>
-    <string name="regEditMugikorra">Sartu zure mugikor zenbakia</string>
-    <string name="regEposta">E-posta:</string>
-    <string name="regEditEposta">Sartu zure E-posta</string>
-    <string name="regPasw">Pasahitza:</string>
-    <string name="regEditPasw">Sartu pasahitza</string>
-    <string name="regPasw2">Errepikatu pasahitza:</string>
-    <string name="regEditPasw2">Errepikatu pasahitza</string>
-    <string name="regErabMota">Erabiltzaile mota:</string>
-    <string name="regErabiltzaile1">Pertsona</string>
-    <string name="regErabiltzaile2">Enpresa/Entitatea</string>
+    <string name="regIzena">Name:</string>
+    <string name="regEditIzena">Enter your name</string>
+    <string name="regNan">NIF:</string>
+    <string name="regEditNan">Enter your NIF</string>
+    <string name="regAbizena">Last Name:</string>
+    <string name="regEditAbizena">Enter your last name</string>
+    <string name="regMugikorra">Mobile Number:</string>
+    <string name="regEditMugikorra">Enter your mobile number</string>
+    <string name="regEposta">Email:</string>
+    <string name="regEditEposta">Enter your email</string>
+    <string name="regPasw">Password:</string>
+    <string name="regEditPasw">Enter a password</string>
+    <string name="regPasw2">Repeat Password:</string>
+    <string name="regEditPasw2">Repeat the password</string>
+    <string name="regErabMota">User Type:</string>
+    <string name="regErabiltzaile1">Person</string>
+    <string name="regErabiltzaile2">Company/Organization</string>
 
     <!-- register.java -->
-    <string name="erIzena">Izena bete behar da</string>
-    <string name="erNan">Nan formatua okerra</string>
-    <string name="erAbizenak">Zure lehen bi abizenak sartu, mesedez</string>
-    <string name="erEmail">Email okerra</string>
-    <string name="erMugikorra">Mugikor zenbaki okerra</string>
-    <string name="erPasahitza1">Pasahitza bete mesedez</string>
-    <string name="erPasahitza2">Pasahitzak ez dira berdinak</string>
-    <string name="erMotak">Aukeratu erabiltzale mota bat</string>
-    <string name="erabiltzaileaSortu">Zure erabiltzailea sortu da</string>
-    <string name="erOkerra">Erregistro okerra: </string>
-    <string name="erNanBikoiztua">Beste erabiltzaile bat dago NAN berarekin.</string>
-    <string name="erPasahitzFormatua">Pasahitzak ez dago behar bezalako formatua (gutxienez 6 karaktere)</string>
-    <string name="erEpostaErregistratuta">E-posta dagoeneko erregistratua dago</string>
-    <string name="erInternet">Ez dago Internet konexiorik. Saiatu berriro geroago</string>
-    <string name="erEzezaguna">Errore ezezaguna: </string>
-    <string name="erDbNan">Ezin izan da NAN-a datu basean konprobatu. Saiatu berriro geroago</string>
-    <string name="dbGorde">Datu basean gorde da</string>
-    <string name="erErrorea">Errorea</string>
+    <string name="erIzena">Name is required</string>
+    <string name="erNan">Incorrect NIF format</string>
+    <string name="erAbizenak">Please enter your first and last name</string>
+    <string name="erEmail">Invalid email</string>
+    <string name="erMugikorra">Invalid mobile number</string>
+    <string name="erPasahitza1">Password is required</string>
+    <string name="erPasahitza2">Passwords do not match</string>
+    <string name="erMotak">Choose a user type</string>
+    <string name="erabiltzaileaSortu">Your user has been created</string>
+    <string name="erOkerra">Registration error: </string>
+    <string name="erNanBikoiztua">Another user already has the same NIF.</string>
+    <string name="erPasahitzFormatua">Password format is invalid (at least 6 characters)</string>
+    <string name="erEpostaErregistratuta">Email is already registered</string>
+    <string name="erInternet">No internet connection. Please try again later</string>
+    <string name="erEzezaguna">Unknown error: </string>
+    <string name="erDbNan">Unable to validate the NIF in the database. Please try again later</string>
+    <string name="dbGorde">Saved in the database</string>
+    <string name="erErrorea">Error</string>
+
+    <!-- Menu -->
+    <string name="menKontua">My Account</string>
+    <string name="menErreserbak">My Reservations</string>
+    <string name="menkatalogoa">Catalog</string>
+    <string name="menLogoDeskripzioa">Our App Logo</string>
+    <string name="menPribatutasunPolitikak">Privacy Policies</string>
+    <string name="ezagutu">Get to know us:</string>
+    <string name="ezabatu">Delete user</string>
+    <string name="editatu">Edit data</string>
+
+    <!-- My Account -->
+    <string name="nrkntEditErbltzMota">USER type</string>
+    <string name="nrkntEditPasahitza">USER password</string>
+    <string name="nrkntEditMugikorra">USER mobile number</string>
+    <string name="nrkntEditPosta">USER email</string>
+    <string name="nrkntEditAbizenak">USER last name</string>
+    <string name="nrkntEditIzena">USER name</string>
+    <string name="nrkntEditNan">USER NIF</string>
+    <string name="nrkntEditErbltzMta">User User Type</string>
+    <string name="nrkntIzenaEzKargatu">Name not loaded</string>
+    <string name="izenaAldatuZiur">Are you sure you want to delete the account?</string>
+    <string name="erabiltzaileaEzabatu">User has been deleted successfully</string>
+    <string name="errErabiltzaileaEzabatu">Error deleting user</string>
+    <string name="bai">Yes</string>
+    <string name="ez">No</string>
+    <string name="aukeratuAldaketa">Choose the change you want to make</string>
+    <string name="aldatuPasahitza">Change Password</string>
+    <string name="aldatuPasahitza2">Change Password:</string>
+    <string name="sartuPasahitzBerria">Enter the new password</string>
+    <string name="onartu">Accept</string>
+    <string name="ezPasahitzaAldatu">Password could not be changed</string>
+    <string name="pasahitzaAldatuta">Password has been changed</string>
+    <string name="errPasahitzaAldatzen">Error changing password: </string>
+    <string name="ezeztatu">Cancel</string>
+    <string name="aldatuIzena">Change Name</string>
+    <string name="sartuIzena">Enter your name:</string>
+    <string name="izena">name</string>
+    <string name="transakzioOndo">Transaction successful!</string>
+    <string name="transakzioaGaizki">Transaction failed.</string>
+
+    <!-- Reservations -->
+    <string name="erreTxartelaEskerrak">Thank you</string>
+    <string name="nrkntTxtErabiltzaileMota">User Type</string>
+    <string name="aldaketaOndo">Name has been changed</string>
+    <string name="izenaErrorea">Error changing name</string>
+    <string name="dokumentuaExistitu">document exists?</string>
+    <string name="dokumentuaEzExistitu">Document does not exist</string>
+    <string name="errDokumentua">Error obtaining documents:</string>
+
+    <!-- Reservation Completed -->
+    <string name="eskerrak">Your reservation has been successful! Thank you for trusting us.
+Here is your reservation information:</string>
+    <string name="kokalekua">Location: </string>
+    <string name="prezioa">Price: </string>
+    <string name="erreserbaData">Reservation Date: </string>
+    <string name="ondo">Your request has been successfully saved.</string>
+    <string name="btnErreserba">COMPLETE RESERVATION</string>
+
+    <!-- Reservation Info / Payment -->
+    <string name="prezioa1">Price (1 person):</string>
+    <string name="prezioa10">Price (10 people):</string>
+    <string name="prezioa20">Price (20 people):</string>
+    <string name="ccvBaliogabea">Invalid Credit Card CVV</string>
+    <string name="iraungitzeDataBalioganea">Invalid Credit Card Expiry Date</string>
+    <string name="kreditTxartelZbkBaliogabea">Invalid Credit Card Number</string>
+    <string name="aukeratuOrdainketa">Choose a payment method</string>
+    <string name="aukeratuData">Choose a date</string>
+    <string name="dataEzBaliozkoa">The selected date is not valid.</string>
+
+    <string name="kokalekuaActivity">Location:</string>
+    <string name="informazioaActivity">Information:</string>
+    <string name="balorazioaActivity">Rating:</string>
+    <string name="prezioakActivity">Prices:</string>
+    <string name="erreserbaEgin">Make Reservation</string>
+
+    <string name="erreserbaBukatu">COMPLETE RESERVATION</string>
+    <string name="aukeratuDatA">Choose a date:</string>
+    <string name="aukeratuPertsonaKant">Choose the number of people:</string>
+    <string name="ordaitzeModua">Payment method:</string>
+    <string name="kredituTxartela">Credit Card:</string>
+    <string name="kredituTxartelA">Credit Card</string>
+    <string name="sukurtsalean">In the branch</string>
+    <string name="prezioA">Price: </string>
+
+    <!-- Completed Reservations -->
+    <string name="egindakoErreserbak">COMPLETED RESERVATIONS</string>
 </resources>
+
